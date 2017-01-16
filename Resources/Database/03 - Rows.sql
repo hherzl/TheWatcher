@@ -1,0 +1,5 @@
+insert into ServiceCategory values ('Database')
+insert into ServiceCategory values ('Rest API')
+insert into ServiceCategory values ('Server')
+insert into ServiceCategory values ('URL')
+insert into ServiceCategory values ('Web Service')
