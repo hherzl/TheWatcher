@@ -18,8 +18,6 @@ namespace ServiceMonitor.ViewModels
 
         public String Address { get; set; }
 
-        public String ProviderName { get; set; }
-
         public String ConnectionString { get; set; }
 
         public String TypeName { get; set; }

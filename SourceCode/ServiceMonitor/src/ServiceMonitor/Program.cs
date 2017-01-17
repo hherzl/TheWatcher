@@ -53,11 +53,9 @@ namespace ServiceMonitor
 
                 foreach (var item in response.Model)
                 {
-                    var watcherType = Type.GetType(item.TypeName);
+                    var watcherType = Type.GetType(item.TypeName, true);
 
                     var watcherInstance = Activator.CreateInstance(watcherType) as IWatcher;
-
-                    logger.LogTrace("{0}", item.ServiceName);
 
                     var task = Task.Factory.StartNew(async () =>
                     {
