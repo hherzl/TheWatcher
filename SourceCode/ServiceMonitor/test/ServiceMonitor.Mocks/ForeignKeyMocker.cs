@@ -42,7 +42,7 @@ namespace ServiceMonitor.Mocks
                 }
             });
 
-            businessObject.Release();
+            businessObject.Dispose();
         }
 
         [Fact]
@@ -72,7 +72,7 @@ namespace ServiceMonitor.Mocks
                 });
             }
 
-            businessObject.Release();
+            businessObject.Dispose();
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace ServiceMonitor.Mocks
                 });
             }
 
-            businessObject.Release();
+            businessObject.Dispose();
         }
     }
 }

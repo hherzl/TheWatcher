@@ -9,13 +9,7 @@ namespace ServiceMonitor.Common
         {
         }
 
-        public String ActionName
-        {
-            get
-            {
-                return "HttpRequest";
-            }
-        }
+        public String ActionName => "HttpRequest";
 
         public async Task<WatchResponse> Watch(WatcherParameter parameter)
         {

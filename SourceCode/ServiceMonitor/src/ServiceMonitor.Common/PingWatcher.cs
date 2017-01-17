@@ -10,13 +10,7 @@ namespace ServiceMonitor.Common
         {
         }
 
-        public String ActionName
-        {
-            get
-            {
-                return "Ping";
-            }
-        }
+        public String ActionName => "Ping";
 
         public async Task<WatchResponse> Watch(WatcherParameter parameter)
         {

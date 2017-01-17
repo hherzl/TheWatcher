@@ -1,7 +1,9 @@
-﻿namespace ServiceMonitor.Core.BusinessLayer.Contracts
+﻿using System;
+
+namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
-    public interface IBusinessObject
+    public interface IBusinessObject : IDisposable
     {
-        void Release();
+
     }
 }

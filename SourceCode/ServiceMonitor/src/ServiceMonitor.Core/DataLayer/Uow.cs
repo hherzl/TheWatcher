@@ -34,19 +34,10 @@ namespace ServiceMonitor.Core.DataLayer
             GC.SuppressFinalize(this);
         }
 
-        public IDbContextTransaction GetTransaction()
-        {
-            return DbContext.Database.BeginTransaction();
-        }
+        public IDbContextTransaction GetTransaction() => DbContext.Database.BeginTransaction();
 
-        public Int32 CommitChanges()
-        {
-            return DbContext.SaveChanges();
-        }
+        public Int32 CommitChanges() => DbContext.SaveChanges();
 
-        public Task<Int32> CommitChangesAsync()
-        {
-            return DbContext.SaveChangesAsync();
-        }
+        public Task<Int32> CommitChangesAsync() => DbContext.SaveChangesAsync();
     }
 }

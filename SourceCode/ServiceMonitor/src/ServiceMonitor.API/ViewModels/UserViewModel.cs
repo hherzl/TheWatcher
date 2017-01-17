@@ -1,5 +1,4 @@
 ﻿using System;
-using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.ViewModels
 {
@@ -14,18 +13,5 @@ namespace ServiceMonitor.ViewModels
         public String UserName { get; set; }
 
         public Int32? EmployeeID { get; set; }
-    }
-
-    public static class UserViewModelMapper
-    {
-        public static User ToEntity(this UserViewModel viewModel)
-        {
-            return ViewModelMapper.ConfigMapper.Map<UserViewModel, User>(viewModel);
-        }
-
-        public static UserViewModel ToViewModel(this User entity)
-        {
-            return ViewModelMapper.ConfigMapper.Map<User, UserViewModel>(entity);
-        }
     }
 }

@@ -18,12 +18,9 @@ namespace ServiceMonitor.Core.BusinessLayer
             DashboardUow = new DashboardUow(dbContext);
         }
 
-        public void Release()
+        public void Dispose()
         {
-            if (DashboardUow != null)
-            {
-                DashboardUow.Dispose();
-            }
+            DashboardUow?.Dispose();
         }
 
         public IEnumerable<ServiceWatcherItem> GetActiveServiceWatcherItems()

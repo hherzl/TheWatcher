@@ -9,14 +9,8 @@ namespace ServiceMonitor.Common
         public DatabaseWatcher()
         {
         }
-
-        public String ActionName
-        {
-            get
-            {
-                return "OpenDatabaseConnection";
-            }
-        }
+        
+        public String ActionName => "OpenDatabaseConnection";
 
         public async Task<WatchResponse> Watch(WatcherParameter parameter)
         {

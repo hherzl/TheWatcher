@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ServiceMonitor.API.Extensions;
 using ServiceMonitor.API.Responses;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Responses;
@@ -20,7 +21,7 @@ namespace ServiceMonitor.API.Controllers
 
         protected override void Dispose(Boolean disposing)
         {
-            BusinessObject?.Release();
+            BusinessObject?.Dispose();
 
             base.Dispose(disposing);
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using ServiceMonitor.Core.DataLayer.DataContracts;
 
 namespace ServiceMonitor.ViewModels
 {
@@ -7,7 +6,6 @@ namespace ServiceMonitor.ViewModels
     {
         public ServiceWatcherItemViewModel()
         {
-
         }
 
         public Int32? ServiceID { get; set; }
@@ -25,18 +23,5 @@ namespace ServiceMonitor.ViewModels
         public String ConnectionString { get; set; }
 
         public String TypeName { get; set; }
-    }
-
-    public static class ServiceWatcherItemViewModelMapper
-    {
-        public static ServiceWatcherItem ToEntity(this ServiceWatcherItemViewModel viewModel)
-        {
-            return ViewModelMapper.ConfigMapper.Map<ServiceWatcherItemViewModel, ServiceWatcherItem>(viewModel);
-        }
-
-        public static ServiceWatcherItemViewModel ToViewModel(this ServiceWatcherItem entity)
-        {
-            return ViewModelMapper.ConfigMapper.Map<ServiceWatcherItem, ServiceWatcherItemViewModel>(entity);
-        }
     }
 }

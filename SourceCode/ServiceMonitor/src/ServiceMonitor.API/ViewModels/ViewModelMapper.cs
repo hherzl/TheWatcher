@@ -50,12 +50,6 @@ namespace ServiceMonitor.ViewModels
             }).CreateMapper();
         }
 
-        public static IMapper ConfigMapper
-        {
-            get
-            {
-                return m_configMapper;
-            }
-        }
+        public static IMapper ConfigMapper => m_configMapper;
     }
 }

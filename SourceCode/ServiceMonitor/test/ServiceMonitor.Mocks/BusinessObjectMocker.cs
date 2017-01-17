@@ -10,7 +10,10 @@ namespace ServiceMonitor.Mocks
     {
         public static IAdministrationBusinessObject GetAdministrationBusinessObject()
         {
-            var appSettings = Options.Create(new AppSettings { ConnectionString = "server=(local);database=ServiceMonitor;integrated security=yes;" });
+            var appSettings = Options.Create(new AppSettings
+            {
+                ConnectionString = "server=(local);database=ServiceMonitor;integrated security=yes;"
+            });
 
             var entityMapper = new ServiceMonitorEntityMapper() as IEntityMapper;
 

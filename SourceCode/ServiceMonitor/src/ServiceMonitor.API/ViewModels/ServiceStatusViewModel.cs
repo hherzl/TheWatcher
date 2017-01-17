@@ -1,5 +1,4 @@
 ﻿using System;
-using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.ViewModels
 {
@@ -18,18 +17,5 @@ namespace ServiceMonitor.ViewModels
         public Int32? WatchCount { get; set; }
 
         public DateTime? LastWatch { get; set; }
-    }
-
-    public static class ServicesStatusSummaryViewModelMapper
-    {
-        public static ServiceStatus ToEntity(this ServiceStatusViewModel viewModel)
-        {
-            return ViewModelMapper.ConfigMapper.Map<ServiceStatusViewModel, ServiceStatus>(viewModel);
-        }
-
-        public static ServiceStatusViewModel ToViewModel(this ServiceStatus entity)
-        {
-            return ViewModelMapper.ConfigMapper.Map<ServiceStatus, ServiceStatusViewModel>(entity);
-        }
     }
 }

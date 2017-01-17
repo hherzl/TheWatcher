@@ -13,12 +13,9 @@ namespace ServiceMonitor.Core.BusinessLayer
             AdministrationUow = new AdministrationUow(dbContext);
         }
 
-        public void Release()
+        public void Dispose()
         {
-            if (AdministrationUow != null)
-            {
-                AdministrationUow.Dispose();
-            }
+            AdministrationUow?.Dispose();
         }
     }
 }
