@@ -6,6 +6,3 @@ go
 
 create database ServiceMonitor
 go
-
-use ServiceMonitor
-go

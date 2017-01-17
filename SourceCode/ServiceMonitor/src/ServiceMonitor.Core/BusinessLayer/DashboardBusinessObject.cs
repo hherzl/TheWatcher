@@ -24,22 +24,25 @@ namespace ServiceMonitor.Core.BusinessLayer
         }
 
         public IEnumerable<ServiceWatcherItem> GetActiveServiceWatcherItems()
-        {
-            return DashboardUow.ServiceWatcherRepository.GetServiceWatcherItems();
-        }
+            => DashboardUow.ServiceWatcherRepository.GetServiceWatcherItems();
 
         public IEnumerable<ServiceStatusDetail> GetServiceStatuses(String userName)
         {
             var user = DashboardUow.UserRepository.GetByUserName(userName);
 
-            var servicesToWatch = DashboardUow.ServiceUserRepository.GetByUser(user.UserID).Select(item => item.ServiceID).ToList();
+            if (user == null)
+            {
+                return new List<ServiceStatusDetail>();
+            }
+            else
+            {
+                var servicesToWatch = DashboardUow.ServiceUserRepository.GetByUser(user.UserID).Select(item => item.ServiceID).ToList();
 
-            return DashboardUow.ServiceStatusRepository.GetServiceStatusDetails().Where(item => servicesToWatch.Contains(item.ServiceID));
+                return DashboardUow.ServiceStatusRepository.GetServiceStatusDetails().Where(item => servicesToWatch.Contains(item.ServiceID));
+            }
         }
 
         public ServiceStatus GetServiceStatus(ServiceStatus entity)
-        {
-            return DashboardUow.ServiceStatusRepository.Get(new ServiceStatus { ServiceStatusID = entity.ServiceStatusID });
-        }
+            => DashboardUow.ServiceStatusRepository.Get(new ServiceStatus(entity.ServiceStatusID));
     }
 }

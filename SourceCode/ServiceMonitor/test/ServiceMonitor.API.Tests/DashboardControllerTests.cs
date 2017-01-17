@@ -24,5 +24,22 @@ namespace ServiceMonitor.API.Tests
 
             Assert.False(value.DidError);
         }
+
+        [Fact]
+        public async Task GetServiceStatusDetailsTestAsync()
+        {
+            // Arrange
+            var businessObject = BusinessObjectMocker.GetDashboardBusinessObject();
+            var controller = new DashboardController(businessObject);
+            var userName = "DefaultUser";
+
+            // Act
+            var response = await controller.GetServiceStatusDetails(userName) as ObjectResult;
+
+            // Assert
+            var value = response.Value as IListViewModelResponse<ServiceStatusDetailViewModel>;
+
+            Assert.False(value.DidError);
+        }
     }
 }

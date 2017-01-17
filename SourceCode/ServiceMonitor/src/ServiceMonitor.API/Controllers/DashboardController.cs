@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceMonitor.API.Extensions;
 using ServiceMonitor.API.Responses;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Core.EntityLayer;
 using ServiceMonitor.Responses;
 using ServiceMonitor.ViewModels;
 
@@ -28,7 +27,8 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: api/values
+        // GET: api/Dashboard/ServiceWatcherItems
+
         [Route("ServiceWatcherItems")]
         public async Task<IActionResult> GetServiceWatcherItems()
         {
@@ -52,7 +52,9 @@ namespace ServiceMonitor.API.Controllers
             return response.ToHttpResponse();
         }
 
-        [Route("ServiceStatus/{userName}")]
+        // GET: api/Dashboard/ServiceStatusDetails/{userName}
+
+        [Route("ServiceStatusDetails/{userName}")]
         public async Task<IActionResult> GetServiceStatusDetails(String userName)
         {
             var response = new ListViewModelResponse<ServiceStatusDetailViewModel>() as IListViewModelResponse<ServiceStatusDetailViewModel>;
@@ -65,31 +67,6 @@ namespace ServiceMonitor.API.Controllers
                 });
 
                 response.Model = serviceStatuses.Select(item => item.ToViewModel()).OrderBy(item => item.ServiceName).ToList();
-            }
-            catch (Exception ex)
-            {
-                response.DidError = true;
-                response.ErrorMessage = ex.Message;
-            }
-
-            return response.ToHttpResponse();
-        }
-
-        [Route("ServiceStatus/{id}")]
-        public async Task<IActionResult> GetServiceStatus(Int32 id)
-        {
-            var response = new SingleViewModelResponse<ServiceStatusViewModel>() as ISingleViewModelResponse<ServiceStatusViewModel>;
-
-            try
-            {
-                var userName = User.Identity.Name;
-
-                var serviceStatus = await Task.Run(() =>
-                {
-                    return BusinessObject.GetServiceStatus(new ServiceStatus(id));
-                });
-
-                response.Model = serviceStatus.ToViewModel();
             }
             catch (Exception ex)
             {

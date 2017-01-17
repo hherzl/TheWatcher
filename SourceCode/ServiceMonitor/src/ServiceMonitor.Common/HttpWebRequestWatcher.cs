@@ -20,6 +20,8 @@ namespace ServiceMonitor.Common
                 var restClient = new RestClient();
 
                 await restClient.Get(parameter.Values["Url"]);
+
+                response.Success = true;
             }
             catch (Exception ex)
             {
