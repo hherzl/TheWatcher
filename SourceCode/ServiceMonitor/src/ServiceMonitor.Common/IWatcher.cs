@@ -7,6 +7,6 @@ namespace ServiceMonitor.Common
     {
         String ActionName { get; }
 
-        Task<WatchResponse> Watch(WatcherParameter parameter);
+        Task<WatchResponse> WatchAsync(WatcherParameter parameter);
     }
 }

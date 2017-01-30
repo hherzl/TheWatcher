@@ -11,7 +11,7 @@ namespace ServiceMonitor.Common
 
         public String ActionName => "HttpRequest";
 
-        public async Task<WatchResponse> Watch(WatcherParameter parameter)
+        public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
         {
             var response = new WatchResponse();
 
@@ -19,7 +19,7 @@ namespace ServiceMonitor.Common
             {
                 var restClient = new RestClient();
 
-                await restClient.Get(parameter.Values["Url"]);
+                await restClient.GetAsync(parameter.Values["Url"]);
 
                 response.Success = true;
             }

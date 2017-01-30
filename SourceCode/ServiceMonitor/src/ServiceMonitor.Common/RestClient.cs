@@ -7,7 +7,7 @@ namespace ServiceMonitor.Common
 {
     public class RestClient
     {
-        public async Task<String> Get(String url)
+        public async Task<String> GetAsync(String url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -15,7 +15,7 @@ namespace ServiceMonitor.Common
             }
         }
 
-        public async Task PostStringContent(String url, String content, Encoding encoding, String mediaType)
+        public async Task PostStringContentAsync(String url, String content, Encoding encoding, String mediaType)
         {
             using (var httpClient = new HttpClient())
             {

@@ -21,7 +21,7 @@ namespace ServiceMonitor
 
         public RestClient RestClient { get; }
 
-        public async Task Process(ServiceWatchItem item)
+        public async Task ProcessAsync(ServiceWatchItem item)
         {
             while (true)
             {
@@ -29,7 +29,7 @@ namespace ServiceMonitor
                 {
                     Logger.LogTrace("{0} - Watching '{1}'", DateTime.Now, item.ServiceName);
 
-                    var watchResponse = await Watcher.Watch(new WatcherParameter { Values = item.ToDictionary() });
+                    var watchResponse = await Watcher.WatchAsync(new WatcherParameter { Values = item.ToDictionary() });
 
                     var watchLog = new ServiceStatusLog
                     {
@@ -43,7 +43,7 @@ namespace ServiceMonitor
 
                     try
                     {
-                        await RestClient.PostJson(AppSettings.ServiceStatusLogUrl, watchLog);
+                        await RestClient.PostJsonAsync(AppSettings.ServiceStatusLogUrl, watchLog);
                     }
                     catch (Exception ex)
                     {

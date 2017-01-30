@@ -12,7 +12,7 @@ namespace ServiceMonitor.Common
 
         public String ActionName => "Ping";
 
-        public async Task<WatchResponse> Watch(WatcherParameter parameter)
+        public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
         {
             var ping = new Ping();
 

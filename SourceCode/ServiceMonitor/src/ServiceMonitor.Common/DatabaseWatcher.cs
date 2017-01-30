@@ -12,7 +12,7 @@ namespace ServiceMonitor.Common
         
         public String ActionName => "OpenDatabaseConnection";
 
-        public async Task<WatchResponse> Watch(WatcherParameter parameter)
+        public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
         {
             var value = await Task.Run(() =>
             {
