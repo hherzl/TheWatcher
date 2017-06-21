@@ -44,6 +44,12 @@ if object_id('ServiceCategory', 'U') is not null
 	end
 go
 
+create table [dbo].[EnvironmentCategory]
+(
+	[EnvironmentCategoryID] int not null identity(1, 1),
+	[EnvironmentCategoryName] varchar(100) not null
+)
+
 create table [dbo].[ServiceCategory]
 (
 	[ServiceCategoryID] int not null identity(100, 100),
@@ -54,13 +60,7 @@ create table [dbo].[Service]
 (
 	[ServiceID] int not null identity(1, 1),
 	[ServiceCategoryID] int not null,
-	[Name] varchar(max) not null,
-	[Interval] int not null,
-	[Url] varchar(max) null,
-	[Address] varchar(max) null,
-	[ConnectionString] varchar(max) null,
-	[Description] varchar(max) null,
-	[Active] bit not null
+	[Name] varchar(max) not null
 )
 
 create table [dbo].[ServiceWatcher]
@@ -71,25 +71,38 @@ create table [dbo].[ServiceWatcher]
 	[Description] varchar(max) null
 )
 
-create table [dbo].[ServiceStatusLog]
+create table [dbo].[ServiceEnvironment]
 (
-	[ServiceStatusLogID] int not null identity(1, 1),
+	[ServiceEnvironmentID] int not null identity(1, 1),
 	[ServiceID] int not null,
+	[EnvironmentCategoryID] int not null,
+	[Interval] int not null,
+	[Url] varchar(max) null,
+	[Address] varchar(max) null,
+	[ConnectionString] varchar(max) null,
+	[Description] varchar(max) null,
+	[Active] bit not null
+)
+
+create table [dbo].[ServiceEnvironmentStatus]
+(
+	[ServiceEnvironmentStatusID] int not null identity(1, 1),
+	[ServiceEnvironmentID] int not null,
+	[Success] bit not null,
+	[WatchCount] int not null,
+	[LastWatch] datetime not null
+)
+
+create table [dbo].[ServiceEnvironmentStatusLog]
+(
+	[ServiceEnvironmentStatusLogID] int not null identity(1, 1),
+	[ServiceEnvironmentStatusID] int not null,
 	[Target] varchar(255) null,
 	[ActionName] varchar(50) null,
 	[Success] bit not null,
 	[Message] varchar(max) null,
 	[StackTrace] varchar(max) null,
 	[Date] datetime not null
-)
-
-create table [dbo].[ServiceStatus]
-(
-	[ServiceStatusID] int not null identity(1, 1),
-	[ServiceID] int not null,
-	[Success] bit not null,
-	[WatchCount] int not null,
-	[LastWatch] datetime not null
 )
 
 create table [dbo].[Owner]

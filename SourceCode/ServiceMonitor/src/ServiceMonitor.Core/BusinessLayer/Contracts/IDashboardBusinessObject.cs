@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.DataLayer.DataContracts;
 using ServiceMonitor.Core.EntityLayer;
 
@@ -7,10 +8,10 @@ namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
     public interface IDashboardBusinessObject : IBusinessObject
     {
-        IEnumerable<ServiceWatcherItem> GetActiveServiceWatcherItems();
-        
-        IEnumerable<ServiceStatusDetail> GetServiceStatuses(String userName);
-        
-        ServiceStatus GetServiceStatus(ServiceStatus entity);
+        Task<IListViewModelResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync();
+
+        Task<IListViewModelResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName);
+
+        Task<ISingleViewModelResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity);
     }
 }

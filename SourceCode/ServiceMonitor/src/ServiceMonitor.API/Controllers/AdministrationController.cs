@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ServiceMonitor.API.Extensions;
 using ServiceMonitor.API.Responses;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Responses;
 using ServiceMonitor.ViewModels;
 
 namespace ServiceMonitor.API.Controllers
@@ -12,10 +12,12 @@ namespace ServiceMonitor.API.Controllers
     [Route("api/[controller]")]
     public class AdministrationController : Controller
     {
+        protected ILogger Logger;
         protected IAdministrationBusinessObject BusinessObject;
 
-        public AdministrationController(IAdministrationBusinessObject businessObject)
+        public AdministrationController(ILogger logger, IAdministrationBusinessObject businessObject)
         {
+            Logger = logger;
             BusinessObject = businessObject;
         }
 
@@ -26,26 +28,13 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        [Route("ServiceStatusLog")]
         [HttpPost]
-        public async Task<IActionResult> CreateServiceStatusLog([FromBody]ServiceStatusLogViewModel value)
+        [Route("ServiceStatusLog")]
+        public async Task<IActionResult> CreateServiceStatusLog([FromBody]ServiceEnvironmentStatusLogVm value)
         {
-            var response = new SingleViewModelResponse<ServiceStatusLogViewModel>() as ISingleViewModelResponse<ServiceStatusLogViewModel>;
+            Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLog));
 
-            try
-            {
-                var entity = await Task.Run(() =>
-                {
-                    return BusinessObject.CreateServiceStatusLog(value.ToEntity());
-                });
-
-                response.Model = entity.ToViewModel();
-            }
-            catch (Exception ex)
-            {
-                response.DidError = true;
-                response.ErrorMessage = ex.Message;
-            }
+            var response = await BusinessObject.CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
 
             return response.ToHttpResponse();
         }

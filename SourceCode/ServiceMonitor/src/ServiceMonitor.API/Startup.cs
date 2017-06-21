@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ServiceMonitor.API.Controllers;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
+using ServiceMonitor.Core.DataLayer.Contracts;
 using ServiceMonitor.Core.DataLayer.Mapping;
+using ServiceMonitor.Core.DataLayer.Repositories;
 
 namespace ServiceMonitor.API
 {
@@ -32,7 +35,12 @@ namespace ServiceMonitor.API
 
             services.AddEntityFrameworkSqlServer().AddDbContext<ServiceMonitorDbContext>();
 
+            services.AddScoped<ILogger, Logger<DashboardController>>();
+            services.AddScoped<ILogger, Logger<AdministrationController>>();
+
             services.AddScoped<IEntityMapper, ServiceMonitorEntityMapper>();
+
+            services.AddScoped<IDashboardRepository, DashboardRepository>();
 
             services.AddScoped<IDashboardBusinessObject, DashboardBusinessObject>();
             services.AddScoped<IAdministrationBusinessObject, AdministrationBusinessObject>();

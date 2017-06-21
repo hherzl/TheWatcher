@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ServiceMonitor.API.Extensions;
+using Microsoft.Extensions.Logging;
 using ServiceMonitor.API.Responses;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Responses;
-using ServiceMonitor.ViewModels;
 
 namespace ServiceMonitor.API.Controllers
 {
     [Route("api/[controller]")]
     public class DashboardController : Controller
     {
+        protected ILogger Logger;
         protected IDashboardBusinessObject BusinessObject;
 
-        public DashboardController(IDashboardBusinessObject businessObject)
+        public DashboardController(ILogger logger, IDashboardBusinessObject businessObject)
         {
+            Logger = logger;
             BusinessObject = businessObject;
         }
 
@@ -32,22 +31,9 @@ namespace ServiceMonitor.API.Controllers
         [Route("ServiceWatcherItems")]
         public async Task<IActionResult> GetServiceWatcherItems()
         {
-            var response = new ListViewModelResponse<ServiceWatcherItemViewModel>() as IListViewModelResponse<ServiceWatcherItemViewModel>;
+            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItems));
 
-            try
-            {
-                var task = await Task.Run(() =>
-                {
-                    return BusinessObject.GetActiveServiceWatcherItems();
-                });
-
-                response.Model = task.Select(item => item.ToViewModel()).ToList();
-            }
-            catch (Exception ex)
-            {
-                response.DidError = true;
-                response.ErrorMessage = ex.Message;
-            }
+            var response = await BusinessObject.GetActiveServiceWatcherItemsAsync();
 
             return response.ToHttpResponse();
         }
@@ -57,22 +43,9 @@ namespace ServiceMonitor.API.Controllers
         [Route("ServiceStatusDetails/{userName}")]
         public async Task<IActionResult> GetServiceStatusDetails(String userName)
         {
-            var response = new ListViewModelResponse<ServiceStatusDetailViewModel>() as IListViewModelResponse<ServiceStatusDetailViewModel>;
+            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetails));
 
-            try
-            {
-                var serviceStatuses = await Task.Run(() =>
-                {
-                    return BusinessObject.GetServiceStatuses(userName);
-                });
-
-                response.Model = serviceStatuses.Select(item => item.ToViewModel()).OrderBy(item => item.ServiceName).ToList();
-            }
-            catch (Exception ex)
-            {
-                response.DidError = true;
-                response.ErrorMessage = ex.Message;
-            }
+            var response = await BusinessObject.GetServiceStatusesAsync(userName);
 
             return response.ToHttpResponse();
         }

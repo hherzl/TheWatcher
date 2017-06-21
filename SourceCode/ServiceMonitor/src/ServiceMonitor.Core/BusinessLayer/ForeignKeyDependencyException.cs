@@ -1,17 +1,17 @@
-﻿using System;
+﻿//using System;
 
-namespace ServiceMonitor.Core.BusinessLayer
-{
-    public class ForeignKeyDependencyException : Exception
-    {
-        public ForeignKeyDependencyException()
-            : base()
-        {
-        }
+//namespace ServiceMonitor.Core.BusinessLayer
+//{
+//    public class ForeignKeyDependencyException : Exception
+//    {
+//        public ForeignKeyDependencyException()
+//            : base()
+//        {
+//        }
 
-        public ForeignKeyDependencyException(String message)
-            : base(message)
-        {
-        }
-    }
-}
+//        public ForeignKeyDependencyException(String message)
+//            : base(message)
+//        {
+//        }
+//    }
+//}

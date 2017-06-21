@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServiceMonitor.API.Controllers;
-using ServiceMonitor.Responses;
+using ServiceMonitor.Core.BusinessLayer.Contracts;
+using ServiceMonitor.Core.BusinessLayer.Responses;
+using ServiceMonitor.Core.EntityLayer;
 using ServiceMonitor.ViewModels;
 using Xunit;
 
@@ -14,24 +16,27 @@ namespace ServiceMonitor.API.Tests
         public async Task CreateServiceStatusLogTestAsync()
         {
             // Arrange
-            var businessObject = BusinessObjectMocker.GetAdministrationBusinessObject();
-            var controller = new AdministrationController(businessObject);
-            var viewModel = new ServiceStatusLogViewModel
+            using (var businessObject = BusinessObjectMocker.GetAdministrationBusinessObject())
             {
-                ServiceID = 1,
-                Target = "192.168.1.1",
-                ActionName = "Ping",
-                Success = true,
-                Date = DateTime.Now
-            };
+                var logger = LoggerMocker.GetLogger<IAdministrationBusinessObject>();
+                var controller = new AdministrationController(logger, businessObject);
+                var viewModel = new ServiceEnvironmentStatusLogVm
+                {
+                    ServiceEnvironmentID = 1,
+                    Target = "192.168.1.1",
+                    ActionName = "Ping",
+                    Success = true,
+                    Date = DateTime.Now
+                };
 
-            // Act
-            var response = await controller.CreateServiceStatusLog(viewModel) as ObjectResult;
+                // Act
+                var response = await controller.CreateServiceStatusLog(viewModel) as ObjectResult;
 
-            // Assert
-            var value = response.Value as ISingleViewModelResponse<ServiceStatusLogViewModel>;
+                // Assert
+                var value = response.Value as ISingleViewModelResponse<ServiceEnvironmentStatusLog>;
 
-            Assert.False(value.DidError);
+                Assert.False(value.DidError);
+            }
         }
     }
 }

@@ -12,41 +12,41 @@ namespace ServiceMonitor.ViewModels
         {
             m_configMapper = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<OwnerViewModel, Owner>();
-                cfg.CreateMap<Owner, OwnerViewModel>();
+                cfg.CreateMap<OwnerVm, Owner>();
+                cfg.CreateMap<Owner, OwnerVm>();
 
-                cfg.CreateMap<ServiceCategory, ServiceCategoryViewModel>();
-                cfg.CreateMap<ServiceCategoryViewModel, ServiceCategory>();
+                cfg.CreateMap<ServiceCategory, ServiceCategoryVm>();
+                cfg.CreateMap<ServiceCategoryVm, ServiceCategory>();
 
-                cfg.CreateMap<Service, ServiceViewModel>();
-                cfg.CreateMap<ServiceViewModel, Service>();
+                cfg.CreateMap<Service, ServiceVm>();
+                cfg.CreateMap<ServiceVm, Service>();
 
-                cfg.CreateMap<ServiceWatcher, ServiceWatcherViewModel>();
-                cfg.CreateMap<ServiceWatcherViewModel, ServiceWatcher>();
+                cfg.CreateMap<ServiceWatcher, ServiceWatcherVm>();
+                cfg.CreateMap<ServiceWatcherVm, ServiceWatcher>();
 
-                cfg.CreateMap<ServiceWatcherItem, ServiceWatcherItemViewModel>();
-                cfg.CreateMap<ServiceWatcherItemViewModel, ServiceWatcherItem>();
+                cfg.CreateMap<ServiceWatcherItemDto, ServiceWatcherItemVm>();
+                cfg.CreateMap<ServiceWatcherItemVm, ServiceWatcherItemDto>();
 
-                cfg.CreateMap<ServiceStatus, ServiceStatusViewModel>();
-                cfg.CreateMap<ServiceStatusViewModel, ServiceStatus>();
+                cfg.CreateMap<ServiceEnvironmentStatus, ServiceStatusVm>();
+                cfg.CreateMap<ServiceStatusVm, ServiceEnvironmentStatus>();
 
-                cfg.CreateMap<ServiceStatusDetail, ServiceStatusDetailViewModel>();
-                cfg.CreateMap<ServiceStatusDetailViewModel, ServiceStatusDetail>();
+                cfg.CreateMap<ServiceStatusDetailDto, ServiceStatusDetailVm>();
+                cfg.CreateMap<ServiceStatusDetailVm, ServiceStatusDetailDto>();
 
-                cfg.CreateMap<ServiceStatusLog, ServiceStatusLogViewModel>();
-                cfg.CreateMap<ServiceStatusLogViewModel, ServiceStatusLog>();
+                cfg.CreateMap<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogVm>();
+                cfg.CreateMap<ServiceEnvironmentStatusLogVm, ServiceEnvironmentStatusLog>();
 
-                cfg.CreateMap<ServiceUser, ServiceUserViewModel>();
-                cfg.CreateMap<ServiceUserViewModel, ServiceUser>();
+                cfg.CreateMap<ServiceUser, ServiceUserVm>();
+                cfg.CreateMap<ServiceUserVm, ServiceUser>();
 
-                cfg.CreateMap<Owner, OwnerViewModel>();
-                cfg.CreateMap<OwnerViewModel, Owner>();
+                cfg.CreateMap<Owner, OwnerVm>();
+                cfg.CreateMap<OwnerVm, Owner>();
 
-                cfg.CreateMap<ServiceOwner, ServiceOwnerViewModel>();
-                cfg.CreateMap<ServiceOwnerViewModel, ServiceOwner>();
+                cfg.CreateMap<ServiceOwner, ServiceOwnerVm>();
+                cfg.CreateMap<ServiceOwnerVm, ServiceOwner>();
 
-                cfg.CreateMap<User, UserViewModel>();
-                cfg.CreateMap<UserViewModel, User>();
+                cfg.CreateMap<User, UserVm>();
+                cfg.CreateMap<UserVm, User>();
             }).CreateMapper();
         }
 

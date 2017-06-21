@@ -34,6 +34,7 @@ namespace ServiceMonitor
                     var watchLog = new ServiceStatusLog
                     {
                         ServiceID = item.ServiceID,
+                        ServiceEnvironmentID = item.ServiceEnvironmentID,
                         Target = item.ServiceName,
                         ActionName = Watcher.ActionName,
                         Success = watchResponse.Success,

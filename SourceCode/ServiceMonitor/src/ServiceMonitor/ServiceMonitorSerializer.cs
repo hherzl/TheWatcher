@@ -6,8 +6,10 @@ namespace ServiceMonitor
 {
     public class ServiceMonitorSerializer : ISerializer
     {
-        public String Serialize<T>(T obj) => JsonConvert.SerializeObject(obj);
+        public String Serialize<T>(T obj)
+            => JsonConvert.SerializeObject(obj);
 
-        public T Deserialze<T>(String source) => JsonConvert.DeserializeObject<T>(source);
+        public T Deserialze<T>(String source)
+            => JsonConvert.DeserializeObject<T>(source);
     }
 }

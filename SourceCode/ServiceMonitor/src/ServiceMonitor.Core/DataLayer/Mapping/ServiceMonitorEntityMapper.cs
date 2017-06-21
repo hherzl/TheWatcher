@@ -8,15 +8,17 @@ namespace ServiceMonitor.Core.DataLayer.Mapping
         {
             Mappings = new List<IEntityMap>()
             {
-                new OwnerMap() as IEntityMap,
-                new ServiceCategoryMap() as IEntityMap,
-                new ServiceMap() as IEntityMap,
-                new ServiceOwnerMap() as IEntityMap,
-                new ServiceStatusLogMap() as IEntityMap,
-                new ServiceStatusMap() as IEntityMap,
-                new ServiceUserMap() as IEntityMap,
-                new ServiceWatcherMap() as IEntityMap,
-                new UserMap() as IEntityMap
+                new OwnerMap(),
+                new ServiceCategoryMap(),
+                new ServiceMap(),
+                new ServiceEnvironmentMap(),
+                new ServiceOwnerMap(),
+                new ServiceEnvironmentStatusLogMap(),
+                new ServiceEnvironmentStatusMap(),
+                new ServiceUserMap(),
+                new ServiceWatcherMap(),
+                new UserMap(),
+                new EnvironmentCategoryMap()
             };
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using ServiceMonitor.Responses;
+using ServiceMonitor.Core.BusinessLayer.Responses;
 
 namespace ServiceMonitor.API.Responses
 {
