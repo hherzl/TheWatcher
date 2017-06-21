@@ -27,7 +27,7 @@ namespace ServiceMonitor
             {
                 try
                 {
-                    Logger.LogTrace("{0} - Watching '{1}'", DateTime.Now, item.ServiceName);
+                    Logger.LogTrace("{0} - Watching '{1}' for '{2}' environment", DateTime.Now, item.ServiceName, item.Environment);
 
                     var watchResponse = await Watcher.WatchAsync(new WatcherParameter { Values = item.ToDictionary() });
 
