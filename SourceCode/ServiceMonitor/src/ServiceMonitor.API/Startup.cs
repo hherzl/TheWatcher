@@ -39,11 +39,13 @@ namespace ServiceMonitor.API
             services.AddScoped<ILogger, Logger<AdministrationController>>();
 
             services.AddScoped<IEntityMapper, ServiceMonitorEntityMapper>();
-
             services.AddScoped<IDashboardRepository, DashboardRepository>();
 
             services.AddScoped<IDashboardBusinessObject, DashboardBusinessObject>();
             services.AddScoped<IAdministrationBusinessObject, AdministrationBusinessObject>();
+
+            services.AddScoped<ILogger, Logger<DashboardBusinessObject>>();
+            services.AddScoped<ILogger, Logger<AdministrationBusinessObject>>();
 
             services.AddOptions();
 

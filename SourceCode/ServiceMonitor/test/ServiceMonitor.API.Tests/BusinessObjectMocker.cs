@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System;
+using Microsoft.Extensions.Options;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
@@ -8,28 +9,25 @@ namespace ServiceMonitor.API.Tests
 {
     public static class BusinessObjectMocker
     {
+        private static String ConnectionString
+            => "server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;";
+
         public static IAdministrationBusinessObject GetAdministrationBusinessObject()
         {
-            var appSettings = Options.Create(new AppSettings
-            {
-                ConnectionString = "server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;"
-            });
+            var logger = LoggerMocker.GetLogger<IAdministrationBusinessObject>();
 
-            var entityMapper = new ServiceMonitorEntityMapper() as IEntityMapper;
+            var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new AdministrationBusinessObject(new ServiceMonitorDbContext(appSettings, entityMapper)) as IAdministrationBusinessObject;
+            return new AdministrationBusinessObject(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
         }
 
         public static IDashboardBusinessObject GetDashboardBusinessObject()
         {
-            var appSettings = Options.Create(new AppSettings
-            {
-                ConnectionString = "server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;"
-            });
+            var logger = LoggerMocker.GetLogger<IDashboardBusinessObject>();
 
-            var entityMapper = new ServiceMonitorEntityMapper() as IEntityMapper;
+            var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new DashboardBusinessObject(new ServiceMonitorDbContext(appSettings, entityMapper)) as IDashboardBusinessObject;
+            return new DashboardBusinessObject(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
         }
     }
 }
