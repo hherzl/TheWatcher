@@ -27,9 +27,18 @@ namespace ServiceMonitor
             {
                 try
                 {
-                    Logger.LogTrace("{0} - Watching '{1}' for '{2}' environment", DateTime.Now, item.ServiceName, item.Environment);
+                    Logger?.LogTrace("{0} - Watching '{1}' for '{2}' environment", DateTime.Now, item.ServiceName, item.Environment);
 
                     var watchResponse = await Watcher.WatchAsync(new WatcherParameter { Values = item.ToDictionary() });
+
+                    if (watchResponse.Success)
+                    {
+                        Logger?.LogInformation(" Success watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
+                    }
+                    else
+                    {
+                        Logger?.LogError(" Failed watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
+                    }
 
                     var watchLog = new ServiceStatusLog
                     {
@@ -48,12 +57,12 @@ namespace ServiceMonitor
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogError(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex);
+                        Logger?.LogError(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogError(" Error on watch: '{0}'", ex);
+                    Logger?.LogError(" Error on watch: '{0}'", ex);
                 }
 
                 Thread.Sleep(item.Interval.HasValue ? item.Interval.Value : AppSettings.DelayTime);

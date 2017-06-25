@@ -30,7 +30,7 @@ namespace ServiceMonitor.API.Tests
                 };
 
                 // Act
-                var response = await controller.CreateServiceStatusLog(viewModel) as ObjectResult;
+                var response = await controller.CreateServiceStatusLogAsync(viewModel) as ObjectResult;
 
                 // Assert
                 var value = response.Value as ISingleViewModelResponse<ServiceEnvironmentStatusLog>;

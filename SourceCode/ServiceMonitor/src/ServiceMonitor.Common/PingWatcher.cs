@@ -6,10 +6,6 @@ namespace ServiceMonitor.Common
 {
     public class PingWatcher : IWatcher
     {
-        public PingWatcher()
-        {
-        }
-
         public String ActionName => "Ping";
 
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)

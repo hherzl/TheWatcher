@@ -58,7 +58,8 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
 
             if (user == null)
             {
-                return new List<ServiceStatusDetailDto>().AsQueryable();
+                return new List<ServiceStatusDetailDto>()
+                    .AsQueryable();
             }
             else
             {
@@ -71,18 +72,23 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
                 var query = from serviceEnvironmentStatus in DbContext.Set<ServiceEnvironmentStatus>()
                             join serviceEnvironment in DbContext.Set<ServiceEnvironment>() on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
                             join service in DbContext.Set<Service>() on serviceEnvironment.ServiceID equals service.ServiceID
+                            join environmentCategory in DbContext.Set<EnvironmentCategory>() on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
                             where serviceEnvironment.Active == true
                             select new ServiceStatusDetailDto
                             {
                                 ServiceEnvironmentStatusID = serviceEnvironmentStatus.ServiceEnvironmentStatusID,
                                 ServiceEnvironmentID = serviceEnvironmentStatus.ServiceEnvironmentID,
+                                ServiceID = service.ServiceID,
                                 ServiceName = service.Name,
+                                EnvironmentName = environmentCategory.EnvironmentCategoryName,
                                 Success = serviceEnvironmentStatus.Success,
                                 WatchCount = serviceEnvironmentStatus.WatchCount,
                                 LastWatch = serviceEnvironmentStatus.LastWatch
                             };
 
-                return query.Where(item => servicesToWatch.Contains(item.ServiceEnvironmentID));
+                query = query.OrderBy(item => item.ServiceName).ThenBy(item => item.EnvironmentName);
+
+                return query.Where(item => servicesToWatch.Contains(item.ServiceID));
             }
         }
 

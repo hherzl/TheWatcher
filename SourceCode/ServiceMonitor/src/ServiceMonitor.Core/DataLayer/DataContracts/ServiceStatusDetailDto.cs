@@ -12,7 +12,11 @@ namespace ServiceMonitor.Core.DataLayer.DataContracts
 
         public Int32? ServiceEnvironmentID { get; set; }
 
+        public Int32? ServiceID { get; set; }
+
         public String ServiceName { get; set; }
+
+        public String EnvironmentName { get; set; }
 
         public Boolean? Success { get; set; }
 

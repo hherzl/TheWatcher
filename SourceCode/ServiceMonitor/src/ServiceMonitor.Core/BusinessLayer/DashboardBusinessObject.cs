@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
@@ -60,13 +59,8 @@ namespace ServiceMonitor.Core.BusinessLayer
                 }
                 else
                 {
-                    var servicesToWatch = Repository.GetByUser(user.UserID)
-                        .Select(item => item.ServiceID)
-                        .ToList();
-
                     response.Model = await Repository
                         .GetServiceStatuses(userName)
-                        .Where(item => servicesToWatch.Contains(item.ServiceEnvironmentID))
                         .ToListAsync();
                 }
             }

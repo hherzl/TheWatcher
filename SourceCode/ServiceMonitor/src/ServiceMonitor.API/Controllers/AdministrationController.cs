@@ -30,9 +30,9 @@ namespace ServiceMonitor.API.Controllers
 
         [HttpPost]
         [Route("ServiceStatusLog")]
-        public async Task<IActionResult> CreateServiceStatusLog([FromBody]ServiceEnvironmentStatusLogVm value)
+        public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogVm value)
         {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLog));
+            Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));
 
             var response = await BusinessObject.CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
 

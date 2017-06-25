@@ -19,7 +19,7 @@ namespace ServiceMonitor.API.Tests
             var controller = new DashboardController(logger, businessObject);
 
             // Act
-            var response = await controller.GetServiceWatcherItems() as ObjectResult;
+            var response = await controller.GetServiceWatcherItemsAsync() as ObjectResult;
 
             // Assert
             var value = response.Value as IListViewModelResponse<ServiceWatcherItemDto>;
@@ -37,7 +37,7 @@ namespace ServiceMonitor.API.Tests
             var userName = "DefaultUser";
 
             // Act
-            var response = await controller.GetServiceStatusDetails(userName) as ObjectResult;
+            var response = await controller.GetServiceStatusDetailsAsync(userName) as ObjectResult;
 
             // Assert
             var value = response.Value as IListViewModelResponse<ServiceStatusDetailDto>;

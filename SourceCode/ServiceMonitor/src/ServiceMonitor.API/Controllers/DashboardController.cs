@@ -29,9 +29,9 @@ namespace ServiceMonitor.API.Controllers
         // GET: api/Dashboard/ServiceWatcherItems
 
         [Route("ServiceWatcherItems")]
-        public async Task<IActionResult> GetServiceWatcherItems()
+        public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItems));
+            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItemsAsync));
 
             var response = await BusinessObject.GetActiveServiceWatcherItemsAsync();
 
@@ -41,9 +41,9 @@ namespace ServiceMonitor.API.Controllers
         // GET: api/Dashboard/ServiceStatusDetails/{userName}
 
         [Route("ServiceStatusDetails/{userName}")]
-        public async Task<IActionResult> GetServiceStatusDetails(String userName)
+        public async Task<IActionResult> GetServiceStatusDetailsAsync(String userName)
         {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetails));
+            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));
 
             var response = await BusinessObject.GetServiceStatusesAsync(userName);
 
