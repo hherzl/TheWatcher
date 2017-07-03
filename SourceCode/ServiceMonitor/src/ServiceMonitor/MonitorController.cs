@@ -57,12 +57,12 @@ namespace ServiceMonitor
                     }
                     catch (Exception ex)
                     {
-                        Logger?.LogError(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex);
+                        Logger?.LogError(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex.Message);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger?.LogError(" Error on watch: '{0}'", ex);
+                    Logger?.LogError(" Error on '{0}' watch: '{1}'", item.ServiceName, ex.Message);
                 }
 
                 Thread.Sleep(item.Interval.HasValue ? item.Interval.Value : AppSettings.DelayTime);

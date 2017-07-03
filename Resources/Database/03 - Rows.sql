@@ -15,7 +15,7 @@ insert into [ServiceEnvironment] ([ServiceID], [EnvironmentCategoryID], [Interva
     values (1, 1, 15000, 'server=(local);database=Northwind;user id=johnd;password=SqlServer2017$', 'SQL Server Local Instance', 1)
 
 insert into [ServiceEnvironment] ([ServiceID], [EnvironmentCategoryID], [Interval], [ConnectionString], [Description], [Active])
-    values (1, 1, 15000, 'server=(local);database=Northwind;user id=johnd;password=SqlServer', 'SQL Server Local Instance', 1)
+    values (1, 2, 15000, 'server=(local);database=Northwind;user id=johnd;password=SqlServer', 'SQL Server Local Instance', 1)
 
 insert into [Service] ([ServiceCategoryID], [Name])
     values (300, 'DNS')

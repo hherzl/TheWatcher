@@ -37,7 +37,7 @@ namespace ServiceMonitor
             }
             catch (Exception ex)
             {
-                logger.LogError("Error on retrieve watch items: {0}", ex);
+                logger.LogError("Error on retrieve watch items: {0}", ex.Message);
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace ServiceMonitor
             }
             catch (Exception ex)
             {
-                logger.LogError("Error on deserializing object: {0}", ex);
+                logger.LogError("Error on deserializing object: {0}", ex.Message);
                 return;
             }
 
