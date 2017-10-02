@@ -7,13 +7,14 @@ namespace ServiceMonitor.Core.DataLayer.Mapping
     {
         public void Map(ModelBuilder modelBuilder)
         {
-            var entity = modelBuilder.Entity<ServiceEnvironment>();
+            modelBuilder.Entity<ServiceEnvironment>(entity =>
+            {
+                entity.ToTable("ServiceEnvironment");
 
-            entity.ToTable("ServiceEnvironment");
+                entity.HasKey(p => p.ServiceEnvironmentID);
 
-            entity.HasKey(p => p.ServiceEnvironmentID);
-
-            entity.Property(p => p.ServiceEnvironmentID).UseSqlServerIdentityColumn();
+                entity.Property(p => p.ServiceEnvironmentID).UseSqlServerIdentityColumn();
+            });
         }
     }
 }
