@@ -5,7 +5,7 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
-    public interface IAdministrationBusinessObject : IBusinessObject
+    public interface IAdministrationService : IService
     {
         Task<ISingleViewModelResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID);
     }

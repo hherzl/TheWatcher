@@ -14,7 +14,7 @@ namespace ServiceMonitor.API.Tests
         public async Task GetServiceWatcherItemsTestAsync()
         {
             // Arrange
-            var logger = LoggerMocker.GetLogger<IDashboardBusinessObject>();
+            var logger = LoggerMocker.GetLogger<IDashboardService>();
             var businessObject = BusinessObjectMocker.GetDashboardBusinessObject();
             var controller = new DashboardController(logger, businessObject);
 
@@ -31,7 +31,7 @@ namespace ServiceMonitor.API.Tests
         public async Task GetServiceStatusDetailsTestAsync()
         {
             // Arrange
-            var logger = LoggerMocker.GetLogger<IDashboardBusinessObject>();
+            var logger = LoggerMocker.GetLogger<IDashboardService>();
             var businessObject = BusinessObjectMocker.GetDashboardBusinessObject();
             var controller = new DashboardController(logger, businessObject);
             var userName = "DefaultUser";

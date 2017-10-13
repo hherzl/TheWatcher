@@ -13,17 +13,17 @@ namespace ServiceMonitor.API.Controllers
     public class AdministrationController : Controller
     {
         protected ILogger Logger;
-        protected IAdministrationBusinessObject BusinessObject;
+        protected IAdministrationService Service;
 
-        public AdministrationController(ILogger logger, IAdministrationBusinessObject businessObject)
+        public AdministrationController(ILogger logger, IAdministrationService service)
         {
             Logger = logger;
-            BusinessObject = businessObject;
+            Service = service;
         }
 
         protected override void Dispose(Boolean disposing)
         {
-            BusinessObject?.Dispose();
+            Service?.Dispose();
 
             base.Dispose(disposing);
         }
@@ -34,7 +34,7 @@ namespace ServiceMonitor.API.Controllers
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));
 
-            var response = await BusinessObject.CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
+            var response = await Service.CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
 
             return response.ToHttpResponse();
         }

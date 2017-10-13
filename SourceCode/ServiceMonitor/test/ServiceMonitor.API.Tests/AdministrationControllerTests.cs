@@ -18,7 +18,7 @@ namespace ServiceMonitor.API.Tests
             // Arrange
             using (var businessObject = BusinessObjectMocker.GetAdministrationBusinessObject())
             {
-                var logger = LoggerMocker.GetLogger<IAdministrationBusinessObject>();
+                var logger = LoggerMocker.GetLogger<IAdministrationService>();
                 var controller = new AdministrationController(logger, businessObject);
                 var viewModel = new ServiceEnvironmentStatusLogVm
                 {

@@ -6,7 +6,7 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
-    public interface IDashboardBusinessObject : IBusinessObject
+    public interface IDashboardService : IService
     {
         Task<IListViewModelResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync();
 

@@ -12,22 +12,22 @@ namespace ServiceMonitor.API.Tests
         private static String ConnectionString
             => "server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;";
 
-        public static IAdministrationBusinessObject GetAdministrationBusinessObject()
+        public static IAdministrationService GetAdministrationBusinessObject()
         {
-            var logger = LoggerMocker.GetLogger<IAdministrationBusinessObject>();
+            var logger = LoggerMocker.GetLogger<IAdministrationService>();
 
             var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new AdministrationBusinessObject(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
+            return new AdministrationService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
         }
 
-        public static IDashboardBusinessObject GetDashboardBusinessObject()
+        public static IDashboardService GetDashboardBusinessObject()
         {
-            var logger = LoggerMocker.GetLogger<IDashboardBusinessObject>();
+            var logger = LoggerMocker.GetLogger<IDashboardService>();
 
             var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new DashboardBusinessObject(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
+            return new DashboardService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
         }
     }
 }

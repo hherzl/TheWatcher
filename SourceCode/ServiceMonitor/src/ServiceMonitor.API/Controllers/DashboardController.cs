@@ -11,17 +11,17 @@ namespace ServiceMonitor.API.Controllers
     public class DashboardController : Controller
     {
         protected ILogger Logger;
-        protected IDashboardBusinessObject BusinessObject;
+        protected IDashboardService Service;
 
-        public DashboardController(ILogger logger, IDashboardBusinessObject businessObject)
+        public DashboardController(ILogger logger, IDashboardService service)
         {
             Logger = logger;
-            BusinessObject = businessObject;
+            Service = service;
         }
 
         protected override void Dispose(Boolean disposing)
         {
-            BusinessObject?.Dispose();
+            Service?.Dispose();
 
             base.Dispose(disposing);
         }
@@ -33,7 +33,7 @@ namespace ServiceMonitor.API.Controllers
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItemsAsync));
 
-            var response = await BusinessObject.GetActiveServiceWatcherItemsAsync();
+            var response = await Service.GetActiveServiceWatcherItemsAsync();
 
             return response.ToHttpResponse();
         }
@@ -45,7 +45,7 @@ namespace ServiceMonitor.API.Controllers
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));
 
-            var response = await BusinessObject.GetServiceStatusesAsync(userName);
+            var response = await Service.GetServiceStatusesAsync(userName);
 
             return response.ToHttpResponse();
         }

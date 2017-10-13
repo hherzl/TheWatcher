@@ -10,23 +10,18 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public partial class AdministrationBusinessObject : BusinessObject, IAdministrationBusinessObject
+    public partial class AdministrationService : Service, IAdministrationService
     {
         private ILogger logger;
         private IAdministrationRepository m_repository;
 
-        public AdministrationBusinessObject(ILogger logger, ServiceMonitorDbContext dbContext)
+        public AdministrationService(ILogger logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
 
         protected IAdministrationRepository Repository
-        {
-            get
-            {
-                return m_repository ?? (m_repository = new AdministrationRepository(DbContext));
-            }
-        }
+            => m_repository ?? (m_repository = new AdministrationRepository(DbContext));
 
         public async Task<ISingleViewModelResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID)
         {

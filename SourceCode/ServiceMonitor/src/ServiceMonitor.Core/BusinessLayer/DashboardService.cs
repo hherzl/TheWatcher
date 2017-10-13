@@ -12,23 +12,18 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public partial class DashboardBusinessObject : BusinessObject, IDashboardBusinessObject
+    public partial class DashboardService : Service, IDashboardService
     {
         private ILogger logger;
         private IDashboardRepository m_repository;
 
-        public DashboardBusinessObject(ILogger logger, ServiceMonitorDbContext dbContext)
+        public DashboardService(ILogger logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
 
         protected IDashboardRepository Repository
-        {
-            get
-            {
-                return m_repository ?? (m_repository = new DashboardRepository(DbContext));
-            }
-        }
+            => m_repository ?? (m_repository = new DashboardRepository(DbContext));
 
         public async Task<IListViewModelResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync()
         {
