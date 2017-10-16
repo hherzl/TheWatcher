@@ -3,12 +3,8 @@ using System.Collections.Generic;
 
 namespace ServiceMonitor.Core.BusinessLayer.Responses
 {
-    public class ListViewModelResponse<TModel> : IListViewModelResponse<TModel> where TModel : class
+    public class ListResponse<TModel> : IListResponse<TModel> where TModel : class
     {
-        public ListViewModelResponse()
-        {
-        }
-
         public String Message { get; set; }
 
         public Boolean DidError { get; set; }

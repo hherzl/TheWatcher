@@ -22,7 +22,7 @@ namespace ServiceMonitor.API.Tests
             var response = await controller.GetServiceWatcherItemsAsync() as ObjectResult;
 
             // Assert
-            var value = response.Value as IListViewModelResponse<ServiceWatcherItemDto>;
+            var value = response.Value as IListResponse<ServiceWatcherItemDto>;
 
             Assert.False(value.DidError);
         }
@@ -40,7 +40,7 @@ namespace ServiceMonitor.API.Tests
             var response = await controller.GetServiceStatusDetailsAsync(userName) as ObjectResult;
 
             // Assert
-            var value = response.Value as IListViewModelResponse<ServiceStatusDetailDto>;
+            var value = response.Value as IListResponse<ServiceStatusDetailDto>;
 
             Assert.False(value.DidError);
         }

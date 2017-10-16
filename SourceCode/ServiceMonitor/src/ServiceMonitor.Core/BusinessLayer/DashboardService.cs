@@ -25,11 +25,11 @@ namespace ServiceMonitor.Core.BusinessLayer
         protected IDashboardRepository Repository
             => m_repository ?? (m_repository = new DashboardRepository(DbContext));
 
-        public async Task<IListViewModelResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync()
+        public async Task<IListResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync()
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetActiveServiceWatcherItemsAsync));
 
-            var response = new ListViewModelResponse<ServiceWatcherItemDto>();
+            var response = new ListResponse<ServiceWatcherItemDto>();
 
             try
             {
@@ -47,11 +47,11 @@ namespace ServiceMonitor.Core.BusinessLayer
             return response;
         }
 
-        public async Task<IListViewModelResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName)
+        public async Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusesAsync));
 
-            var response = new ListViewModelResponse<ServiceStatusDetailDto>();
+            var response = new ListResponse<ServiceStatusDetailDto>();
 
             try
             {
@@ -61,7 +61,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                 {
                     Logger?.LogInformation("There isn't data for user '{0}'", userName);
 
-                    return new ListViewModelResponse<ServiceStatusDetailDto>();
+                    return new ListResponse<ServiceStatusDetailDto>();
                 }
                 else
                 {
@@ -80,11 +80,11 @@ namespace ServiceMonitor.Core.BusinessLayer
             return response;
         }
 
-        public async Task<ISingleViewModelResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity)
+        public async Task<ISingleResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusAsync));
 
-            var response = new SingleViewModelResponse<ServiceEnvironmentStatus>();
+            var response = new SingleResponse<ServiceEnvironmentStatus>();
 
             try
             {

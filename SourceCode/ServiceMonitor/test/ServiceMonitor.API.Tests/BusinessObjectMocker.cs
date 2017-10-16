@@ -18,7 +18,7 @@ namespace ServiceMonitor.API.Tests
 
             var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new AdministrationService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
+            return new AdministrationService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper()));
         }
 
         public static IDashboardService GetDashboardBusinessObject()
@@ -27,7 +27,7 @@ namespace ServiceMonitor.API.Tests
 
             var appSettings = Options.Create(new AppSettings { ConnectionString = ConnectionString });
 
-            return new DashboardService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper() as IEntityMapper));
+            return new DashboardService(logger, new ServiceMonitorDbContext(appSettings, new ServiceMonitorEntityMapper()));
         }
     }
 }

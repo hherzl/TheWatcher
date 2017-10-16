@@ -7,7 +7,7 @@ namespace ServiceMonitor.API.Responses
 {
     public static class ResponseExtensions
     {
-        public static IActionResult ToHttpResponse<TModel>(this IListViewModelResponse<TModel> response)
+        public static IActionResult ToHttpResponse<TModel>(this IListResponse<TModel> response)
         {
             var status = HttpStatusCode.OK;
 
@@ -20,10 +20,13 @@ namespace ServiceMonitor.API.Responses
                 status = HttpStatusCode.NoContent;
             }
 
-            return new ObjectResult(response) { StatusCode = (Int32)status };
+            return new ObjectResult(response)
+            {
+                StatusCode = (Int32)status
+            };
         }
 
-        public static IActionResult ToHttpResponse<TModel>(this ISingleViewModelResponse<TModel> response)
+        public static IActionResult ToHttpResponse<TModel>(this ISingleResponse<TModel> response)
         {
             var status = HttpStatusCode.OK;
 
@@ -36,7 +39,10 @@ namespace ServiceMonitor.API.Responses
                 status = HttpStatusCode.NotFound;
             }
 
-            return new ObjectResult(response) { StatusCode = (Int32)status };
+            return new ObjectResult(response)
+            {
+                StatusCode = (Int32)status
+            };
         }
     }
 }

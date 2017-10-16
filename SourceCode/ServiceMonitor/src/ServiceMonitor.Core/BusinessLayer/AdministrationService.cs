@@ -23,11 +23,11 @@ namespace ServiceMonitor.Core.BusinessLayer
         protected IAdministrationRepository Repository
             => m_repository ?? (m_repository = new AdministrationRepository(DbContext));
 
-        public async Task<ISingleViewModelResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID)
+        public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceEnvironmentStatusLogAsync));
 
-            var response = new SingleViewModelResponse<ServiceEnvironmentStatusLog>();
+            var response = new SingleResponse<ServiceEnvironmentStatusLog>();
 
             using (var transaction = await DbContext.Database.BeginTransactionAsync())
             {

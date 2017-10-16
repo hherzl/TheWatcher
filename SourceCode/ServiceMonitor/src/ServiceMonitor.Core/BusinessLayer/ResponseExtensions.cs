@@ -6,7 +6,7 @@ namespace ServiceMonitor.Core.BusinessLayer
 {
     public static class ResponseExtensions
     {
-        public static void SetError<TModel>(this IListViewModelResponse<TModel> response, ILogger logger, Exception ex)
+        public static void SetError<TModel>(this IListResponse<TModel> response, ILogger logger, Exception ex)
         {
             response.DidError = true;
             response.ErrorMessage = ex.Message;
@@ -14,7 +14,7 @@ namespace ServiceMonitor.Core.BusinessLayer
             logger?.LogError(ex.Message);
         }
 
-        public static void SetError<TModel>(this ISingleViewModelResponse<TModel> response, ILogger logger, Exception ex)
+        public static void SetError<TModel>(this ISingleResponse<TModel> response, ILogger logger, Exception ex)
         {
             response.DidError = true;
             response.ErrorMessage = ex.Message;

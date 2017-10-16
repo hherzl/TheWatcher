@@ -1,6 +1,6 @@
 ﻿namespace ServiceMonitor.Core.BusinessLayer.Responses
 {
-    public interface ISingleViewModelResponse<TModel> : IResponse
+    public interface ISingleResponse<TModel> : IResponse
     {
         TModel Model { get; set; }
     }

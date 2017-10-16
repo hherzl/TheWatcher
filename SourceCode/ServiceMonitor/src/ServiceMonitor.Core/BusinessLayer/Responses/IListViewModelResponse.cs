@@ -2,7 +2,7 @@
 
 namespace ServiceMonitor.Core.BusinessLayer.Responses
 {
-    public interface IListViewModelResponse<TModel> : IResponse
+    public interface IListResponse<TModel> : IResponse
     {
         IEnumerable<TModel> Model { get; set; }
     }

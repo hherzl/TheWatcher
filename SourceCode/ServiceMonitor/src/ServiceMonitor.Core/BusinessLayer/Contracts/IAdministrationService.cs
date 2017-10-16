@@ -7,6 +7,6 @@ namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
     public interface IAdministrationService : IService
     {
-        Task<ISingleViewModelResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID);
+        Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID);
     }
 }

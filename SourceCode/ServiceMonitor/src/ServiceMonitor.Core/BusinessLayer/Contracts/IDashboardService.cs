@@ -8,10 +8,10 @@ namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {
     public interface IDashboardService : IService
     {
-        Task<IListViewModelResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync();
+        Task<IListResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync();
 
-        Task<IListViewModelResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName);
+        Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName);
 
-        Task<ISingleViewModelResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity);
+        Task<ISingleResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity);
     }
 }
