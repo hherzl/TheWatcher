@@ -10,9 +10,8 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public partial class AdministrationService : Service, IAdministrationService
+    public class AdministrationService : Service, IAdministrationService
     {
-        private ILogger logger;
         private IAdministrationRepository m_repository;
 
         public AdministrationService(ILogger logger, ServiceMonitorDbContext dbContext)

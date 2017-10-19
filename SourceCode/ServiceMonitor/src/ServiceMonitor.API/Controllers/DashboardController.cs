@@ -28,7 +28,7 @@ namespace ServiceMonitor.API.Controllers
 
         // GET: api/Dashboard/ServiceWatcherItems
 
-        [Route("ServiceWatcherItems")]
+        [HttpGet("ServiceWatcherItems")]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItemsAsync));
@@ -40,7 +40,7 @@ namespace ServiceMonitor.API.Controllers
 
         // GET: api/Dashboard/ServiceStatusDetails/{userName}
 
-        [Route("ServiceStatusDetails/{userName}")]
+        [HttpGet("ServiceStatusDetails/{userName}")]
         public async Task<IActionResult> GetServiceStatusDetailsAsync(String userName)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));

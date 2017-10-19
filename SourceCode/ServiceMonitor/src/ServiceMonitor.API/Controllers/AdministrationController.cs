@@ -28,8 +28,7 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost]
-        [Route("ServiceStatusLog")]
+        [HttpPost("ServiceStatusLog")]
         public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogVm value)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));

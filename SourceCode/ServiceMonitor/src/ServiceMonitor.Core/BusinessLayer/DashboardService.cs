@@ -12,9 +12,8 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public partial class DashboardService : Service, IDashboardService
+    public class DashboardService : Service, IDashboardService
     {
-        private ILogger logger;
         private IDashboardRepository m_repository;
 
         public DashboardService(ILogger logger, ServiceMonitorDbContext dbContext)
