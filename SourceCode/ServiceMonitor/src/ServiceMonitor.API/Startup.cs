@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -33,12 +34,10 @@ namespace ServiceMonitor.API
             // Add framework services.
             services.AddMvc();
 
-            services.AddEntityFrameworkSqlServer().AddDbContext<ServiceMonitorDbContext>();
-
-            services.AddScoped<ILogger, Logger<DashboardController>>();
-            services.AddScoped<ILogger, Logger<AdministrationController>>();
+            services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
 
             services.AddScoped<IEntityMapper, ServiceMonitorEntityMapper>();
+
             services.AddScoped<IDashboardRepository, DashboardRepository>();
 
             services.AddScoped<IDashboardService, DashboardService>();
@@ -46,6 +45,9 @@ namespace ServiceMonitor.API
 
             services.AddScoped<ILogger, Logger<DashboardService>>();
             services.AddScoped<ILogger, Logger<AdministrationService>>();
+
+            services.AddScoped<ILogger, Logger<DashboardController>>();
+            services.AddScoped<ILogger, Logger<AdministrationController>>();
 
             services.AddOptions();
 

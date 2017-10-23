@@ -15,11 +15,13 @@ namespace ServiceMonitor.API.Tests
         {
             // Arrange
             var logger = LoggerMocker.GetLogger<IDashboardService>();
-            var businessObject = BusinessObjectMocker.GetDashboardBusinessObject();
-            var controller = new DashboardController(logger, businessObject);
+            var service = ServiceMocker.GetDashboardBusinessObject();
+            var controller = new DashboardController(logger, service);
 
             // Act
             var response = await controller.GetServiceWatcherItemsAsync() as ObjectResult;
+
+            controller.Dispose();
 
             // Assert
             var value = response.Value as IListResponse<ServiceWatcherItemDto>;
@@ -32,12 +34,14 @@ namespace ServiceMonitor.API.Tests
         {
             // Arrange
             var logger = LoggerMocker.GetLogger<IDashboardService>();
-            var businessObject = BusinessObjectMocker.GetDashboardBusinessObject();
-            var controller = new DashboardController(logger, businessObject);
+            var service = ServiceMocker.GetDashboardBusinessObject();
+            var controller = new DashboardController(logger, service);
             var userName = "DefaultUser";
 
             // Act
             var response = await controller.GetServiceStatusDetailsAsync(userName) as ObjectResult;
+
+            controller.Dispose();
 
             // Assert
             var value = response.Value as IListResponse<ServiceStatusDetailDto>;
