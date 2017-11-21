@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace ServiceMonitor.API.Tests
+namespace ServiceMonitor.Common
 {
-    public static class LoggerMocker
+    public static class LoggerHelper
     {
-        public static ILogger<T> GetLogger<T>()
+        public static ILogger<T> GetLogger<T>() where T : class
         {
             var serviceProvider = new ServiceCollection()
                 .AddLogging()
@@ -13,6 +13,7 @@ namespace ServiceMonitor.API.Tests
 
             serviceProvider
                 .GetService<ILoggerFactory>()
+                .AddConsole(LogLevel.Debug)
                 .AddConsole(LogLevel.Trace)
                 .AddConsole(LogLevel.Information)
                 .AddConsole(LogLevel.Warning)

@@ -1,13 +1,9 @@
 ﻿using System;
 
-namespace ServiceMonitor.ViewModels
+namespace ServiceMonitor.API.ViewModels
 {
     public class ServiceStatusDetailVm
     {
-        public ServiceStatusDetailVm()
-        {
-        }
-
         public Int32? ServiceStatusID { get; set; }
 
         public Int32? ServiceID { get; set; }

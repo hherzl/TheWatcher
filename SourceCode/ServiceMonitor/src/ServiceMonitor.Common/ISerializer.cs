@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace ServiceMonitor.Common
+﻿namespace ServiceMonitor.Common
 {
     public interface ISerializer
     {
-        String Serialize<T>(T obj);
+        string Serialize<T>(T obj);
 
-        T Deserialze<T>(String source);
+        T Deserialze<T>(string source);
     }
 }

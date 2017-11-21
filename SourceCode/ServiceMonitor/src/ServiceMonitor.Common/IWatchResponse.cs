@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace ServiceMonitor.Common
+﻿namespace ServiceMonitor.Common
 {
     public interface IWatchResponse
     {
-        Boolean Success { get; set; }
+        bool Success { get; set; }
 
-        String Message { get; set; }
+        string Message { get; set; }
 
-        String StackTrace { get; set; }
+        string StackTrace { get; set; }
     }
 }

@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.API.Extensions;
 using ServiceMonitor.API.Responses;
+using ServiceMonitor.API.ViewModels;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.ViewModels;
 
 namespace ServiceMonitor.API.Controllers
 {
@@ -33,7 +32,8 @@ namespace ServiceMonitor.API.Controllers
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));
 
-            var response = await Service.CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
+            var response = await Service
+                .CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
 
             return response.ToHttpResponse();
         }

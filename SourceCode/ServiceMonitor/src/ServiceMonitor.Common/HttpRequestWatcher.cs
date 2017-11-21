@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ServiceMonitor.Common
 {
-    public class HttpWebRequestWatcher : IWatcher
+    public class HttpRequestWatcher : IWatcher
     {
         public String ActionName => "HttpRequest";
         

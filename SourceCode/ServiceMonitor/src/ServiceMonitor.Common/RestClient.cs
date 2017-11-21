@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -7,7 +6,7 @@ namespace ServiceMonitor.Common
 {
     public class RestClient
     {
-        public async Task<String> GetAsync(String url)
+        public async Task<string> GetAsync(string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -15,7 +14,7 @@ namespace ServiceMonitor.Common
             }
         }
 
-        public async Task PostStringContentAsync(String url, String content, Encoding encoding, String mediaType)
+        public async Task PostStringContentAsync(string url, string content, Encoding encoding, string mediaType)
         {
             using (var httpClient = new HttpClient())
             {

@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace ServiceMonitor.Common
+﻿namespace ServiceMonitor.Common
 {
     public class WatchResponse : IWatchResponse
     {
-        public Boolean Success { get; set; }
+        public bool Success { get; set; }
 
-        public String Message { get; set; }
+        public string Message { get; set; }
 
-        public String StackTrace { get; set; }
+        public string StackTrace { get; set; }
     }
 }

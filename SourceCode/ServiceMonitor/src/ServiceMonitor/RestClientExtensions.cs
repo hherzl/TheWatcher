@@ -9,7 +9,7 @@ namespace ServiceMonitor
     {
         public static async Task PostJsonAsync(this RestClient client, String url, Object obj)
         {
-            var serializer = new ServiceMonitorSerializer() as ISerializer;
+            var serializer = new ServiceMonitorSerializer();
 
             var json = serializer.Serialize(obj);
 

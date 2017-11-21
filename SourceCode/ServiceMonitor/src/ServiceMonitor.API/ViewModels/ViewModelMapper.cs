@@ -2,7 +2,7 @@
 using ServiceMonitor.Core.DataLayer.DataContracts;
 using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.ViewModels
+namespace ServiceMonitor.API.ViewModels
 {
     public static class ViewModelMapper
     {

@@ -5,9 +5,9 @@ using ServiceMonitor.Core.BusinessLayer.Responses;
 
 namespace ServiceMonitor.API.Responses
 {
-    public static class ResponseExtensions
+    public static class Extensions
     {
-        public static IActionResult ToHttpResponse<TModel>(this IListResponse<TModel> response)
+        public static IActionResult ToHttpResponse<TModel>(this IListResponse<TModel> response) where TModel : class
         {
             var status = HttpStatusCode.OK;
 
@@ -26,7 +26,7 @@ namespace ServiceMonitor.API.Responses
             };
         }
 
-        public static IActionResult ToHttpResponse<TModel>(this ISingleResponse<TModel> response)
+        public static IActionResult ToHttpResponse<TModel>(this ISingleResponse<TModel> response) where TModel : class
         {
             var status = HttpStatusCode.OK;
 

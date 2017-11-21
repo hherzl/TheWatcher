@@ -34,7 +34,7 @@ insert into [ServiceWatcher] ([ServiceID], [TypeName])
 insert into [ServiceWatcher] ([ServiceID], [TypeName])
     values (2, 'ServiceMonitor.Common.PingWatcher, ServiceMonitor.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null')
 insert into [ServiceWatcher] ([ServiceID], [TypeName])
-    values (3, 'ServiceMonitor.Common.HttpWebRequestWatcher, ServiceMonitor.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null')
+    values (3, 'ServiceMonitor.Common.HttpRequestWatcher, ServiceMonitor.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null')
 
 insert into [User] ([UserName]) values('DefaultUser')
 

@@ -1,13 +1,9 @@
 ﻿using System;
 
-namespace ServiceMonitor.ViewModels
+namespace ServiceMonitor.API.ViewModels
 {
     public class UserVm
     {
-        public UserVm()
-        {
-        }
-
         public Int32? UserID { get; set; }
 
         public String UserName { get; set; }

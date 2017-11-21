@@ -36,12 +36,13 @@ namespace ServiceMonitor.Core.BusinessLayer
 
                     if (serviceEnvStatus == null)
                     {
-                        serviceEnvStatus = new ServiceEnvironmentStatus();
-
-                        serviceEnvStatus.ServiceEnvironmentID = serviceEnvironmentID;
-                        serviceEnvStatus.Success = entity.Success;
-                        serviceEnvStatus.WatchCount = 1;
-                        serviceEnvStatus.LastWatch = DateTime.Now;
+                        serviceEnvStatus = new ServiceEnvironmentStatus
+                        {
+                            ServiceEnvironmentID = serviceEnvironmentID,
+                            Success = entity.Success,
+                            WatchCount = 1,
+                            LastWatch = DateTime.Now
+                        };
 
                         await Repository.CreateServiceEnvironmentStatusAsync(serviceEnvStatus);
 

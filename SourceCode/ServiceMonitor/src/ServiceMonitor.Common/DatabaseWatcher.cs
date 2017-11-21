@@ -24,7 +24,6 @@ namespace ServiceMonitor.Common
                 {
                     response.Success = false;
                     response.Message = ex.Message;
-
                     response.StackTrace = ex.ToString();
                 }
             }

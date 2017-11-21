@@ -24,7 +24,7 @@ namespace ServiceMonitor
 
         public void DeserializeResponse()
         {
-            var serializer = new ServiceMonitorSerializer() as ISerializer;
+            var serializer = new ServiceMonitorSerializer();
 
             Response = serializer.Deserialze<ServiceWatchResponse>(json);
         }

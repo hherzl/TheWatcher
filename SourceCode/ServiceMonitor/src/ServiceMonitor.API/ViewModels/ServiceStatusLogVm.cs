@@ -1,13 +1,9 @@
 ﻿using System;
 
-namespace ServiceMonitor.ViewModels
+namespace ServiceMonitor.API.ViewModels
 {
     public class ServiceEnvironmentStatusLogVm
     {
-        public ServiceEnvironmentStatusLogVm()
-        {
-        }
-
         public Int32? ServiceEnvironmentStatusLogID { get; set; }
 
         public Int32? ServiceEnvironmentStatusID { get; set; }

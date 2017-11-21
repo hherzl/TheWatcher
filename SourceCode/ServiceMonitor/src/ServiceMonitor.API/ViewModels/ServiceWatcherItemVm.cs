@@ -1,13 +1,9 @@
 ﻿using System;
 
-namespace ServiceMonitor.ViewModels
+namespace ServiceMonitor.API.ViewModels
 {
     public class ServiceWatcherItemVm
     {
-        public ServiceWatcherItemVm()
-        {
-        }
-
         public Int32? ServiceID { get; set; }
 
         public String ServiceName { get; set; }

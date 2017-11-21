@@ -16,7 +16,8 @@
     "Microsoft.Extensions.Logging.Debug": "1.1.1",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "ServiceMonitor.Core": "1.0.0-*",
-    "AutoMapper": "5.2.0"
+    "AutoMapper": "5.2.0",
+    "ServiceMonitor.Common": "1.0.0-*"
   },
 
   "tools": {

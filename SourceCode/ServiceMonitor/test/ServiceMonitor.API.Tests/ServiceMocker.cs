@@ -1,33 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ServiceMonitor.Common;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.DataLayer.Mapping;
 
 namespace ServiceMonitor.API.Tests
 {
     public static class ServiceMocker
     {
-        public static IAdministrationService GetAdministrationBusinessObject()
+        public static IAdministrationService GetAdministrationService()
         {
-            var logger = LoggerMocker.GetLogger<IAdministrationService>();
-
             var options = new DbContextOptionsBuilder<ServiceMonitorDbContext>()
                 .UseSqlServer("server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;")
                 .Options;
 
-            return new AdministrationService(logger, new ServiceMonitorDbContext(options, new ServiceMonitorEntityMapper()));
+            return new AdministrationService(LoggerHelper.GetLogger<IAdministrationService>(), new ServiceMonitorDbContext(options));
         }
 
-        public static IDashboardService GetDashboardBusinessObject()
+        public static IDashboardService GetDashboardService()
         {
-            var logger = LoggerMocker.GetLogger<IDashboardService>();
-
             var options = new DbContextOptionsBuilder<ServiceMonitorDbContext>()
                 .UseSqlServer("server=(local);database=ServiceMonitor;integrated security=yes;MultipleActiveResultSets=True;")
                 .Options;
 
-            return new DashboardService(logger, new ServiceMonitorDbContext(options, new ServiceMonitorEntityMapper()));
+            return new DashboardService(LoggerHelper.GetLogger<IDashboardService>(), new ServiceMonitorDbContext(options));
         }
     }
 }

@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServiceMonitor.API.Controllers;
+using ServiceMonitor.API.ViewModels;
+using ServiceMonitor.Common;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.EntityLayer;
-using ServiceMonitor.ViewModels;
 using Xunit;
 
 namespace ServiceMonitor.API.Tests
@@ -16,8 +17,8 @@ namespace ServiceMonitor.API.Tests
         public async Task CreateServiceStatusLogTestAsync()
         {
             // Arrange
-            var logger = LoggerMocker.GetLogger<IAdministrationService>();
-            var service = ServiceMocker.GetAdministrationBusinessObject();
+            var logger = LoggerHelper.GetLogger<IAdministrationService>();
+            var service = ServiceMocker.GetAdministrationService();
             var controller = new AdministrationController(logger, service);
             var request = new ServiceEnvironmentStatusLogVm
             {
@@ -30,12 +31,11 @@ namespace ServiceMonitor.API.Tests
 
             // Act
             var response = await controller.CreateServiceStatusLogAsync(request) as ObjectResult;
+            var value = response.Value as ISingleResponse<ServiceEnvironmentStatusLog>;
 
             controller.Dispose();
 
             // Assert
-            var value = response.Value as ISingleResponse<ServiceEnvironmentStatusLog>;
-
             Assert.False(value.DidError);
         }
     }

@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.BusinessLayer.Responses
+﻿namespace ServiceMonitor.Core.BusinessLayer.Responses
 {
     public interface IResponse
     {
-        String Message { get; set; }
-        
-        Boolean DidError { get; set; }
-        
-        String ErrorMessage { get; set; }
+        string Message { get; set; }
+
+        bool DidError { get; set; }
+
+        string ErrorMessage { get; set; }
     }
 }

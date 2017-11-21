@@ -18,39 +18,29 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
 
         public IQueryable<ServiceWatcherItemDto> GetActiveServiceWatcherItems()
         {
-            var query = from serviceEnvironment in DbContext.Set<ServiceEnvironment>()
-                        join service in DbContext.Set<Service>() on serviceEnvironment.ServiceID equals service.ServiceID
-                        join serviceWatcher in DbContext.Set<ServiceWatcher>() on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
-                        join environmentCategory in DbContext.Set<EnvironmentCategory>() on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
-                        select new ServiceWatcherItemDto
-                        {
-                            ServiceEnvironmentID = serviceEnvironment.ServiceEnvironmentID,
-                            ServiceID = service.ServiceID,
-                            Environment = environmentCategory.EnvironmentCategoryName,
-                            ServiceName = service.Name,
-                            Interval = serviceEnvironment.Interval,
-                            Url = serviceEnvironment.Url,
-                            Address = serviceEnvironment.Address,
-                            ConnectionString = serviceEnvironment.ConnectionString,
-                            TypeName = serviceWatcher.TypeName
-                        };
-
-            return query.AsQueryable();
+            return from serviceEnvironment in DbContext.Set<ServiceEnvironment>()
+                   join service in DbContext.Set<Service>() on serviceEnvironment.ServiceID equals service.ServiceID
+                   join serviceWatcher in DbContext.Set<ServiceWatcher>() on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
+                   join environmentCategory in DbContext.Set<EnvironmentCategory>() on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+                   select new ServiceWatcherItemDto
+                   {
+                       ServiceEnvironmentID = serviceEnvironment.ServiceEnvironmentID,
+                       ServiceID = service.ServiceID,
+                       Environment = environmentCategory.EnvironmentCategoryName,
+                       ServiceName = service.Name,
+                       Interval = serviceEnvironment.Interval,
+                       Url = serviceEnvironment.Url,
+                       Address = serviceEnvironment.Address,
+                       ConnectionString = serviceEnvironment.ConnectionString,
+                       TypeName = serviceWatcher.TypeName
+                   };
         }
 
         public User GetUser(String userName)
-        {
-            return DbContext
-                .Set<User>()
-                .FirstOrDefault(item => item.UserName == userName);
-        }
+            => DbContext.Set<User>().FirstOrDefault(item => item.UserName == userName);
 
         public IQueryable<ServiceUser> GetByUser(Int32? userID)
-        {
-            return DbContext
-                .Set<ServiceUser>()
-                .Where(item => item.UserID == userID);
-        }
+            => DbContext.Set<ServiceUser>().Where(item => item.UserID == userID);
 
         public IQueryable<ServiceStatusDetailDto> GetServiceStatuses(String userName)
         {
@@ -93,10 +83,6 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
         }
 
         public async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity)
-        {
-            return await DbContext
-                .Set<ServiceEnvironmentStatus>()
-                .FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
-        }
+            => await DbContext.Set<ServiceEnvironmentStatus>().FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
     }
 }
