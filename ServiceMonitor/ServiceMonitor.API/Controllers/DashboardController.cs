@@ -7,7 +7,7 @@ using ServiceMonitor.Core.BusinessLayer.Contracts;
 
 namespace ServiceMonitor.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class DashboardController : Controller
     {
         protected ILogger Logger;
@@ -26,7 +26,7 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: api/Dashboard/ServiceWatcherItems
+        // GET: api/v1/Dashboard/ServiceWatcherItems
 
         [HttpGet("ServiceWatcherItems")]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
@@ -38,7 +38,7 @@ namespace ServiceMonitor.API.Controllers
             return response.ToHttpResponse();
         }
 
-        // GET: api/Dashboard/ServiceStatusDetails/{userName}
+        // GET: api/v1/Dashboard/ServiceStatusDetails/{userName}
 
         [HttpGet("ServiceStatusDetails/{userName}")]
         public async Task<IActionResult> GetServiceStatusDetailsAsync(String userName)

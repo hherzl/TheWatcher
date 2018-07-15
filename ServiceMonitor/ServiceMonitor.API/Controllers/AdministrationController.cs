@@ -7,7 +7,7 @@ using ServiceMonitor.Core.BusinessLayer.Contracts;
 
 namespace ServiceMonitor.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class AdministrationController : Controller
     {
         protected ILogger Logger;
@@ -25,6 +25,8 @@ namespace ServiceMonitor.API.Controllers
 
             base.Dispose(disposing);
         }
+
+        // POST: api/v1/Dashboard/ServiceWatcherItems
 
         [HttpPost("ServiceStatusLog")]
         public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogVm value)
