@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -36,13 +35,13 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
                    };
         }
 
-        public User GetUser(String userName)
+        public User GetUser(string userName)
             => DbContext.Set<User>().FirstOrDefault(item => item.UserName == userName);
 
-        public IQueryable<ServiceUser> GetByUser(Int32? userID)
+        public IQueryable<ServiceUser> GetByUser(int? userID)
             => DbContext.Set<ServiceUser>().Where(item => item.UserID == userID);
 
-        public IQueryable<ServiceStatusDetailDto> GetServiceStatuses(String userName)
+        public IQueryable<ServiceStatusDetailDto> GetServiceStatuses(string userName)
         {
             var user = GetUser(userName);
 

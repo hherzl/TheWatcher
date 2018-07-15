@@ -1,4 +1,6 @@
-﻿namespace ServiceMonitor.Core.DataLayer.Repositories
+﻿using System.Threading.Tasks;
+
+namespace ServiceMonitor.Core.DataLayer.Repositories
 {
     public abstract class Repository
     {
@@ -9,9 +11,10 @@
             DbContext = dbContext;
         }
 
-        public void Dispose()
-        {
-            // todo: Implement dispose logic
-        }
+        public virtual int SaveChanges()
+            => DbContext.SaveChanges();
+
+        public virtual async Task<int> SaveChangesAsync()
+            => await DbContext.SaveChangesAsync();
     }
 }

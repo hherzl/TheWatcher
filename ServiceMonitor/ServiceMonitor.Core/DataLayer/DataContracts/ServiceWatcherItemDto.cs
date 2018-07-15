@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.DataLayer.DataContracts
+﻿namespace ServiceMonitor.Core.DataLayer.DataContracts
 {
     public class ServiceWatcherItemDto
     {
@@ -8,22 +6,22 @@ namespace ServiceMonitor.Core.DataLayer.DataContracts
         {
         }
 
-        public Int32? ServiceID { get; set; }
+        public int? ServiceID { get; set; }
 
-        public Int32? ServiceEnvironmentID { get; set; }
+        public int? ServiceEnvironmentID { get; set; }
 
-        public String Environment { get; set; }
+        public string Environment { get; set; }
 
-        public String ServiceName { get; set; }
+        public string ServiceName { get; set; }
 
-        public Int32? Interval { get; set; }
+        public int? Interval { get; set; }
 
-        public String Url { get; set; }
+        public string Url { get; set; }
 
-        public String Address { get; set; }
+        public string Address { get; set; }
 
-        public String ConnectionString { get; set; }
+        public string ConnectionString { get; set; }
 
-        public String TypeName { get; set; }
+        public string TypeName { get; set; }
     }
 }

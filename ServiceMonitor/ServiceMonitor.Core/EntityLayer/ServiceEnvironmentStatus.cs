@@ -8,18 +8,18 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceEnvironmentStatus(Int32? serviceEnvironmentStatusID)
+        public ServiceEnvironmentStatus(int? serviceEnvironmentStatusID)
         {
             ServiceEnvironmentStatusID = serviceEnvironmentStatusID;
         }
 
-        public Int32? ServiceEnvironmentStatusID { get; set; }
+        public int? ServiceEnvironmentStatusID { get; set; }
 
-        public Int32? ServiceEnvironmentID { get; set; }
+        public int? ServiceEnvironmentID { get; set; }
 
-        public Boolean? Success { get; set; }
+        public bool? Success { get; set; }
 
-        public Int32? WatchCount { get; set; }
+        public int? WatchCount { get; set; }
 
         public DateTime? LastWatch { get; set; }
     }

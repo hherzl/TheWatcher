@@ -8,7 +8,7 @@ namespace ServiceMonitor.Core.BusinessLayer
     {
         protected ILogger Logger;
         protected readonly ServiceMonitorDbContext DbContext;
-        protected Boolean Disposed;
+        protected bool Disposed;
 
         public Service(ILogger logger, ServiceMonitorDbContext dbContext)
         {
@@ -21,9 +21,7 @@ namespace ServiceMonitor.Core.BusinessLayer
             if (!Disposed)
             {
                 if (disposing)
-                {
                     DbContext.Dispose();
-                }
             }
 
             Disposed = true;

@@ -8,19 +8,19 @@ namespace ServiceMonitor.Core.DataLayer.DataContracts
         {
         }
 
-        public Int32? ServiceEnvironmentStatusID { get; set; }
+        public int? ServiceEnvironmentStatusID { get; set; }
 
-        public Int32? ServiceEnvironmentID { get; set; }
+        public int? ServiceEnvironmentID { get; set; }
 
-        public Int32? ServiceID { get; set; }
+        public int? ServiceID { get; set; }
 
-        public String ServiceName { get; set; }
+        public string ServiceName { get; set; }
 
-        public String EnvironmentName { get; set; }
+        public string EnvironmentName { get; set; }
 
-        public Boolean? Success { get; set; }
+        public bool? Success { get; set; }
 
-        public Int32? WatchCount { get; set; }
+        public int? WatchCount { get; set; }
 
         public DateTime? LastWatch { get; set; }
     }

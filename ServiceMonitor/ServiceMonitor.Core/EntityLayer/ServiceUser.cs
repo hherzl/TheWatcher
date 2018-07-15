@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class ServiceUser
     {
@@ -8,15 +6,15 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceUser(Int32? serviceUserID)
+        public ServiceUser(int? serviceUserID)
         {
             ServiceUserID = serviceUserID;
         }
 
-        public Int32? ServiceUserID { get; set; }
+        public int? ServiceUserID { get; set; }
 
-        public Int32? ServiceID { get; set; }
+        public int? ServiceID { get; set; }
 
-        public Int32? UserID { get; set; }
+        public int? UserID { get; set; }
     }
 }

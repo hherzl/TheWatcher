@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class Owner
     {
@@ -8,15 +6,15 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public Owner(Int32? ownerID)
+        public Owner(int? ownerID)
         {
             OwnerID = ownerID;
         }
 
-        public Int32? OwnerID { get; set; }
+        public int? OwnerID { get; set; }
 
-        public String UserName { get; set; }
+        public string UserName { get; set; }
 
-        public Int32? EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
     }
 }

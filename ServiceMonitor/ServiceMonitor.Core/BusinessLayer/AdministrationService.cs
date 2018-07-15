@@ -14,7 +14,7 @@ namespace ServiceMonitor.Core.BusinessLayer
     {
         private IAdministrationRepository m_repository;
 
-        public AdministrationService(ILogger logger, ServiceMonitorDbContext dbContext)
+        public AdministrationService(ILogger<AdministrationService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
@@ -22,7 +22,7 @@ namespace ServiceMonitor.Core.BusinessLayer
         protected IAdministrationRepository Repository
             => m_repository ?? (m_repository = new AdministrationRepository(DbContext));
 
-        public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, Int32? serviceEnvironmentID)
+        public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, int? serviceEnvironmentID)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceEnvironmentStatusLogAsync));
 
@@ -60,6 +60,8 @@ namespace ServiceMonitor.Core.BusinessLayer
                     entity.ServiceEnvironmentStatusID = serviceEnvStatus.ServiceEnvironmentStatusID;
 
                     await Repository.CreateServiceEnvironmentStatusLogAsync(entity);
+
+                    await Repository.SaveChangesAsync();
 
                     Logger?.LogInformation("The status details for service environment was created successfully");
 

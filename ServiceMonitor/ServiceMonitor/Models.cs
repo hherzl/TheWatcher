@@ -51,15 +51,13 @@ namespace ServiceMonitor
         public string TypeName { get; set; }
 
         public Dictionary<string, string> ToDictionary()
-        {
-            return new Dictionary<string, string>
+            => new Dictionary<string, string>
             {
                 { "Url", Url },
                 { "Address", Address },
                 { "ConnectionString", ConnectionString },
                 { "TypeName", TypeName }
             };
-        }
 
         public string GetTarget()
         {

@@ -8,24 +8,24 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceEnvironmentStatusLog(Int32? serviceEnvironmentStatusLogID)
+        public ServiceEnvironmentStatusLog(int? serviceEnvironmentStatusLogID)
         {
             ServiceEnvironmentStatusLogID = serviceEnvironmentStatusLogID;
         }
 
-        public Int32? ServiceEnvironmentStatusLogID { get; set; }
+        public int? ServiceEnvironmentStatusLogID { get; set; }
 
-        public Int32? ServiceEnvironmentStatusID { get; set; }
+        public int? ServiceEnvironmentStatusID { get; set; }
 
-        public String Target { get; set; }
+        public string Target { get; set; }
 
-        public String ActionName { get; set; }
+        public string ActionName { get; set; }
 
-        public Boolean? Success { get; set; }
+        public bool? Success { get; set; }
 
-        public String Message { get; set; }
+        public string Message { get; set; }
 
-        public String StackTrace { get; set; }
+        public string StackTrace { get; set; }
 
         public DateTime? Date { get; set; }
     }

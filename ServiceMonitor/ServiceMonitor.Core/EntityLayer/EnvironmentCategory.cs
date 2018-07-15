@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class EnvironmentCategory
     {
@@ -8,13 +6,13 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public EnvironmentCategory(Int32? environmentCategoryID)
+        public EnvironmentCategory(int? environmentCategoryID)
         {
             EnvironmentCategoryID = environmentCategoryID;
         }
 
-        public Int32? EnvironmentCategoryID { get; set; }
+        public int? EnvironmentCategoryID { get; set; }
 
-        public String EnvironmentCategoryName { get; set; }
+        public string EnvironmentCategoryName { get; set; }
     }
 }

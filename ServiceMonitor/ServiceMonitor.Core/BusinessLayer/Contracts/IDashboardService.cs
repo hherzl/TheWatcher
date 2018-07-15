@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.DataLayer.DataContracts;
 using ServiceMonitor.Core.EntityLayer;
@@ -10,7 +9,7 @@ namespace ServiceMonitor.Core.BusinessLayer.Contracts
     {
         Task<IListResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync();
 
-        Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName);
+        Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(string userName);
 
         Task<ISingleResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity);
     }

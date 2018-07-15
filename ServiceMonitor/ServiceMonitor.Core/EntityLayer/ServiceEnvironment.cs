@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class ServiceEnvironment
     {
@@ -8,27 +6,27 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceEnvironment(Int32? serviceEnvironmentID)
+        public ServiceEnvironment(int? serviceEnvironmentID)
         {
             ServiceEnvironmentID = serviceEnvironmentID;
         }
 
-        public Int32? ServiceEnvironmentID { get; set; }
+        public int? ServiceEnvironmentID { get; set; }
 
-        public Int32? ServiceID { get; set; }
+        public int? ServiceID { get; set; }
 
-        public Int32? EnvironmentCategoryID { get; set; }
+        public int? EnvironmentCategoryID { get; set; }
 
-        public Int32? Interval { get; set; }
+        public int? Interval { get; set; }
 
-        public String Url { get; set; }
+        public string Url { get; set; }
 
-        public String Address { get; set; }
+        public string Address { get; set; }
 
-        public String ConnectionString { get; set; }
+        public string ConnectionString { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
 
-        public Boolean? Active { get; set; }
+        public bool? Active { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class ServiceCategory
     {
@@ -8,13 +6,13 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceCategory(Int32? serviceCategoryID)
+        public ServiceCategory(int? serviceCategoryID)
         {
             ServiceCategoryID = serviceCategoryID;
         }
 
-        public Int32? ServiceCategoryID { get; set; }
+        public int? ServiceCategoryID { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ServiceMonitor.Core.BusinessLayer
     {
         private IDashboardRepository m_repository;
 
-        public DashboardService(ILogger logger, ServiceMonitorDbContext dbContext)
+        public DashboardService(ILogger<DashboardService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
@@ -46,7 +46,7 @@ namespace ServiceMonitor.Core.BusinessLayer
             return response;
         }
 
-        public async Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(String userName)
+        public async Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(string userName)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusesAsync));
 

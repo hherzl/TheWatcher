@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceMonitor.Core.EntityLayer
+﻿namespace ServiceMonitor.Core.EntityLayer
 {
     public class ServiceWatcher
     {
@@ -8,15 +6,15 @@ namespace ServiceMonitor.Core.EntityLayer
         {
         }
 
-        public ServiceWatcher(Int32? serviceWatcherID)
+        public ServiceWatcher(int? serviceWatcherID)
         {
             ServiceWatcherID = serviceWatcherID;
         }
 
-        public Int32? ServiceWatcherID { get; set; }
+        public int? ServiceWatcherID { get; set; }
 
-        public Int32? ServiceID { get; set; }
+        public int? ServiceID { get; set; }
 
-        public String TypeName { get; set; }
+        public string TypeName { get; set; }
     }
 }
