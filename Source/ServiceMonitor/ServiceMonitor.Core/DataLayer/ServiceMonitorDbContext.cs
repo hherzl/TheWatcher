@@ -13,17 +13,17 @@ namespace ServiceMonitor.Core.DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .ApplyConfiguration(new OwnerMap())
-                .ApplyConfiguration(new ServiceCategoryMap())
-                .ApplyConfiguration(new ServiceMap())
-                .ApplyConfiguration(new ServiceEnvironmentMap())
-                .ApplyConfiguration(new ServiceOwnerMap())
-                .ApplyConfiguration(new ServiceEnvironmentStatusLogMap())
-                .ApplyConfiguration(new ServiceEnvironmentStatusMap())
-                .ApplyConfiguration(new ServiceUserMap())
-                .ApplyConfiguration(new ServiceWatcherMap())
-                .ApplyConfiguration(new UserMap())
-                .ApplyConfiguration(new EnvironmentCategoryMap())
+                .ApplyConfiguration(new EnvironmentCategoryConfiguration())
+                .ApplyConfiguration(new OwnerConfiguration())
+                .ApplyConfiguration(new ServiceCategoryConfiguration())
+                .ApplyConfiguration(new ServiceConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentStatusLogConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentStatusConfiguration())
+                .ApplyConfiguration(new ServiceOwnerConfiguration())
+                .ApplyConfiguration(new ServiceUserConfiguration())
+                .ApplyConfiguration(new ServiceWatcherConfiguration())
+                .ApplyConfiguration(new UserConfiguration())
                 ;
 
             base.OnModelCreating(modelBuilder);

@@ -4,14 +4,17 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.DataLayer.Mapping
 {
-    public class ServiceEnvironmentMap : IEntityTypeConfiguration<ServiceEnvironment>
+    public class ServiceEnvironmentConfiguration : IEntityTypeConfiguration<ServiceEnvironment>
     {
         public void Configure(EntityTypeBuilder<ServiceEnvironment> builder)
         {
-            builder.ToTable("ServiceEnvironment");
+            // Mapping for table
+            builder.ToTable("ServiceEnvironment", "dbo");
 
+            // Set key for entity
             builder.HasKey(p => p.ServiceEnvironmentID);
 
+            // Set identity for entity (auto increment)
             builder.Property(p => p.ServiceEnvironmentID).UseSqlServerIdentityColumn();
         }
     }

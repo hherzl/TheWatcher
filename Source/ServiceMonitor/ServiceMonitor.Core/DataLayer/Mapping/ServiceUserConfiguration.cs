@@ -4,14 +4,17 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.DataLayer.Mapping
 {
-    public class ServiceUserMap : IEntityTypeConfiguration<ServiceUser>
+    public class ServiceUserConfiguration : IEntityTypeConfiguration<ServiceUser>
     {
         public void Configure(EntityTypeBuilder<ServiceUser> builder)
         {
-            builder.ToTable("ServiceUser");
+            // Mapping for table
+            builder.ToTable("ServiceUser", "dbo");
 
+            // Set key for entity
             builder.HasKey(p => p.ServiceUserID);
 
+            // Set identity for entity (auto increment)
             builder.Property(p => p.ServiceUserID).UseSqlServerIdentityColumn();
         }
     }
