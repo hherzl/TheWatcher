@@ -44,7 +44,9 @@ namespace ServiceMonitor.Core.BusinessLayer
                             LastWatch = DateTime.Now
                         };
 
-                        await Repository.CreateServiceEnvironmentStatusAsync(serviceEnvStatus);
+                        Repository.Add(serviceEnvStatus);
+
+                        await Repository.SaveChangesAsync();
 
                         Logger?.LogInformation("The status for service environment was saved successfully");
                     }
@@ -58,8 +60,9 @@ namespace ServiceMonitor.Core.BusinessLayer
                     }
 
                     entity.ServiceEnvironmentStatusID = serviceEnvStatus.ServiceEnvironmentStatusID;
+                    entity.Date = DateTime.Now;
 
-                    await Repository.CreateServiceEnvironmentStatusLogAsync(entity);
+                    Repository.Add(entity);
 
                     await Repository.SaveChangesAsync();
 

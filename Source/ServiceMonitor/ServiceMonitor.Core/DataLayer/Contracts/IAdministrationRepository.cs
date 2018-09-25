@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.DataLayer.Contracts
@@ -9,9 +8,5 @@ namespace ServiceMonitor.Core.DataLayer.Contracts
         Task<ServiceEnvironmentStatus> GetByServiceEnvironmentAsync(ServiceEnvironment entity);
 
         Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity);
-
-        Task<Int32> CreateServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity);
-
-        Task<Int32> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity);
     }
 }

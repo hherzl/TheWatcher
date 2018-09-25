@@ -11,6 +11,11 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
             DbContext = dbContext;
         }
 
+        public void Add<TEntity>(TEntity entity) where TEntity : class, new()
+        {
+            DbContext.Set<TEntity>().Add(entity);
+        }
+
         public virtual int SaveChanges()
             => DbContext.SaveChanges();
 

@@ -38,7 +38,7 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
         public User GetUser(string userName)
             => DbContext.Set<User>().FirstOrDefault(item => item.UserName == userName);
 
-        public IQueryable<ServiceUser> GetByUser(int? userID)
+        public IQueryable<ServiceUser> GetServiceUserByUserID(int? userID)
             => DbContext.Set<ServiceUser>().Where(item => item.UserID == userID);
 
         public IQueryable<ServiceStatusDetailDto> GetServiceStatuses(string userName)
@@ -46,39 +46,34 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
             var user = GetUser(userName);
 
             if (user == null)
-            {
-                return new List<ServiceStatusDetailDto>()
-                    .AsQueryable();
-            }
-            else
-            {
-                var servicesToWatch = DbContext
-                    .Set<ServiceUser>()
-                    .Where(item => item.UserID == user.UserID)
-                    .Select(item => item.ServiceID)
-                    .ToList();
+                return new List<ServiceStatusDetailDto>().AsQueryable();
 
-                var query = from serviceEnvironmentStatus in DbContext.Set<ServiceEnvironmentStatus>()
-                            join serviceEnvironment in DbContext.Set<ServiceEnvironment>() on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
-                            join service in DbContext.Set<Service>() on serviceEnvironment.ServiceID equals service.ServiceID
-                            join environmentCategory in DbContext.Set<EnvironmentCategory>() on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
-                            where serviceEnvironment.Active == true
-                            select new ServiceStatusDetailDto
-                            {
-                                ServiceEnvironmentStatusID = serviceEnvironmentStatus.ServiceEnvironmentStatusID,
-                                ServiceEnvironmentID = serviceEnvironmentStatus.ServiceEnvironmentID,
-                                ServiceID = service.ServiceID,
-                                ServiceName = service.Name,
-                                EnvironmentName = environmentCategory.EnvironmentCategoryName,
-                                Success = serviceEnvironmentStatus.Success,
-                                WatchCount = serviceEnvironmentStatus.WatchCount,
-                                LastWatch = serviceEnvironmentStatus.LastWatch
-                            };
+            var servicesToWatch = DbContext
+                .Set<ServiceUser>()
+                .Where(item => item.UserID == user.UserID)
+                .Select(item => item.ServiceID)
+                .ToList();
 
-                query = query.OrderBy(item => item.ServiceName).ThenBy(item => item.EnvironmentName);
+            var query = from serviceEnvironmentStatus in DbContext.Set<ServiceEnvironmentStatus>()
+                        join serviceEnvironment in DbContext.Set<ServiceEnvironment>() on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
+                        join service in DbContext.Set<Service>() on serviceEnvironment.ServiceID equals service.ServiceID
+                        join environmentCategory in DbContext.Set<EnvironmentCategory>() on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+                        where serviceEnvironment.Active == true
+                        select new ServiceStatusDetailDto
+                        {
+                            ServiceEnvironmentStatusID = serviceEnvironmentStatus.ServiceEnvironmentStatusID,
+                            ServiceEnvironmentID = serviceEnvironmentStatus.ServiceEnvironmentID,
+                            ServiceID = service.ServiceID,
+                            ServiceName = service.Name,
+                            EnvironmentName = environmentCategory.EnvironmentCategoryName,
+                            Success = serviceEnvironmentStatus.Success,
+                            WatchCount = serviceEnvironmentStatus.WatchCount,
+                            LastWatch = serviceEnvironmentStatus.LastWatch
+                        };
 
-                return query.Where(item => servicesToWatch.Contains(item.ServiceID));
-            }
+            query = query.OrderBy(item => item.ServiceName).ThenBy(item => item.EnvironmentName);
+
+            return query.Where(item => servicesToWatch.Contains(item.ServiceID));
         }
 
         public async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity)

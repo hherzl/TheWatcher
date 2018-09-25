@@ -11,7 +11,7 @@ namespace ServiceMonitor.Core.DataLayer.Contracts
 
         User GetUser(string userName);
 
-        IQueryable<ServiceUser> GetByUser(int? userID);
+        IQueryable<ServiceUser> GetServiceUserByUserID(int? userID);
 
         IQueryable<ServiceStatusDetailDto> GetServiceStatuses(string userName);
 

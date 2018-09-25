@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ServiceMonitor.Common;
 
 namespace ServiceMonitor
 {
     public class ServiceMonitorInitializer
     {
-        private String json;
+        private string json;
 
         public ServiceMonitorInitializer()
         {
