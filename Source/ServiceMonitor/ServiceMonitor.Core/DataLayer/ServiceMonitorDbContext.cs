@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.DataLayer.Mapping;
+using ServiceMonitor.Core.DataLayer.Configurations;
 
 namespace ServiceMonitor.Core.DataLayer
 {

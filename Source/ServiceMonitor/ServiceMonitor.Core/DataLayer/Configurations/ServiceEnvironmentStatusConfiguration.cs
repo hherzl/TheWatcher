@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.Core.DataLayer.Mapping
+namespace ServiceMonitor.Core.DataLayer.Configurations
 {
     public class ServiceEnvironmentStatusConfiguration : IEntityTypeConfiguration<ServiceEnvironmentStatus>
     {
