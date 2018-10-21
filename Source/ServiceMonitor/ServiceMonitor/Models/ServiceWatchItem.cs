@@ -1,35 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace ServiceMonitor
+namespace ServiceMonitor.Models
 {
-    public class ServiceStatusLog
-    {
-        public int? ServiceID { get; set; }
-
-        public int? ServiceEnvironmentID { get; set; }
-
-        public string Target { get; set; }
-
-        public string ActionName { get; set; }
-
-        public bool? Success { get; set; }
-
-        public string Message { get; set; }
-
-        public string StackTrace { get; set; }
-    }
-
-    public class ServiceWatchResponse
-    {
-        public string Message { get; set; }
-
-        public bool DidError { get; set; }
-
-        public string ErrorMessage { get; set; }
-
-        public ServiceWatchItem[] Model { get; set; }
-    }
-
     public class ServiceWatchItem
     {
         public int? ServiceID { get; set; }

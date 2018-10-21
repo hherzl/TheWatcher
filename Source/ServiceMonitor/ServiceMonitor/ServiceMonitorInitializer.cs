@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ServiceMonitor.Common;
+using ServiceMonitor.Models;
 
 namespace ServiceMonitor
 {
