@@ -6,7 +6,7 @@ namespace ServiceMonitor.Common
 {
     public class DatabaseWatcher : IWatcher
     {
-        public String ActionName
+        public string ActionName
             => "OpenDatabaseConnection";
 
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)

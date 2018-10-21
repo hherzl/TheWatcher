@@ -5,7 +5,7 @@ namespace ServiceMonitor.Common
 {
     public class HttpRequestWatcher : IWatcher
     {
-        public String ActionName
+        public string ActionName
             => "HttpRequest";
         
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Net.NetworkInformation;
+﻿using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace ServiceMonitor.Common
 {
     public class PingWatcher : IWatcher
     {
-        public String ActionName
+        public string ActionName
             => "Ping";
 
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
