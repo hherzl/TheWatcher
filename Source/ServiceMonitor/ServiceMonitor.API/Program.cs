@@ -13,6 +13,7 @@ namespace ServiceMonitor.API
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:1234")
                 .Build();
     }
 }
