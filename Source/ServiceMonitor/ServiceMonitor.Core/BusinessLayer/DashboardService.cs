@@ -32,15 +32,13 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             try
             {
-                response.Model = await Repository
-                    .GetActiveServiceWatcherItems()
-                    .ToListAsync();
+                response.Model = await Repository.GetActiveServiceWatcherItems().ToListAsync();
 
                 Logger?.LogInformation("The service watch items were loaded successfully");
             }
             catch (Exception ex)
             {
-                response.SetError(Logger, ex);
+                response.SetError(Logger, nameof(GetActiveServiceWatcherItemsAsync), ex);
             }
 
             return response;
@@ -64,16 +62,14 @@ namespace ServiceMonitor.Core.BusinessLayer
                 }
                 else
                 {
-                    response.Model = await Repository
-                        .GetServiceStatuses(userName)
-                        .ToListAsync();
+                    response.Model = await Repository.GetServiceStatuses(userName).ToListAsync();
 
                     Logger?.LogInformation("The service status details for '{0}' user were loaded successfully", userName);
                 }
             }
             catch (Exception ex)
             {
-                response.SetError(Logger, ex);
+                response.SetError(Logger, nameof(GetServiceStatusesAsync), ex);
             }
 
             return response;
@@ -87,12 +83,11 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             try
             {
-                response.Model = await Repository
-                    .GetServiceEnvironmentStatusAsync(entity);
+                response.Model = await Repository.GetServiceEnvironmentStatusAsync(entity);
             }
             catch (Exception ex)
             {
-                response.SetError(Logger, ex);
+                response.SetError(Logger, nameof(GetServiceStatusAsync), ex);
             }
 
             return response;

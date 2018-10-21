@@ -16,7 +16,7 @@ namespace ServiceMonitor.Core.BusinessLayer
             DbContext = dbContext;
         }
 
-        protected virtual void Dispose(Boolean disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!Disposed)
             {

@@ -32,7 +32,7 @@ namespace ServiceMonitor.Core.BusinessLayer
             {
                 try
                 {
-                    var serviceEnvStatus = await Repository.GetByServiceEnvironmentAsync(new ServiceEnvironment { ServiceEnvironmentID = serviceEnvironmentID });
+                    var serviceEnvStatus = await Repository.GetByServiceEnvironmentAsync(new ServiceEnvironment(serviceEnvironmentID));
 
                     if (serviceEnvStatus == null)
                     {
@@ -76,7 +76,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                 {
                     transaction.Rollback();
 
-                    response.SetError(Logger, ex);
+                    response.SetError(Logger, nameof(CreateServiceEnvironmentStatusLogAsync), ex);
                 }
             }
 
