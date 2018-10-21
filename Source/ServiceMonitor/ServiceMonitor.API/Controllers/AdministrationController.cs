@@ -26,12 +26,12 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        // POST: api/v1/Dashboard/ServiceWatcherItems
+        // POST: api/v1/Dashboard/ServiceStatusLog
 
-        [HttpPost("ServiceStatusLog")]
-        public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest value)
+        [HttpPost("ServiceEnvironmentStatusLog")]
+        public async Task<IActionResult> PostServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest value)
         {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));
+            Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceStatusLogAsync));
 
             var response = await Service
                 .CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
