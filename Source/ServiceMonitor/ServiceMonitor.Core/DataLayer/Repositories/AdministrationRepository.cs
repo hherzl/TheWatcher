@@ -13,9 +13,9 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
         }
 
         public async Task<ServiceEnvironmentStatus> GetByServiceEnvironmentAsync(ServiceEnvironment entity)
-            => await DbContext.Set<ServiceEnvironmentStatus>().FirstOrDefaultAsync(item => item.ServiceEnvironmentID == entity.ServiceEnvironmentID);
+            => await DbContext.ServiceEnvironmentStatus.FirstOrDefaultAsync(item => item.ServiceEnvironmentID == entity.ServiceEnvironmentID);
 
         public async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity)
-            => await DbContext.Set<ServiceEnvironmentStatus>().FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
+            => await DbContext.ServiceEnvironmentStatus.FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
     }
 }

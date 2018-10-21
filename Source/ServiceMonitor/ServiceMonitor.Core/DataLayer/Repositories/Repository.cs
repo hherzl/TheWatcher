@@ -4,7 +4,7 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
 {
     public abstract class Repository
     {
-        protected ServiceMonitorDbContext DbContext;
+        protected readonly ServiceMonitorDbContext DbContext;
 
         public Repository(ServiceMonitorDbContext dbContext)
         {

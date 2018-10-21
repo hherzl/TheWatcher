@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiceMonitor.Core.DataLayer.Configurations;
+using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.DataLayer
 {
@@ -28,5 +29,27 @@ namespace ServiceMonitor.Core.DataLayer
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<EnvironmentCategory> EnvironmentCategory { get; set; }
+
+        public DbSet<Owner> Owner { get; set; }
+
+        public DbSet<ServiceCategory> ServiceCategory { get; set; }
+
+        public DbSet<Service> Service { get; set; }
+
+        public DbSet<ServiceEnvironment> ServiceEnvironment { get; set; }
+
+        public DbSet<ServiceEnvironmentStatusLog> ServiceEnvironmentStatusLog { get; set; }
+
+        public DbSet<ServiceEnvironmentStatus> ServiceEnvironmentStatus { get; set; }
+
+        public DbSet<ServiceOwner> ServiceOwner { get; set; }
+
+        public DbSet<ServiceUser> ServiceUser { get; set; }
+
+        public DbSet<ServiceWatcher> ServiceWatcher { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }
