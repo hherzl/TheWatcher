@@ -42,8 +42,6 @@ namespace ServiceMonitor.API
 
             services.AddOptions();
 
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
             services.AddSingleton(Configuration);
         }
 
