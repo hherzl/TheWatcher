@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ServiceMonitor.API.Requests;
 using ServiceMonitor.API.Responses;
-using ServiceMonitor.API.ViewModels;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 
 namespace ServiceMonitor.API.Controllers
@@ -29,7 +29,7 @@ namespace ServiceMonitor.API.Controllers
         // POST: api/v1/Dashboard/ServiceWatcherItems
 
         [HttpPost("ServiceStatusLog")]
-        public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogVm value)
+        public async Task<IActionResult> CreateServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest value)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceStatusLogAsync));
 

@@ -1,12 +1,10 @@
-﻿namespace ServiceMonitor.API.ViewModels
+﻿namespace ServiceMonitor.API.Responses
 {
-    public class ServiceVm
+    public class ServiceWatcherItemResponse
     {
         public int? ServiceID { get; set; }
 
-        public int? ServiceCategoryID { get; set; }
-
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
 
         public int? Interval { get; set; }
 
@@ -16,6 +14,6 @@
 
         public string Connectionstring { get; set; }
 
-        public string Description { get; set; }
+        public string TypeName { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.API.Responses;
@@ -41,7 +40,7 @@ namespace ServiceMonitor.API.Controllers
         // GET: api/v1/Dashboard/ServiceStatusDetails/{userName}
 
         [HttpGet("ServiceStatusDetails/{userName}")]
-        public async Task<IActionResult> GetServiceStatusDetailsAsync(String userName)
+        public async Task<IActionResult> GetServiceStatusDetailsAsync(string userName)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));
 

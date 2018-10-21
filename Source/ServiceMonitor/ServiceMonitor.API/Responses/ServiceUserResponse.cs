@@ -1,6 +1,6 @@
-﻿namespace ServiceMonitor.API.ViewModels
+﻿namespace ServiceMonitor.API.Responses
 {
-    public class ServiceUserVm
+    public class ServiceUserResponse
     {
         public int? ServiceUserID { get; set; }
 

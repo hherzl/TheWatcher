@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ServiceMonitor.API.ViewModels
+namespace ServiceMonitor.API.Requests
 {
-    public class ServiceEnvironmentStatusLogVm
+    public class ServiceEnvironmentStatusLogRequest
     {
         public int? ServiceEnvironmentStatusLogID { get; set; }
 

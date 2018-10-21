@@ -1,14 +1,12 @@
 ﻿using System;
 
-namespace ServiceMonitor.API.ViewModels
+namespace ServiceMonitor.API.Responses
 {
-    public class ServiceStatusDetailVm
+    public class ServiceStatusResponse
     {
         public int? ServiceStatusID { get; set; }
 
         public int? ServiceID { get; set; }
-
-        public string ServiceName { get; set; }
 
         public bool? Success { get; set; }
 
