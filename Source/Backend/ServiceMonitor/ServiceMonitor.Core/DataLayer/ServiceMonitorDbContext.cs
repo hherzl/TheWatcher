@@ -11,25 +11,6 @@ namespace ServiceMonitor.Core.DataLayer
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder
-                .ApplyConfiguration(new EnvironmentCategoryConfiguration())
-                .ApplyConfiguration(new OwnerConfiguration())
-                .ApplyConfiguration(new ServiceCategoryConfiguration())
-                .ApplyConfiguration(new ServiceConfiguration())
-                .ApplyConfiguration(new ServiceEnvironmentConfiguration())
-                .ApplyConfiguration(new ServiceEnvironmentStatusLogConfiguration())
-                .ApplyConfiguration(new ServiceEnvironmentStatusConfiguration())
-                .ApplyConfiguration(new ServiceOwnerConfiguration())
-                .ApplyConfiguration(new ServiceUserConfiguration())
-                .ApplyConfiguration(new ServiceWatcherConfiguration())
-                .ApplyConfiguration(new UserConfiguration())
-                ;
-
-            base.OnModelCreating(modelBuilder);
-        }
-
         public DbSet<EnvironmentCategory> EnvironmentCategory { get; set; }
 
         public DbSet<Owner> Owner { get; set; }
@@ -51,5 +32,24 @@ namespace ServiceMonitor.Core.DataLayer
         public DbSet<ServiceWatcher> ServiceWatcher { get; set; }
 
         public DbSet<User> User { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .ApplyConfiguration(new EnvironmentCategoryConfiguration())
+                .ApplyConfiguration(new OwnerConfiguration())
+                .ApplyConfiguration(new ServiceCategoryConfiguration())
+                .ApplyConfiguration(new ServiceConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentStatusLogConfiguration())
+                .ApplyConfiguration(new ServiceEnvironmentStatusConfiguration())
+                .ApplyConfiguration(new ServiceOwnerConfiguration())
+                .ApplyConfiguration(new ServiceUserConfiguration())
+                .ApplyConfiguration(new ServiceWatcherConfiguration())
+                .ApplyConfiguration(new UserConfiguration())
+                ;
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

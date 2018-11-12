@@ -4,23 +4,16 @@ using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.DataLayer.Contracts;
-using ServiceMonitor.Core.DataLayer.Repositories;
 using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
     public class AdministrationService : Service, IAdministrationService
     {
-        private IAdministrationRepository m_repository;
-
         public AdministrationService(ILogger<AdministrationService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
-
-        protected IAdministrationRepository Repository
-            => m_repository ?? (m_repository = new AdministrationRepository(DbContext));
 
         public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, int? serviceEnvironmentID)
         {
@@ -28,11 +21,11 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             var response = new SingleResponse<ServiceEnvironmentStatusLog>();
 
-            using (var transaction = await DbContext.Database.BeginTransactionAsync())
+            using (var txn = await DbContext.Database.BeginTransactionAsync())
             {
                 try
                 {
-                    var serviceEnvStatus = await Repository.GetByServiceEnvironmentAsync(new ServiceEnvironment(serviceEnvironmentID));
+                    var serviceEnvStatus = await DbContext.GetByServiceEnvironmentAsync(new ServiceEnvironment(serviceEnvironmentID));
 
                     if (serviceEnvStatus == null)
                     {
@@ -44,9 +37,9 @@ namespace ServiceMonitor.Core.BusinessLayer
                             LastWatch = DateTime.Now
                         };
 
-                        Repository.Add(serviceEnvStatus);
+                        DbContext.ServiceEnvironmentStatus.Add(serviceEnvStatus);
 
-                        await Repository.SaveChangesAsync();
+                        await DbContext.SaveChangesAsync();
 
                         Logger?.LogInformation("The status for service environment was saved successfully");
                     }
@@ -62,19 +55,19 @@ namespace ServiceMonitor.Core.BusinessLayer
                     entity.ServiceEnvironmentStatusID = serviceEnvStatus.ServiceEnvironmentStatusID;
                     entity.Date = DateTime.Now;
 
-                    Repository.Add(entity);
+                    DbContext.ServiceEnvironmentStatusLog.Add(entity);
 
-                    await Repository.SaveChangesAsync();
+                    await DbContext.SaveChangesAsync();
 
                     Logger?.LogInformation("The status details for service environment was created successfully");
 
-                    transaction.Commit();
+                    txn.Commit();
 
                     response.Model = entity;
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
+                    txn.Rollback();
 
                     response.SetError(Logger, nameof(CreateServiceEnvironmentStatusLogAsync), ex);
                 }

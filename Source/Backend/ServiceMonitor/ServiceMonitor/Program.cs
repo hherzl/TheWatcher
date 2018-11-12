@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Common;
 
@@ -8,10 +9,22 @@ namespace ServiceMonitor
     class Program
     {
         private static ILogger logger;
+        private static readonly AppSettings appSettings;
 
         static Program()
         {
             logger = LoggerHelper.GetLogger<Program>();
+
+            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+
+            var configuration = builder.Build();
+
+            appSettings = new AppSettings
+            {
+                ServiceWatcherItemsUrl = configuration["serviceWatcherItemUrl"],
+                ServiceStatusLogUrl = configuration["serviceStatusLogUrl"],
+                DelayTime = Convert.ToInt32(configuration["delayTime"])
+            };
         }
 
         static void Main(string[] args)
@@ -25,7 +38,7 @@ namespace ServiceMonitor
         {
             logger.LogDebug("Starting application...");
 
-            var initializer = new ServiceMonitorInitializer();
+            var initializer = new ServiceMonitorInitializer(appSettings);
 
             try
             {
@@ -55,7 +68,7 @@ namespace ServiceMonitor
 
                 var task = Task.Factory.StartNew(async () =>
                 {
-                    var controller = new MonitorController(logger, watcherInstance, initializer.RestClient);
+                    var controller = new MonitorController(appSettings, logger, watcherInstance, initializer.RestClient);
 
                     await controller.ProcessAsync(item);
                 });

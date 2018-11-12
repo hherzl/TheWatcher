@@ -1,23 +1,11 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-
-namespace ServiceMonitor
+﻿namespace ServiceMonitor
 {
-    public static class AppSettings
+    public class AppSettings
     {
-        static AppSettings()
-        {
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+        public string ServiceWatcherItemsUrl { get; set; }
 
-            var configuration = builder.Build();
+        public string ServiceStatusLogUrl { get; set; }
 
-            ServiceWatcherItemsUrl = configuration["serviceWatcherItemsUrl"];
-            ServiceStatusLogUrl = configuration["serviceStatusLogUrl"];
-            DelayTime = Convert.ToInt32(configuration["delayTime"]);
-        }
-
-        public static readonly string ServiceWatcherItemsUrl;
-        public static readonly string ServiceStatusLogUrl;
-        public static readonly int DelayTime;
+        public int DelayTime { get; set; }
     }
 }

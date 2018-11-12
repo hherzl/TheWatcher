@@ -22,7 +22,7 @@ namespace ServiceMonitor.Models
 
         public string TypeName { get; set; }
 
-        public Dictionary<string, string> ToDictionary()
+        public IDictionary<string, string> ToDictionary()
             => new Dictionary<string, string>
             {
                 { "Url", Url },

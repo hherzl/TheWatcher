@@ -5,24 +5,17 @@ using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.DataLayer.Contracts;
 using ServiceMonitor.Core.DataLayer.DataContracts;
-using ServiceMonitor.Core.DataLayer.Repositories;
 using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
     public class DashboardService : Service, IDashboardService
     {
-        private IDashboardRepository m_repository;
-
         public DashboardService(ILogger<DashboardService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)
         {
         }
-
-        protected IDashboardRepository Repository
-            => m_repository ?? (m_repository = new DashboardRepository(DbContext));
 
         public async Task<IListResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync()
         {
@@ -32,7 +25,7 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             try
             {
-                response.Model = await Repository.GetActiveServiceWatcherItems().ToListAsync();
+                response.Model = await DbContext.GetActiveServiceWatcherItems().ToListAsync();
 
                 Logger?.LogInformation("The service watch items were loaded successfully");
             }
@@ -52,7 +45,7 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             try
             {
-                var user = Repository.GetUser(userName);
+                var user = await DbContext.GetUserAsync(userName);
 
                 if (user == null)
                 {
@@ -62,7 +55,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                 }
                 else
                 {
-                    response.Model = await Repository.GetServiceStatuses(userName).ToListAsync();
+                    response.Model = await DbContext.GetServiceStatuses(user).ToListAsync();
 
                     Logger?.LogInformation("The service status details for '{0}' user were loaded successfully", userName);
                 }
@@ -83,7 +76,7 @@ namespace ServiceMonitor.Core.BusinessLayer
 
             try
             {
-                response.Model = await Repository.GetServiceEnvironmentStatusAsync(entity);
+                response.Model = await DbContext.GetServiceEnvironmentStatusAsync(entity);
             }
             catch (Exception ex)
             {

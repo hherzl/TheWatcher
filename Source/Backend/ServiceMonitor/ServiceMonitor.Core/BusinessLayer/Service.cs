@@ -16,22 +16,16 @@ namespace ServiceMonitor.Core.BusinessLayer
             DbContext = dbContext;
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!Disposed)
-            {
-                if (disposing)
-                    DbContext.Dispose();
-            }
-
-            Disposed = true;
-        }
-
         public void Dispose()
         {
-            Dispose(true);
+            if (Disposed)
+                return;
+
+            DbContext.Dispose();
 
             GC.SuppressFinalize(this);
+
+            Disposed = true;
         }
     }
 }

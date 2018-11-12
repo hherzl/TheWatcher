@@ -9,12 +9,15 @@ namespace ServiceMonitor
 {
     public class MonitorController
     {
-        public MonitorController(ILogger logger, IWatcher watcher, RestClient restClient)
+        public MonitorController(AppSettings appSettings, ILogger logger, IWatcher watcher, RestClient restClient)
         {
+            AppSettings = appSettings;
             Logger = logger;
             Watcher = watcher;
             RestClient = restClient;
         }
+
+        public AppSettings AppSettings { get; }
 
         public ILogger Logger { get; }
 
@@ -30,7 +33,7 @@ namespace ServiceMonitor
                 {
                     Logger?.LogTrace("{0} - Watching '{1}' for '{2}' environment", DateTime.Now, item.ServiceName, item.Environment);
 
-                    var watchResponse = await Watcher.WatchAsync(new WatcherParameter { Values = item.ToDictionary() });
+                    var watchResponse = await Watcher.WatchAsync(new WatcherParameter(item.ToDictionary()));
 
                     if (watchResponse.Success)
                         Logger?.LogInformation(" Success watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);

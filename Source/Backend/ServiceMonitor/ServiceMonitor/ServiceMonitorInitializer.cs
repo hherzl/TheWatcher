@@ -6,10 +6,12 @@ namespace ServiceMonitor
 {
     public class ServiceMonitorInitializer
     {
+        private AppSettings AppSettings;
         private string json;
 
-        public ServiceMonitorInitializer()
+        public ServiceMonitorInitializer(AppSettings appSettings)
         {
+            AppSettings = appSettings;
             RestClient = new RestClient();
         }
 

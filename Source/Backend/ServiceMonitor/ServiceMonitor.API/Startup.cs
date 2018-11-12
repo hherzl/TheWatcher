@@ -8,8 +8,6 @@ using ServiceMonitor.API.Controllers;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.DataLayer.Contracts;
-using ServiceMonitor.Core.DataLayer.Repositories;
 
 namespace ServiceMonitor.API
 {
@@ -28,8 +26,6 @@ namespace ServiceMonitor.API
             services.AddMvc();
 
             services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
-
-            services.AddScoped<IDashboardRepository, DashboardRepository>();
 
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IAdministrationService, AdministrationService>();

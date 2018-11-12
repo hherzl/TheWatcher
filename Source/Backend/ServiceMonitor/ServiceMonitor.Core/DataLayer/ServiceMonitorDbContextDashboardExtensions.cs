@@ -2,25 +2,19 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.DataLayer.Contracts;
 using ServiceMonitor.Core.DataLayer.DataContracts;
 using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.Core.DataLayer.Repositories
+namespace ServiceMonitor.Core.DataLayer
 {
-    public class DashboardRepository : Repository, IDashboardRepository
+    public static class ServiceMonitorDbContextDashboardExtensions
     {
-        public DashboardRepository(ServiceMonitorDbContext dbContext)
-            : base(dbContext)
+        public static IQueryable<ServiceWatcherItemDto> GetActiveServiceWatcherItems(this ServiceMonitorDbContext dbContext)
         {
-        }
-
-        public IQueryable<ServiceWatcherItemDto> GetActiveServiceWatcherItems()
-        {
-            return from serviceEnvironment in DbContext.ServiceEnvironment
-                   join service in DbContext.Service on serviceEnvironment.ServiceID equals service.ServiceID
-                   join serviceWatcher in DbContext.ServiceWatcher on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
-                   join environmentCategory in DbContext.EnvironmentCategory on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+            return from serviceEnvironment in dbContext.ServiceEnvironment
+                   join service in dbContext.Service on serviceEnvironment.ServiceID equals service.ServiceID
+                   join serviceWatcher in dbContext.ServiceWatcher on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
+                   join environmentCategory in dbContext.EnvironmentCategory on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
                    select new ServiceWatcherItemDto
                    {
                        ServiceEnvironmentID = serviceEnvironment.ServiceEnvironmentID,
@@ -35,29 +29,27 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
                    };
         }
 
-        public User GetUser(string userName)
-            => DbContext.User.FirstOrDefault(item => item.UserName == userName);
+        public static async Task<User> GetUserAsync(this ServiceMonitorDbContext dbContext, string userName)
+            => await dbContext.User.FirstOrDefaultAsync(item => item.UserName == userName);
 
-        public IQueryable<ServiceUser> GetServiceUserByUserID(int? userID)
-            => DbContext.ServiceUser.Where(item => item.UserID == userID);
+        public static IQueryable<ServiceUser> GetServiceUserByUserID(this ServiceMonitorDbContext dbContext, int? userID)
+            => dbContext.ServiceUser.Where(item => item.UserID == userID);
 
-        public IQueryable<ServiceStatusDetailDto> GetServiceStatuses(string userName)
+        public static IQueryable<ServiceStatusDetailDto> GetServiceStatuses(this ServiceMonitorDbContext dbContext, User user)
         {
-            var user = GetUser(userName);
-
             if (user == null)
                 return new List<ServiceStatusDetailDto>().AsQueryable();
 
-            var servicesToWatch = DbContext
+            var servicesToWatch = dbContext
                 .ServiceUser
                 .Where(item => item.UserID == user.UserID)
                 .Select(item => item.ServiceID)
                 .ToList();
 
-            var query = from serviceEnvironmentStatus in DbContext.ServiceEnvironmentStatus
-                        join serviceEnvironment in DbContext.ServiceEnvironment on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
-                        join service in DbContext.Service on serviceEnvironment.ServiceID equals service.ServiceID
-                        join environmentCategory in DbContext.EnvironmentCategory on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+            var query = from serviceEnvironmentStatus in dbContext.ServiceEnvironmentStatus
+                        join serviceEnvironment in dbContext.ServiceEnvironment on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
+                        join service in dbContext.Service on serviceEnvironment.ServiceID equals service.ServiceID
+                        join environmentCategory in dbContext.EnvironmentCategory on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
                         where serviceEnvironment.Active == true
                         select new ServiceStatusDetailDto
                         {
@@ -76,7 +68,7 @@ namespace ServiceMonitor.Core.DataLayer.Repositories
             return query.Where(item => servicesToWatch.Contains(item.ServiceID));
         }
 
-        public async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(ServiceEnvironmentStatus entity)
-            => await DbContext.ServiceEnvironmentStatus.FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
+        public static async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(this ServiceMonitorDbContext dbContext, ServiceEnvironmentStatus entity)
+            => await dbContext.ServiceEnvironmentStatus.FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
     }
 }

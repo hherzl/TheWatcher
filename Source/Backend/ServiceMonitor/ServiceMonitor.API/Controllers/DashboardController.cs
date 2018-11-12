@@ -25,9 +25,9 @@ namespace ServiceMonitor.API.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: api/v1/Dashboard/ServiceWatcherItems
+        // GET: api/v1/Dashboard/ServiceWatcherItem
 
-        [HttpGet("ServiceWatcherItems")]
+        [HttpGet("ServiceWatcherItem")]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItemsAsync));
@@ -37,14 +37,14 @@ namespace ServiceMonitor.API.Controllers
             return response.ToHttpResponse();
         }
 
-        // GET: api/v1/Dashboard/ServiceStatusDetails/{userName}
+        // GET: api/v1/Dashboard/ServiceStatusDetail/{id}
 
-        [HttpGet("ServiceStatusDetails/{userName}")]
-        public async Task<IActionResult> GetServiceStatusDetailsAsync(string userName)
+        [HttpGet("ServiceStatusDetail/{id}")]
+        public async Task<IActionResult> GetServiceStatusDetailsAsync(string id)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));
 
-            var response = await Service.GetServiceStatusesAsync(userName);
+            var response = await Service.GetServiceStatusesAsync(id);
 
             return response.ToHttpResponse();
         }

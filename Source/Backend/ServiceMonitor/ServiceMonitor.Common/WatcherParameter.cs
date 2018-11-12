@@ -4,6 +4,15 @@ namespace ServiceMonitor.Common
 {
     public class WatcherParameter
     {
-        public Dictionary<string, string> Values { get; set; }
+        public WatcherParameter()
+        {
+        }
+
+        public WatcherParameter(IDictionary<string, string> dictionary)
+        {
+            Values = dictionary;
+        }
+
+        public IDictionary<string, string> Values { get; set; }
     }
 }

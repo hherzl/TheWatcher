@@ -4,10 +4,10 @@ namespace ServiceMonitor.API.Requests
 {
     public static class Extensions
     {
-        public static ServiceEnvironmentStatusLog ToEntity(this ServiceEnvironmentStatusLogRequest viewModel)
-            => RequestMapper.ConfigMapper.Map<ServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>(viewModel);
+        public static ServiceEnvironmentStatusLog ToEntity(this ServiceEnvironmentStatusLogRequest request)
+            => RequestMapper.ConfigMapper.Map<ServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>(request);
 
-        public static ServiceEnvironmentStatusLogRequest ToRequestModel(this ServiceEnvironmentStatusLog entity)
+        public static ServiceEnvironmentStatusLogRequest ToRequest(this ServiceEnvironmentStatusLog entity)
             => RequestMapper.ConfigMapper.Map<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogRequest>(entity);
     }
 }
