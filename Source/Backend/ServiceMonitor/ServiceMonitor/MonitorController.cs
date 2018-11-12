@@ -59,7 +59,7 @@ namespace ServiceMonitor
                 }
                 catch (Exception ex)
                 {
-                    Logger?.LogError(" Error on '{0}' watch: '{1}'", item.ServiceName, ex.Message);
+                    Logger?.LogError(" Error watching service: '{0}': '{1}'", item.ServiceName, ex.Message);
                 }
 
                 Thread.Sleep(item.Interval ?? AppSettings.DelayTime);

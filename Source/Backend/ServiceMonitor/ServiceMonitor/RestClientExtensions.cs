@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ServiceMonitor.Common;
 
 namespace ServiceMonitor
@@ -8,11 +7,7 @@ namespace ServiceMonitor
     {
         public static async Task PostJsonAsync(this RestClient client, string url, object obj)
         {
-            var serializer = new ServiceMonitorSerializer();
-
-            var json = serializer.Serialize(obj);
-
-            await client.PostStringContentAsync(url, json, Encoding.Unicode, "application/json");
+            await client.PostStringContentAsync(url, ContentHelper.GetStringContent(obj));
         }
     }
 }

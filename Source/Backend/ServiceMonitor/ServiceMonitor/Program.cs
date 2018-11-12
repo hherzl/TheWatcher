@@ -14,21 +14,17 @@ namespace ServiceMonitor
             logger = LoggerHelper.GetLogger<Program>();
         }
 
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
-            logger.LogDebug("Starting application...");
-
-            var task = new Task(StartAsync);
-
-            task.Start();
-
-            task.Wait();
+            StartAsync().GetAwaiter().GetResult();
 
             Console.ReadLine();
         }
 
-        static async void StartAsync()
+        static async Task StartAsync()
         {
+            logger.LogDebug("Starting application...");
+
             var initializer = new ServiceMonitorInitializer();
 
             try
@@ -37,7 +33,7 @@ namespace ServiceMonitor
             }
             catch (Exception ex)
             {
-                logger.LogError("Error on retrieve watch items: {0}", ex.Message);
+                logger.LogError("Error on retrieve watch items: {0}", ex);
                 return;
             }
 
@@ -47,7 +43,7 @@ namespace ServiceMonitor
             }
             catch (Exception ex)
             {
-                logger.LogError("Error on deserializing object: {0}", ex.Message);
+                logger.LogError("Error on deserializing object: {0}", ex);
                 return;
             }
 

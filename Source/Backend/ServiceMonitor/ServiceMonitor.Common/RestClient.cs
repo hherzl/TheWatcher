@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ServiceMonitor.Common
@@ -12,10 +11,10 @@ namespace ServiceMonitor.Common
                 return await httpClient.GetStringAsync(url);
         }
 
-        public async Task PostStringContentAsync(string url, string content, Encoding encoding, string mediaType)
+        public async Task PostStringContentAsync(string url, StringContent content)
         {
             using (var httpClient = new HttpClient())
-                await httpClient.PostAsync(url, new StringContent(content, encoding, mediaType));
+                await httpClient.PostAsync(url, content);
         }
     }
 }
