@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using ServiceMonitor.Common;
+using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor
 {

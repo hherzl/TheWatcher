@@ -1,5 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor.Common
 {

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Common;
+using ServiceMonitor.Common.Contracts;
 using ServiceMonitor.Models;
 
 namespace ServiceMonitor

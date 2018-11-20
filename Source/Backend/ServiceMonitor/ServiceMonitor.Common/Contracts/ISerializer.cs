@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.Common
+﻿namespace ServiceMonitor.Common.Contracts
 {
     public interface ISerializer
     {

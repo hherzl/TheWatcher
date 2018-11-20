@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ServiceMonitor.Common
+namespace ServiceMonitor.Common.Contracts
 {
     public interface IWatcher
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor.Common
 {
@@ -7,7 +8,7 @@ namespace ServiceMonitor.Common
     {
         public string ActionName
             => "HttpRequest";
-        
+
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
         {
             var response = new WatchResponse();

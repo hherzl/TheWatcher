@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Common;
+using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor
 {
@@ -13,7 +14,7 @@ namespace ServiceMonitor
 
         static Program()
         {
-            logger = LoggerHelper.GetLogger<Program>();
+            logger = LoggingHelper.GetLogger<Program>();
 
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
 
@@ -29,12 +30,12 @@ namespace ServiceMonitor
 
         static void Main(string[] args)
         {
-            StartAsync().GetAwaiter().GetResult();
+            StartAsync(args).GetAwaiter().GetResult();
 
             Console.ReadLine();
         }
 
-        static async Task StartAsync()
+        static async Task StartAsync(string[] args)
         {
             logger.LogDebug("Starting application...");
 

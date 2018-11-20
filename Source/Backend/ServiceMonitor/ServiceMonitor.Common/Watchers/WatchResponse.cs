@@ -1,4 +1,6 @@
-﻿namespace ServiceMonitor.Common
+﻿using ServiceMonitor.Common.Contracts;
+
+namespace ServiceMonitor.Common
 {
     public class WatchResponse : IWatchResponse
     {
