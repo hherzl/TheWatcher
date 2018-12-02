@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.API.Responses
+﻿namespace ServiceMonitor.WebApi.Responses
 {
     public class ServiceCategoryResponse
     {

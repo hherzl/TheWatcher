@@ -1,6 +1,6 @@
 ﻿using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.API.Requests
+namespace ServiceMonitor.WebApi.Requests
 {
     public static class Extensions
     {

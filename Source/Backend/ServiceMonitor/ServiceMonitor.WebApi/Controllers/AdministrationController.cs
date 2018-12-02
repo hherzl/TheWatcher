@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.API.Requests;
-using ServiceMonitor.API.Responses;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
+using ServiceMonitor.WebApi.Requests;
+using ServiceMonitor.WebApi.Responses;
 
-namespace ServiceMonitor.API.Controllers
+namespace ServiceMonitor.WebApi.Controllers
 {
     [Route("api/v1/[controller]")]
-    public class AdministrationController : Controller
+    [ApiController]
+    public class AdministrationController : ControllerBase
     {
         protected ILogger Logger;
         protected IAdministrationService Service;
@@ -17,13 +18,6 @@ namespace ServiceMonitor.API.Controllers
         {
             Logger = logger;
             Service = service;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            Service?.Dispose();
-
-            base.Dispose(disposing);
         }
 
         // POST: api/v1/Dashboard/ServiceStatusLog

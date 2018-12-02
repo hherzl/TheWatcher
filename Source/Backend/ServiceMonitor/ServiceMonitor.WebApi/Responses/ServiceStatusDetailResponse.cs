@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace ServiceMonitor.API.Responses
+namespace ServiceMonitor.WebApi.Responses
 {
-    public class ServiceStatusResponse
+    public class ServiceStatusDetailResponse
     {
         public int? ServiceStatusID { get; set; }
 
         public int? ServiceID { get; set; }
+
+        public string ServiceName { get; set; }
 
         public bool? Success { get; set; }
 

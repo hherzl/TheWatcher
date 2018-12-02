@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.API.Controllers;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
+using ServiceMonitor.WebApi.Controllers;
 
-namespace ServiceMonitor.API
+namespace ServiceMonitor.WebApi
 {
     public class Startup
     {
@@ -23,7 +24,7 @@ namespace ServiceMonitor.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
 
@@ -35,10 +36,6 @@ namespace ServiceMonitor.API
 
             services.AddScoped<ILogger, Logger<DashboardController>>();
             services.AddScoped<ILogger, Logger<AdministrationController>>();
-
-            services.AddOptions();
-
-            services.AddSingleton(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
