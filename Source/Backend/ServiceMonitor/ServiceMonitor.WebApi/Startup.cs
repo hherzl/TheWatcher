@@ -9,9 +9,11 @@ using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
 using ServiceMonitor.WebApi.Controllers;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ServiceMonitor.WebApi
 {
+#pragma warning disable CS1591
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -31,11 +33,15 @@ namespace ServiceMonitor.WebApi
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IAdministrationService, AdministrationService>();
 
-            services.AddScoped<ILogger, Logger<DashboardService>>();
-            services.AddScoped<ILogger, Logger<AdministrationService>>();
+            services.AddScoped<ILogger, Logger<Service>>();
 
             services.AddScoped<ILogger, Logger<DashboardController>>();
             services.AddScoped<ILogger, Logger<AdministrationController>>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Service Monitor API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +50,18 @@ namespace ServiceMonitor.WebApi
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Service Monitor API V1");
+            });
+
             app.UseMvc();
         }
     }
+#pragma warning restore CS1591
 }

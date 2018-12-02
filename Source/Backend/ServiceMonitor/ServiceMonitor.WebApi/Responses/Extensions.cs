@@ -6,6 +6,7 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.WebApi.Responses
 {
+#pragma warning disable CS1591
     public static class Extensions
     {
         public static IActionResult ToHttpResponse<TModel>(this IListResponse<TModel> response) where TModel : class
@@ -98,4 +99,5 @@ namespace ServiceMonitor.WebApi.Responses
         public static UserResponse ToViewModel(this User entity)
             => ViewModelMapper.ConfigMapper.Map<User, UserResponse>(entity);
     }
+#pragma warning restore CS1591
 }

@@ -4,6 +4,7 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.WebApi.Responses
 {
+#pragma warning disable CS1591
     public static class ViewModelMapper
     {
         static ViewModelMapper()
@@ -47,4 +48,5 @@ namespace ServiceMonitor.WebApi.Responses
 
         public static IMapper ConfigMapper { get; }
     }
+#pragma warning restore CS1591
 }

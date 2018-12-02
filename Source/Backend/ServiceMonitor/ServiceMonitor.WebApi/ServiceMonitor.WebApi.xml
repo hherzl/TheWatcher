@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServiceMonitor.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:ServiceMonitor.WebApi.Controllers.AdministrationController.PostServiceStatusLogAsync(ServiceMonitor.WebApi.Requests.ServiceEnvironmentStatusLogRequest)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceMonitor.WebApi.Controllers.DashboardController.GetServiceWatcherItemsAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceMonitor.WebApi.Controllers.DashboardController.GetServiceStatusDetailsAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

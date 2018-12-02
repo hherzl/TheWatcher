@@ -7,6 +7,7 @@ using ServiceMonitor.WebApi.Responses;
 
 namespace ServiceMonitor.WebApi.Controllers
 {
+#pragma warning disable CS1591
     [Route("api/v1/[controller]")]
     [ApiController]
     public class AdministrationController : ControllerBase
@@ -19,9 +20,15 @@ namespace ServiceMonitor.WebApi.Controllers
             Logger = logger;
             Service = service;
         }
+#pragma warning restore CS1591
 
         // POST: api/v1/Dashboard/ServiceStatusLog
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost("ServiceEnvironmentStatusLog")]
         public async Task<IActionResult> PostServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest value)
         {

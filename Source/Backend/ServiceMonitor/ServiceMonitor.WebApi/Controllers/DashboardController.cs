@@ -6,6 +6,7 @@ using ServiceMonitor.WebApi.Responses;
 
 namespace ServiceMonitor.WebApi.Controllers
 {
+#pragma warning disable CS1591
     [Route("api/v1/[controller]")]
     [ApiController]
     public class DashboardController : ControllerBase
@@ -18,9 +19,14 @@ namespace ServiceMonitor.WebApi.Controllers
             Logger = logger;
             Service = service;
         }
+#pragma warning restore CS1591
 
         // GET: api/v1/Dashboard/ServiceWatcherItem
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ServiceWatcherItem")]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
@@ -33,6 +39,11 @@ namespace ServiceMonitor.WebApi.Controllers
 
         // GET: api/v1/Dashboard/ServiceStatusDetail/{id}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("ServiceStatusDetail/{id}")]
         public async Task<IActionResult> GetServiceStatusDetailsAsync(string id)
         {

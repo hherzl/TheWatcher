@@ -2,6 +2,7 @@
 
 namespace ServiceMonitor.WebApi.Requests
 {
+#pragma warning disable CS1591
     public static class Extensions
     {
         public static ServiceEnvironmentStatusLog ToEntity(this ServiceEnvironmentStatusLogRequest request)
@@ -10,4 +11,5 @@ namespace ServiceMonitor.WebApi.Requests
         public static ServiceEnvironmentStatusLogRequest ToRequest(this ServiceEnvironmentStatusLog entity)
             => RequestMapper.ConfigMapper.Map<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogRequest>(entity);
     }
+#pragma warning restore CS1591
 }
