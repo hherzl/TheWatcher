@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,9 +41,16 @@ namespace ServiceMonitor.WebApi
             services.AddScoped<ILogger, Logger<DashboardController>>();
             services.AddScoped<ILogger, Logger<AdministrationController>>();
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Service Monitor API", Version = "v1" });
+                options.SwaggerDoc("v1", new Info { Title = "Service Monitor API", Version = "v1" });
+
+                // Get xml comments path
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                // Set xml path
+                options.IncludeXmlComments(xmlPath);
             });
         }
 

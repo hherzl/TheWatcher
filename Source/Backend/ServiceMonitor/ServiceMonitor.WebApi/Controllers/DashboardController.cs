@@ -21,13 +21,14 @@ namespace ServiceMonitor.WebApi.Controllers
         }
 #pragma warning restore CS1591
 
-        // GET: api/v1/Dashboard/ServiceWatcherItem
-
         /// <summary>
-        /// 
+        /// Gets service watcher items (registered services to watch with service monitor)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A sequence of services to watch</returns>
         [HttpGet("ServiceWatcherItem")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceWatcherItemsAsync));
@@ -37,14 +38,15 @@ namespace ServiceMonitor.WebApi.Controllers
             return response.ToHttpResponse();
         }
 
-        // GET: api/v1/Dashboard/ServiceStatusDetail/{id}
-
         /// <summary>
-        /// 
+        /// Gets the details for service watch
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Service ID</param>
         /// <returns></returns>
         [HttpGet("ServiceStatusDetail/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetServiceStatusDetailsAsync(string id)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));

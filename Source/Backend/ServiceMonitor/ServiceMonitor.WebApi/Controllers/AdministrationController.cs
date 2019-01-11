@@ -22,20 +22,21 @@ namespace ServiceMonitor.WebApi.Controllers
         }
 #pragma warning restore CS1591
 
-        // POST: api/v1/Dashboard/ServiceStatusLog
-
         /// <summary>
-        /// 
+        /// Saves a result from service watch action
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="request">Service status result</param>
+        /// <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
         [HttpPost("ServiceEnvironmentStatusLog")]
-        public async Task<IActionResult> PostServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest value)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> PostServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest request)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceStatusLogAsync));
 
             var response = await Service
-                .CreateServiceEnvironmentStatusLogAsync(value.ToEntity(), value.ServiceEnvironmentID);
+                .CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
 
             return response.ToHttpResponse();
         }
