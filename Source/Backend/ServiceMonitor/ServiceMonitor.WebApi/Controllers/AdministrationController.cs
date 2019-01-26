@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.WebApi.Requests;
-using ServiceMonitor.WebApi.Responses;
+using ServiceMonitor.WebAPI.Requests;
+using ServiceMonitor.WebAPI.Responses;
 
-namespace ServiceMonitor.WebApi.Controllers
+namespace ServiceMonitor.WebAPI.Controllers
 {
 #pragma warning disable CS1591
     [Route("api/v1/[controller]")]

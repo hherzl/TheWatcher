@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.WebApi.Requests
+namespace ServiceMonitor.WebAPI.Requests
 {
     public static class RequestMapper
     {

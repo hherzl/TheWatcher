@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>ServiceMonitor.WebApi</name>
+        <name>ServiceMonitor.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:ServiceMonitor.WebApi.Controllers.AdministrationController.PostServiceStatusLogAsync(ServiceMonitor.WebApi.Requests.ServiceEnvironmentStatusLogRequest)">
+        <member name="M:ServiceMonitor.WebAPI.Controllers.AdministrationController.PostServiceStatusLogAsync(ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest)">
             <summary>
             Saves a result from service watch action
             </summary>
             <param name="request">Service status result</param>
             <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
         </member>
-        <member name="M:ServiceMonitor.WebApi.Controllers.DashboardController.GetServiceWatcherItemsAsync">
+        <member name="M:ServiceMonitor.WebAPI.Controllers.DashboardController.GetServiceWatcherItemsAsync">
             <summary>
             Gets service watcher items (registered services to watch with service monitor)
             </summary>
             <returns>A sequence of services to watch</returns>
         </member>
-        <member name="M:ServiceMonitor.WebApi.Controllers.DashboardController.GetServiceStatusDetailsAsync(System.String)">
+        <member name="M:ServiceMonitor.WebAPI.Controllers.DashboardController.GetServiceStatusDetailsAsync(System.String)">
             <summary>
             Gets the details for service watch
             </summary>

@@ -1,6 +1,6 @@
 ﻿using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.WebApi.Requests
+namespace ServiceMonitor.WebAPI.Requests
 {
 #pragma warning disable CS1591
     public static class Extensions

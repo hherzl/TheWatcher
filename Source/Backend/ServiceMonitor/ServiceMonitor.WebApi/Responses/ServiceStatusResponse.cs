@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceMonitor.WebApi.Responses
+namespace ServiceMonitor.WebAPI.Responses
 {
     public class ServiceStatusResponse
     {

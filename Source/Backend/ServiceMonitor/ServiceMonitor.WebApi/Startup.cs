@@ -11,10 +11,10 @@ using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.WebApi.Controllers;
+using ServiceMonitor.WebAPI.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace ServiceMonitor.WebApi
+namespace ServiceMonitor.WebAPI
 {
 #pragma warning disable CS1591
     public class Startup
@@ -29,17 +29,16 @@ namespace ServiceMonitor.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
+            services.AddScoped<ILogger, Logger<Service>>();
+            services.AddScoped<ILogger, Logger<DashboardController>>();
+            services.AddScoped<ILogger, Logger<AdministrationController>>();
 
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IAdministrationService, AdministrationService>();
 
-            services.AddScoped<ILogger, Logger<Service>>();
-
-            services.AddScoped<ILogger, Logger<DashboardController>>();
-            services.AddScoped<ILogger, Logger<AdministrationController>>();
+            services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
 
             services.AddSwaggerGen(options =>
             {
@@ -65,9 +64,9 @@ namespace ServiceMonitor.WebApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Service Monitor API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Service Monitor API V1");
             });
 
             app.UseMvc();

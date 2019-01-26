@@ -4,7 +4,7 @@ using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.DataLayer.DataContracts;
 using ServiceMonitor.Core.EntityLayer;
 
-namespace ServiceMonitor.WebApi.Responses
+namespace ServiceMonitor.WebAPI.Responses
 {
 #pragma warning disable CS1591
     public static class Extensions

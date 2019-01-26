@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceMonitor.WebApi.Requests
+namespace ServiceMonitor.WebAPI.Requests
 {
     public class ServiceEnvironmentStatusLogRequest
     {
