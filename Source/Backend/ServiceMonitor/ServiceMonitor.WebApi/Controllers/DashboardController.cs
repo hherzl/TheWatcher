@@ -11,8 +11,8 @@ namespace ServiceMonitor.WebAPI.Controllers
     [ApiController]
     public class DashboardController : ControllerBase
     {
-        protected ILogger Logger;
-        protected IDashboardService Service;
+        protected readonly ILogger Logger;
+        protected readonly IDashboardService Service;
 
         public DashboardController(ILogger<DashboardController> logger, IDashboardService service)
         {
@@ -25,9 +25,10 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// Gets service watcher items (registered services to watch with service monitor)
         /// </summary>
         /// <returns>A sequence of services to watch</returns>
+        /// <response code="200"></response>
+        /// <response code="500"></response>
         [HttpGet("ServiceWatcherItem")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(204)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetServiceWatcherItemsAsync()
         {
@@ -43,9 +44,12 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// </summary>
         /// <param name="id">Service ID</param>
         /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="404"></response>
+        /// <response code="500"></response>
         [HttpGet("ServiceStatusDetail/{id}")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetServiceStatusDetailsAsync(string id)
         {

@@ -10,12 +10,16 @@
             </summary>
             <param name="request">Service status result</param>
             <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
+            <response code="201"></response>
+            <response code="500"></response>
         </member>
         <member name="M:ServiceMonitor.WebAPI.Controllers.DashboardController.GetServiceWatcherItemsAsync">
             <summary>
             Gets service watcher items (registered services to watch with service monitor)
             </summary>
             <returns>A sequence of services to watch</returns>
+            <response code="200"></response>
+            <response code="500"></response>
         </member>
         <member name="M:ServiceMonitor.WebAPI.Controllers.DashboardController.GetServiceStatusDetailsAsync(System.String)">
             <summary>
@@ -23,6 +27,59 @@
             </summary>
             <param name="id">Service ID</param>
             <returns></returns>
+            <response code="200"></response>
+            <response code="404"></response>
+            <response code="500"></response>
+        </member>
+        <member name="T:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentStatusLogID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentStatusID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Target">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ActionName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.StackTrace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Date">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

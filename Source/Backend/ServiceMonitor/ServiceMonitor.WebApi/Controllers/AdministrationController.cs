@@ -12,8 +12,8 @@ namespace ServiceMonitor.WebAPI.Controllers
     [ApiController]
     public class AdministrationController : ControllerBase
     {
-        protected ILogger Logger;
-        protected IAdministrationService Service;
+        protected readonly ILogger Logger;
+        protected readonly IAdministrationService Service;
 
         public AdministrationController(ILogger<AdministrationController> logger, IAdministrationService service)
         {
@@ -27,6 +27,8 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// </summary>
         /// <param name="request">Service status result</param>
         /// <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
+        /// <response code="201"></response>
+        /// <response code="500"></response>
         [HttpPost("ServiceEnvironmentStatusLog")]
         [ProducesResponseType(201)]
         [ProducesResponseType(500)]
@@ -34,8 +36,7 @@ namespace ServiceMonitor.WebAPI.Controllers
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceEnvironmentStatusLogAsync));
 
-            var response = await Service
-                .CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
+            var response = await Service.CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
 
             return response.ToHttpResponse();
         }
