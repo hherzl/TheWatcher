@@ -28,12 +28,11 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// <param name="request">Service status result</param>
         /// <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
         [HttpPost("ServiceEnvironmentStatusLog")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(201)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> PostServiceStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest request)
+        public async Task<IActionResult> PostServiceEnvironmentStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest request)
         {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceStatusLogAsync));
+            Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceEnvironmentStatusLogAsync));
 
             var response = await Service
                 .CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);

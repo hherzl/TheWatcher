@@ -3,17 +3,20 @@ using ServiceMonitor.Core.EntityLayer;
 
 namespace ServiceMonitor.WebAPI.Requests
 {
+#pragma warning disable CS1591
     public static class RequestMapper
     {
         static RequestMapper()
         {
-            ConfigMapper = new MapperConfiguration(cfg =>
+            ConfigMapper = new MapperConfiguration(config =>
             {
-                cfg.CreateMap<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogRequest>();
-                cfg.CreateMap<ServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>();
+                config.CreateMap<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogRequest>();
+
+                config.CreateMap<ServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>();
             }).CreateMapper();
         }
 
         public static IMapper ConfigMapper { get; }
+#pragma warning restore CS1591
     }
 }

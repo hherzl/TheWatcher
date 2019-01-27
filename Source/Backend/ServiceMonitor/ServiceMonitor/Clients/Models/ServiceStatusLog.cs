@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.Models
+﻿namespace ServiceMonitor.Clients.Models
 {
     public class ServiceStatusLog
     {

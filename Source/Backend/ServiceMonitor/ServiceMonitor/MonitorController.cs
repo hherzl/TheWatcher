@@ -2,29 +2,30 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using ServiceMonitor.Clients;
+using ServiceMonitor.Clients.Models;
 using ServiceMonitor.Common;
 using ServiceMonitor.Common.Contracts;
-using ServiceMonitor.Models;
 
 namespace ServiceMonitor
 {
     public class MonitorController
     {
-        public MonitorController(AppSettings appSettings, ILogger logger, IWatcher watcher, RestClient restClient)
+        public MonitorController(ILogger logger, IWatcher watcher, IServiceMonitorWebAPIClient client, AppSettings appSettings)
         {
-            AppSettings = appSettings;
             Logger = logger;
             Watcher = watcher;
-            RestClient = restClient;
+            Client = client;
+            AppSettings = appSettings;
         }
-
-        public AppSettings AppSettings { get; }
 
         public ILogger Logger { get; }
 
         public IWatcher Watcher { get; }
 
-        public RestClient RestClient { get; }
+        public IServiceMonitorWebAPIClient Client { get; }
+
+        public AppSettings AppSettings { get; }
 
         public async Task ProcessAsync(ServiceWatchItem item)
         {
@@ -41,7 +42,7 @@ namespace ServiceMonitor
                     else
                         Logger?.LogError(" Failed watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
 
-                    var watchLog = new ServiceStatusLog
+                    var serviceStatusLog = new ServiceStatusLog
                     {
                         ServiceID = item.ServiceID,
                         ServiceEnvironmentID = item.ServiceEnvironmentID,
@@ -54,16 +55,16 @@ namespace ServiceMonitor
 
                     try
                     {
-                        await RestClient.PostJsonAsync(AppSettings.ServiceStatusLogUrl, watchLog);
+                        await Client.PostServiceEnvironmentStatusLog(serviceStatusLog);
                     }
                     catch (Exception ex)
                     {
-                        Logger?.LogError(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex.Message);
+                        Logger?.LogCritical(" Error on saving watch response ({0}): '{1}'", item.ServiceName, ex.Message);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger?.LogError(" Error watching service: '{0}': '{1}'", item.ServiceName, ex.Message);
+                    Logger?.LogCritical(" Error watching service: '{0}': '{1}'", item.ServiceName, ex.Message);
                 }
 
                 Thread.Sleep(item.Interval ?? AppSettings.DelayTime);

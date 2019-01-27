@@ -4,7 +4,7 @@
         <name>ServiceMonitor.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:ServiceMonitor.WebAPI.Controllers.AdministrationController.PostServiceStatusLogAsync(ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest)">
+        <member name="M:ServiceMonitor.WebAPI.Controllers.AdministrationController.PostServiceEnvironmentStatusLogAsync(ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest)">
             <summary>
             Saves a result from service watch action
             </summary>

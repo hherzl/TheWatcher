@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ServiceMonitor.Clients;
+using ServiceMonitor.Clients.Models;
 using ServiceMonitor.Common;
 using ServiceMonitor.Common.Contracts;
 
@@ -9,23 +11,20 @@ namespace ServiceMonitor
 {
     class Program
     {
-        private static ILogger logger;
-        private static readonly AppSettings appSettings;
+        private static ILogger Logger;
+        private static readonly AppSettings AppSettings;
 
         static Program()
         {
-            logger = LoggingHelper.GetLogger<Program>();
+            Logger = LoggingHelper.GetLogger<Program>();
 
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
 
             var configuration = builder.Build();
 
-            appSettings = new AppSettings
-            {
-                ServiceWatcherItemsUrl = configuration["serviceWatcherItemUrl"],
-                ServiceStatusLogUrl = configuration["serviceStatusLogUrl"],
-                DelayTime = Convert.ToInt32(configuration["delayTime"])
-            };
+            AppSettings = new AppSettings();
+
+            configuration.GetSection("appSettings").Bind(AppSettings);
         }
 
         static void Main(string[] args)
@@ -37,39 +36,31 @@ namespace ServiceMonitor
 
         static async Task StartAsync(string[] args)
         {
-            logger.LogDebug("Starting application...");
+            Logger.LogDebug("Starting service monitor...");
 
-            var initializer = new ServiceMonitorInitializer(appSettings);
+            var client = new ServiceMonitorWebAPIClient();
 
-            try
-            {
-                await initializer.LoadResponseAsync();
-            }
-            catch (Exception ex)
-            {
-                logger.LogError("Error on retrieve watch items: {0}", ex);
-                return;
-            }
+            var serviceWatcherItemsResponse = default(ServiceWatchResponse);
 
             try
             {
-                initializer.DeserializeResponse();
+                serviceWatcherItemsResponse = await client.GetServiceWatcherItemsAsync();
             }
             catch (Exception ex)
             {
-                logger.LogError("Error on deserializing object: {0}", ex);
+                Logger.LogError("Error on retrieve watch items: {0}", ex);
                 return;
             }
 
-            foreach (var item in initializer.Response.Model)
+            foreach (var item in serviceWatcherItemsResponse.Model)
             {
                 var watcherType = Type.GetType(item.TypeName, true);
 
                 var watcherInstance = Activator.CreateInstance(watcherType) as IWatcher;
 
-                var task = Task.Factory.StartNew(async () =>
+                await Task.Factory.StartNew(async () =>
                 {
-                    var controller = new MonitorController(appSettings, logger, watcherInstance, initializer.RestClient);
+                    var controller = new MonitorController(Logger, watcherInstance, client, AppSettings);
 
                     await controller.ProcessAsync(item);
                 });

@@ -31,14 +31,27 @@ namespace ServiceMonitor.WebAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            /* Setting up dependency injection */
+
+            // Loggers
+
             services.AddScoped<ILogger, Logger<Service>>();
             services.AddScoped<ILogger, Logger<DashboardController>>();
             services.AddScoped<ILogger, Logger<AdministrationController>>();
 
+            // Services
+
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IAdministrationService, AdministrationService>();
 
-            services.AddDbContext<ServiceMonitorDbContext>(options => options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
+            // DbContext
+
+            services.AddDbContext<ServiceMonitorDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["AppSettings:ConnectionString"]);
+            });
+
+            /* Configuration for Swagger */
 
             services.AddSwaggerGen(options =>
             {
