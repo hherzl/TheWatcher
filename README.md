@@ -6,7 +6,7 @@ This is the stack for this solution:
 	Entity Framework Core
 	ASP.NET Core
 
-You can read more details about this project in [`this link`] (https://www.codeproject.com/Articles/1165961/Creating-Service-Monitor-Application-with-NET-Core).
+You can read more details about this project in [`this link`](https://www.codeproject.com/Articles/1165961/Creating-Service-Monitor-Application-with-NET-Core).
 
 ## Running Solution
 
