@@ -8,8 +8,6 @@ namespace ServiceMonitor.Clients
     {
         Task<ServiceWatchResponse> GetServiceWatcherItemsAsync();
 
-        Task<HttpResponseMessage> GetServiceStatusDetailsAsync(int id);
-
-        Task<HttpResponseMessage> PostServiceEnvironmentStatusLog(ServiceStatusLog request);
+        Task<HttpResponseMessage> PostServiceEnvironmentStatusLog(ServiceStatusLogRequest request);
     }
 }

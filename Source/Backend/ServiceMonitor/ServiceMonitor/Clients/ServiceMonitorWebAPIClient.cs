@@ -14,7 +14,7 @@ namespace ServiceMonitor.Clients
         public ServiceMonitorWebAPIClient()
         {
             Client = new HttpClient();
-            Url = new ApiUrl(baseUrl: "http://localhost:1234");
+            Url = new ApiUrl(baseUrl: "http://localhost:10000");
             Serializer = new ServiceMonitorSerializer();
         }
 
@@ -29,10 +29,7 @@ namespace ServiceMonitor.Clients
             return Serializer.Deserialze<ServiceWatchResponse>(content);
         }
 
-        public async Task<HttpResponseMessage> GetServiceStatusDetailsAsync(int id)
-            => await Client.GetAsync(Url.Controller("Dashboard").Action("ServiceStatusDetail").ID(id).ToString());
-
-        public async Task<HttpResponseMessage> PostServiceEnvironmentStatusLog(ServiceStatusLog request)
+        public async Task<HttpResponseMessage> PostServiceEnvironmentStatusLog(ServiceStatusLogRequest request)
             => await Client.PostAsync(
                 Url.Controller("Administration").Action("ServiceEnvironmentStatusLog").ToString(),
                 ContentHelper.GetStringContent(request)

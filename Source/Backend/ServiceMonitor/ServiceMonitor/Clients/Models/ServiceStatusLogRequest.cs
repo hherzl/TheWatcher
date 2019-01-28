@@ -1,6 +1,6 @@
 ﻿namespace ServiceMonitor.Clients.Models
 {
-    public class ServiceStatusLog
+    public class ServiceStatusLogRequest
     {
         public int? ServiceID { get; set; }
 

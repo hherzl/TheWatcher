@@ -21,16 +21,6 @@
             <response code="200"></response>
             <response code="500"></response>
         </member>
-        <member name="M:ServiceMonitor.WebAPI.Controllers.DashboardController.GetServiceStatusDetailsAsync(System.String)">
-            <summary>
-            Gets the details for service watch
-            </summary>
-            <param name="id">Service ID</param>
-            <returns></returns>
-            <response code="200"></response>
-            <response code="404"></response>
-            <response code="500"></response>
-        </member>
         <member name="T:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest">
             <summary>
             

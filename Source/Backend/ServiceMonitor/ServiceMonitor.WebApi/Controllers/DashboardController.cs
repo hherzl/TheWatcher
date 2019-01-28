@@ -38,26 +38,5 @@ namespace ServiceMonitor.WebAPI.Controllers
 
             return response.ToHttpResponse();
         }
-
-        /// <summary>
-        /// Gets the details for service watch
-        /// </summary>
-        /// <param name="id">Service ID</param>
-        /// <returns></returns>
-        /// <response code="200"></response>
-        /// <response code="404"></response>
-        /// <response code="500"></response>
-        [HttpGet("ServiceStatusDetail/{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(500)]
-        public async Task<IActionResult> GetServiceStatusDetailsAsync(string id)
-        {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusDetailsAsync));
-
-            var response = await Service.GetServiceStatusesAsync(id);
-
-            return response.ToHttpResponse();
-        }
     }
 }

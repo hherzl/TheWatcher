@@ -42,7 +42,7 @@ namespace ServiceMonitor
                     else
                         Logger?.LogError(" Failed watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
 
-                    var serviceStatusLog = new ServiceStatusLog
+                    var serviceStatusLog = new ServiceStatusLogRequest
                     {
                         ServiceID = item.ServiceID,
                         ServiceEnvironmentID = item.ServiceEnvironmentID,

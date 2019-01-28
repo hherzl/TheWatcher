@@ -12,7 +12,7 @@ namespace ServiceMonitor.WebAPI
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost
                 .CreateDefaultBuilder(args)
-                .UseUrls("http://localhost:1234")
+                .UseUrls("http://localhost:10000")
                 .UseStartup<Startup>();
     }
 #pragma warning restore CS1591
