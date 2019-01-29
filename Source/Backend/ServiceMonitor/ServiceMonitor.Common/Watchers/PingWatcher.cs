@@ -11,14 +11,15 @@ namespace ServiceMonitor.Common
 
         public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
         {
-            var ping = new Ping();
-
-            var reply = await ping.SendPingAsync(parameter.Values["Address"]);
-
-            return new WatchResponse
+            using (var ping = new Ping())
             {
-                Success = reply.Status == IPStatus.Success ? true : false
-            };
+                var reply = await ping.SendPingAsync(parameter.Values["Address"]);
+
+                return new WatchResponse
+                {
+                    Success = reply.Status == IPStatus.Success ? true : false
+                };
+            }
         }
     }
 }

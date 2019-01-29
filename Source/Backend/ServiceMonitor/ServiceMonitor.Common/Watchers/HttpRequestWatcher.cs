@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ServiceMonitor.Common.Contracts;
 
@@ -15,15 +16,15 @@ namespace ServiceMonitor.Common
 
             try
             {
-                var restClient = new RestClient();
+                using (var httpClient = new HttpClient())
+                {
+                    await httpClient.GetAsync(parameter.Values["Url"]);
 
-                await restClient.GetAsync(parameter.Values["Url"]);
-
-                response.Success = true;
+                    response.Success = true;
+                }
             }
             catch (Exception ex)
             {
-                response.Success = false;
                 response.Message = ex.Message;
                 response.StackTrace = ex.ToString();
             }

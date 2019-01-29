@@ -24,7 +24,6 @@ namespace ServiceMonitor.Common
                 }
                 catch (Exception ex)
                 {
-                    response.Success = false;
                     response.Message = ex.Message;
                     response.StackTrace = ex.ToString();
                 }
