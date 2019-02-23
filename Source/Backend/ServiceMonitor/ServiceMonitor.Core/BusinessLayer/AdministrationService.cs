@@ -36,7 +36,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                             LastWatch = DateTime.Now
                         };
 
-                        DbContext.ServiceEnvironmentStatus.Add(serviceEnvStatus);
+                        DbContext.ServiceEnvironmentStatuses.Add(serviceEnvStatus);
 
                         await DbContext.SaveChangesAsync();
 
@@ -54,7 +54,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                     entity.ServiceEnvironmentStatusID = serviceEnvStatus.ServiceEnvironmentStatusID;
                     entity.Date = DateTime.Now;
 
-                    DbContext.ServiceEnvironmentStatusLog.Add(entity);
+                    DbContext.ServiceEnvironmentStatusLogs.Add(entity);
 
                     await DbContext.SaveChangesAsync();
 

@@ -27,8 +27,8 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// </summary>
         /// <param name="request">Service status result</param>
         /// <returns>Ok if save it was successfully, Not found if service not exists else server internal error</returns>
-        /// <response code="201"></response>
-        /// <response code="500"></response>
+        /// <response code="201">If service log was created succesfully</response>
+        /// <response code="500">If there was an internal server error</response>
         [HttpPost("ServiceEnvironmentStatusLog")]
         [ProducesResponseType(201)]
         [ProducesResponseType(500)]
@@ -38,7 +38,7 @@ namespace ServiceMonitor.WebAPI.Controllers
 
             var response = await Service.CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
 
-            return response.ToHttpResponse();
+            return response.ToHttpCreatedResponse();
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ServiceMonitor.WebAPI
 
             services.AddDbContext<ServiceMonitorDbContext>(builder =>
             {
-                builder.UseSqlServer(Configuration["ConnectionString:ServiceMonitor"]);
+                builder.UseSqlServer(Configuration["ConnectionStrings:ServiceMonitor"]);
             });
 
             /* Configuration for Swagger */

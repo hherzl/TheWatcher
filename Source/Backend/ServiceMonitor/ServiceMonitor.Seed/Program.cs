@@ -24,25 +24,25 @@ namespace ServiceMonitor.Seed
 
             using (var dbContext = GetServiceMonitorDbContext())
             {
-                dbContext.ServiceCategory.Add(new ServiceCategory { Description = "Database" });
-                dbContext.ServiceCategory.Add(new ServiceCategory { Description = "Rest API" });
-                dbContext.ServiceCategory.Add(new ServiceCategory { Description = "Server" });
-                dbContext.ServiceCategory.Add(new ServiceCategory { Description = "URL" });
-                dbContext.ServiceCategory.Add(new ServiceCategory { Description = "Web Service" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Database" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Rest API" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Server" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "URL" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Web Service" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.EnvironmentCategory.Add(new EnvironmentCategory { EnvironmentCategoryName = "Development" });
-                dbContext.EnvironmentCategory.Add(new EnvironmentCategory { EnvironmentCategoryName = "QA" });
-                dbContext.EnvironmentCategory.Add(new EnvironmentCategory { EnvironmentCategoryName = "Production" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "Development" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "QA" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "Production" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.Service.Add(new Service { ServiceCategoryID = 100, Name = "Northwind Database" });
+                dbContext.Services.Add(new Service { ServiceCategoryID = 100, Name = "Northwind Database" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.ServiceEnvironment.Add(new ServiceEnvironment
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
                     ServiceID = 1,
                     EnvironmentCategoryID = 1,
@@ -52,7 +52,7 @@ namespace ServiceMonitor.Seed
                     Active = true
                 });
 
-                dbContext.ServiceEnvironment.Add(new ServiceEnvironment
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
                     ServiceID = 1,
                     EnvironmentCategoryID = 2,
@@ -64,11 +64,11 @@ namespace ServiceMonitor.Seed
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.Service.Add(new Service { ServiceCategoryID = 300, Name = "DNS" });
+                dbContext.Services.Add(new Service { ServiceCategoryID = 300, Name = "DNS" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.ServiceEnvironment.Add(new ServiceEnvironment
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
                     ServiceID = 2,
                     EnvironmentCategoryID = 1,
@@ -80,11 +80,11 @@ namespace ServiceMonitor.Seed
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.Service.Add(new Service { ServiceCategoryID = 200, Name = "Sample API" });
+                dbContext.Services.Add(new Service { ServiceCategoryID = 200, Name = "Sample API" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.ServiceEnvironment.Add(new ServiceEnvironment
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
                     ServiceID = 2,
                     EnvironmentCategoryID = 1,
@@ -96,19 +96,19 @@ namespace ServiceMonitor.Seed
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.ServiceWatcher.Add(new ServiceWatcher
+                dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
                     ServiceID = 1,
                     TypeName = typeof(DatabaseWatcher).AssemblyQualifiedName
                 });
 
-                dbContext.ServiceWatcher.Add(new ServiceWatcher
+                dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
                     ServiceID = 2,
                     TypeName = typeof(PingWatcher).AssemblyQualifiedName
                 });
 
-                dbContext.ServiceWatcher.Add(new ServiceWatcher
+                dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
                     ServiceID = 2,
                     TypeName = typeof(HttpRequestWatcher).AssemblyQualifiedName

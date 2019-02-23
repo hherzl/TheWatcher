@@ -25,8 +25,8 @@ namespace ServiceMonitor.WebAPI.Controllers
         /// Gets service watcher items (registered services to watch with service monitor)
         /// </summary>
         /// <returns>A sequence of services to watch</returns>
-        /// <response code="200"></response>
-        /// <response code="500"></response>
+        /// <response code="200">A list of services to watch</response>
+        /// <response code="500">If there was an internal server error</response>
         [HttpGet("ServiceWatcherItem")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]

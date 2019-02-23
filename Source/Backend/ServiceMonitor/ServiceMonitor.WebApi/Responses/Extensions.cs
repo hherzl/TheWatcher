@@ -22,6 +22,16 @@ namespace ServiceMonitor.WebAPI.Responses
             };
         }
 
+        public static IActionResult ToHttpCreatedResponse<TModel>(this ISingleResponse<TModel> response) where TModel : class
+        {
+            var status = response.DidError ? HttpStatusCode.InternalServerError : HttpStatusCode.Created;
+
+            return new ObjectResult(response)
+            {
+                StatusCode = (int)status
+            };
+        }
+
         public static IActionResult ToHttpResponse<TModel>(this ISingleResponse<TModel> response) where TModel : class
         {
             var status = HttpStatusCode.OK;
