@@ -1,16 +1,16 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.Core.DataLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public abstract class Service
+    public abstract class BaseService
     {
         protected ILogger Logger;
         protected readonly ServiceMonitorDbContext DbContext;
         protected bool Disposed;
 
-        public Service(ILogger logger, ServiceMonitorDbContext dbContext)
+        public BaseService(ILogger logger, ServiceMonitorDbContext dbContext)
         {
             Logger = logger;
             DbContext = dbContext;

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.DataLayer.Configurations;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign.Configurations;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
-namespace ServiceMonitor.Core.DataLayer
+namespace ServiceMonitor.Core.DomainDrivenDesign
 {
     public class ServiceMonitorDbContext : DbContext
     {

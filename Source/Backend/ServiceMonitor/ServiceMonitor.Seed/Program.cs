@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ServiceMonitor.Common;
-using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
 namespace ServiceMonitor.Seed
 {

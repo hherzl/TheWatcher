@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceMonitor.Core.EntityLayer
+namespace ServiceMonitor.Core.DomainDrivenDesign
 {
     public class ServiceEnvironmentStatusLog
     {

@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
-using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.DataLayer.DataContracts;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
+using ServiceMonitor.Core.DomainDrivenDesign.DataContracts;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public class DashboardService : Service, IDashboardService
+    public class DashboardService : BaseService, IDashboardService
     {
         public DashboardService(ILogger<DashboardService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)

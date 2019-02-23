@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
-using ServiceMonitor.Core.DataLayer;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
-    public class AdministrationService : Service, IAdministrationService
+    public class AdministrationService : BaseService, IAdministrationService
     {
         public AdministrationService(ILogger<AdministrationService> logger, ServiceMonitorDbContext dbContext)
             : base(logger, dbContext)

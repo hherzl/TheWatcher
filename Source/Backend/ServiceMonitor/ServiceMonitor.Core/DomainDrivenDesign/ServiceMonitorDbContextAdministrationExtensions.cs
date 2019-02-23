@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
-namespace ServiceMonitor.Core.DataLayer
+namespace ServiceMonitor.Core.DomainDrivenDesign
 {
     public static class ServiceMonitorDbContextAdministrationExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ServiceMonitor.Core.BusinessLayer.Responses;
-using ServiceMonitor.Core.DataLayer.DataContracts;
-using ServiceMonitor.Core.EntityLayer;
+using ServiceMonitor.Core.DomainDrivenDesign.DataContracts;
+using ServiceMonitor.Core.DomainDrivenDesign;
 
 namespace ServiceMonitor.Core.BusinessLayer.Contracts
 {

@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Core.DataLayer;
+using ServiceMonitor.Core.DomainDrivenDesign;
 using ServiceMonitor.WebAPI.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -35,7 +35,7 @@ namespace ServiceMonitor.WebAPI
 
             // Loggers
 
-            services.AddScoped<ILogger, Logger<Service>>();
+            services.AddScoped<ILogger, Logger<BaseService>>();
             services.AddScoped<ILogger, Logger<DashboardController>>();
             services.AddScoped<ILogger, Logger<AdministrationController>>();
 
@@ -46,9 +46,9 @@ namespace ServiceMonitor.WebAPI
 
             // DbContext
 
-            services.AddDbContext<ServiceMonitorDbContext>(options =>
+            services.AddDbContext<ServiceMonitorDbContext>(builder =>
             {
-                options.UseSqlServer(Configuration["AppSettings:ConnectionString"]);
+                builder.UseSqlServer(Configuration["ConnectionString:ServiceMonitor"]);
             });
 
             /* Configuration for Swagger */

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceMonitor.Core.DataLayer.DataContracts
+namespace ServiceMonitor.Core.DomainDrivenDesign.DataContracts
 {
     public class ServiceStatusDetailDto
     {

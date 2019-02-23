@@ -1,4 +1,4 @@
-﻿using ServiceMonitor.Core.EntityLayer;
+﻿using ServiceMonitor.Core.DomainDrivenDesign;
 
 namespace ServiceMonitor.WebAPI.Requests
 {
