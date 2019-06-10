@@ -8,10 +8,10 @@
 
         public Owner(int? ownerID)
         {
-            OwnerID = ownerID;
+            ID = ownerID;
         }
 
-        public int? OwnerID { get; set; }
+        public int? ID { get; set; }
 
         public string UserName { get; set; }
 

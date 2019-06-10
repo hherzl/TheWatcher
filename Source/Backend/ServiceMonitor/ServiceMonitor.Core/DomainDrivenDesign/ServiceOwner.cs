@@ -6,12 +6,12 @@
         {
         }
 
-        public ServiceOwner(int? serviceOwnerID)
+        public ServiceOwner(int? id)
         {
-            ServiceOwnerID = serviceOwnerID;
+            ID = id;
         }
 
-        public int? ServiceOwnerID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceID { get; set; }
 

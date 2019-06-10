@@ -11,10 +11,10 @@ namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
             builder.ToTable("ServiceEnvironmentStatus", "dbo");
 
             // Set key for entity
-            builder.HasKey(p => p.ServiceEnvironmentStatusID);
+            builder.HasKey(p => p.ID);
 
             // Set identity for entity (auto increment)
-            builder.Property(p => p.ServiceEnvironmentStatusID).UseSqlServerIdentityColumn();
+            builder.Property(p => p.ID).UseSqlServerIdentityColumn();
         }
     }
 }

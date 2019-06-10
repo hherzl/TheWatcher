@@ -6,13 +6,13 @@
         {
         }
 
-        public ServiceCategory(int? serviceCategoryID)
+        public ServiceCategory(int? id)
         {
-            ServiceCategoryID = serviceCategoryID;
+            ID = id;
         }
 
-        public int? ServiceCategoryID { get; set; }
+        public int? ID { get; set; }
 
-        public string Description { get; set; }
+        public string Name { get; set; }
     }
 }

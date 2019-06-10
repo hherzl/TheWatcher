@@ -44,36 +44,36 @@ if object_id('ServiceCategory', 'U') is not null
 	end
 go
 
-create table [dbo].[EnvironmentCategory]
-(
-	[EnvironmentCategoryID] int not null identity(1, 1),
-	[EnvironmentCategoryName] varchar(100) not null
-)
-
 create table [dbo].[ServiceCategory]
 (
-	[ServiceCategoryID] int not null identity(100, 100),
-	[Description] varchar(max) null
+	[ID] int not null identity(100, 100),
+	[Name] varchar(100) null
 )
 
 create table [dbo].[Service]
 (
-	[ServiceID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceCategoryID] int not null,
-	[Name] varchar(max) not null
+	[Name] varchar(100) not null
 )
 
 create table [dbo].[ServiceWatcher]
 (
-	[ServiceWatcherID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceID] int not null,
 	[TypeName] varchar(255) null,
-	[Description] varchar(max) null
+	[Description] varchar(100) null
+)
+
+create table [dbo].[EnvironmentCategory]
+(
+	[ID] int not null identity(1, 1),
+	[Name] varchar(100) not null
 )
 
 create table [dbo].[ServiceEnvironment]
 (
-	[ServiceEnvironmentID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceID] int not null,
 	[EnvironmentCategoryID] int not null,
 	[Interval] int not null,
@@ -86,7 +86,7 @@ create table [dbo].[ServiceEnvironment]
 
 create table [dbo].[ServiceEnvironmentStatus]
 (
-	[ServiceEnvironmentStatusID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceEnvironmentID] int not null,
 	[Success] bit not null,
 	[WatchCount] int not null,
@@ -95,7 +95,7 @@ create table [dbo].[ServiceEnvironmentStatus]
 
 create table [dbo].[ServiceEnvironmentStatusLog]
 (
-	[ServiceEnvironmentStatusLogID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceEnvironmentStatusID] int not null,
 	[Target] varchar(255) null,
 	[ActionName] varchar(50) null,
@@ -107,28 +107,28 @@ create table [dbo].[ServiceEnvironmentStatusLog]
 
 create table [dbo].[Owner]
 (
-	[OwnerID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[UserName] varchar(50) null,
 	[EmployeeID] int null
 )
 
 create table [dbo].[ServiceOwner]
 (
-	[ServiceOwnerID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceID] int not null,
 	[OwnerID] int not null
 )
 
 create table [dbo].[User]
 (
-	[UserID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[UserName] varchar(50) not null,
 	[EmployeeID] int null
 )
 
 create table [dbo].[ServiceUser]
 (
-	[ServiceUserID] int not null identity(1, 1),
+	[ID] int not null identity(1, 1),
 	[ServiceID] int not null,
 	[UserID] int not null
 )

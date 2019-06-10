@@ -12,16 +12,16 @@ namespace ServiceMonitor.Core.DomainDrivenDesign
         {
             return from serviceEnvironment in dbContext.ServiceEnvironments
                    join service in dbContext.Services
-                    on serviceEnvironment.ServiceID equals service.ServiceID
+                    on serviceEnvironment.ServiceID equals service.ID
                    join serviceWatcher in dbContext.ServiceWatchers
                     on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
                    join environmentCategory in dbContext.EnvironmentCategories
-                    on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+                    on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.ID
                    select new ServiceWatcherItemDto
                    {
-                       ServiceEnvironmentID = serviceEnvironment.ServiceEnvironmentID,
-                       ServiceID = service.ServiceID,
-                       Environment = environmentCategory.EnvironmentCategoryName,
+                       ServiceEnvironmentID = serviceEnvironment.ID,
+                       ServiceID = service.ID,
+                       Environment = environmentCategory.Name,
                        ServiceName = service.Name,
                        Interval = serviceEnvironment.Interval,
                        Url = serviceEnvironment.Url,
@@ -44,24 +44,24 @@ namespace ServiceMonitor.Core.DomainDrivenDesign
 
             var servicesToWatch = dbContext
                 .ServiceUsers
-                .Where(item => item.UserID == user.UserID)
+                .Where(item => item.UserID == user.ID)
                 .Select(item => item.ServiceID)
                 .ToList();
 
             var query = from serviceEnvironmentStatus in dbContext.ServiceEnvironmentStatuses
                         join serviceEnvironment in dbContext.ServiceEnvironments
-                            on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ServiceEnvironmentID
-                        join service in dbContext.Services on serviceEnvironment.ServiceID equals service.ServiceID
+                            on serviceEnvironmentStatus.ServiceEnvironmentID equals serviceEnvironment.ID
+                        join service in dbContext.Services on serviceEnvironment.ServiceID equals service.ID
                         join environmentCategory in dbContext.EnvironmentCategories
-                            on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.EnvironmentCategoryID
+                            on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.ID
                         where serviceEnvironment.Active == true
                         select new ServiceStatusDetailDto
                         {
-                            ServiceEnvironmentStatusID = serviceEnvironmentStatus.ServiceEnvironmentStatusID,
+                            ServiceEnvironmentStatusID = serviceEnvironmentStatus.ID,
                             ServiceEnvironmentID = serviceEnvironmentStatus.ServiceEnvironmentID,
-                            ServiceID = service.ServiceID,
+                            ServiceID = service.ID,
                             ServiceName = service.Name,
-                            EnvironmentName = environmentCategory.EnvironmentCategoryName,
+                            EnvironmentName = environmentCategory.Name,
                             Success = serviceEnvironmentStatus.Success,
                             WatchCount = serviceEnvironmentStatus.WatchCount,
                             LastWatch = serviceEnvironmentStatus.LastWatch
@@ -73,6 +73,6 @@ namespace ServiceMonitor.Core.DomainDrivenDesign
         }
 
         public static async Task<ServiceEnvironmentStatus> GetServiceEnvironmentStatusAsync(this ServiceMonitorDbContext dbContext, ServiceEnvironmentStatus entity)
-            => await dbContext.ServiceEnvironmentStatuses.FirstOrDefaultAsync(item => item.ServiceEnvironmentStatusID == entity.ServiceEnvironmentStatusID);
+            => await dbContext.ServiceEnvironmentStatuses.FirstOrDefaultAsync(item => item.ID == entity.ID);
     }
 }

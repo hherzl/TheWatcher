@@ -6,12 +6,12 @@
         {
         }
 
-        public Service(int? serviceID)
+        public Service(int? id)
         {
-            ServiceID = serviceID;
+            ID = id;
         }
 
-        public int? ServiceID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceCategoryID { get; set; }
 

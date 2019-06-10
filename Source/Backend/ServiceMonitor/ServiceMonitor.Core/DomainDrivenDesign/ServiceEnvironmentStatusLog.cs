@@ -10,10 +10,10 @@ namespace ServiceMonitor.Core.DomainDrivenDesign
 
         public ServiceEnvironmentStatusLog(int? serviceEnvironmentStatusLogID)
         {
-            ServiceEnvironmentStatusLogID = serviceEnvironmentStatusLogID;
+            ID = serviceEnvironmentStatusLogID;
         }
 
-        public int? ServiceEnvironmentStatusLogID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceEnvironmentStatusID { get; set; }
 

@@ -6,12 +6,12 @@
         {
         }
 
-        public ServiceWatcher(int? serviceWatcherID)
+        public ServiceWatcher(int? id)
         {
-            ServiceWatcherID = serviceWatcherID;
+            ID = id;
         }
 
-        public int? ServiceWatcherID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceID { get; set; }
 

@@ -24,17 +24,17 @@ namespace ServiceMonitor.Seed
 
             using (var dbContext = GetServiceMonitorDbContext())
             {
-                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Database" });
-                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Rest API" });
-                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Server" });
-                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "URL" });
-                dbContext.ServiceCategories.Add(new ServiceCategory { Description = "Web Service" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Database" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Rest API" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Server" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "URL" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Web Service" });
 
                 await dbContext.SaveChangesAsync();
 
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "Development" });
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "QA" });
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { EnvironmentCategoryName = "Production" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Development" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "QA" });
+                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Production" });
 
                 await dbContext.SaveChangesAsync();
 

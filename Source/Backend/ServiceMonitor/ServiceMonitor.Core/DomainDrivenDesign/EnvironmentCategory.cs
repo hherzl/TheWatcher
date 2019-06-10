@@ -6,13 +6,13 @@
         {
         }
 
-        public EnvironmentCategory(int? environmentCategoryID)
+        public EnvironmentCategory(int? id)
         {
-            EnvironmentCategoryID = environmentCategoryID;
+            ID = id;
         }
 
-        public int? EnvironmentCategoryID { get; set; }
+        public int? ID { get; set; }
 
-        public string EnvironmentCategoryName { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -6,12 +6,12 @@
         {
         }
 
-        public ServiceEnvironment(int? serviceEnvironmentID)
+        public ServiceEnvironment(int? id)
         {
-            ServiceEnvironmentID = serviceEnvironmentID;
+            ID = id;
         }
 
-        public int? ServiceEnvironmentID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceID { get; set; }
 

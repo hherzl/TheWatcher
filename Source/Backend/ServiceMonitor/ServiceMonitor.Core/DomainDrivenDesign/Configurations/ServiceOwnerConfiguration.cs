@@ -11,10 +11,10 @@ namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
             builder.ToTable("ServiceOwner", "dbo");
 
             // Set key for entity
-            builder.HasKey(p => p.ServiceOwnerID);
+            builder.HasKey(p => p.ID);
 
             // Set identity for entity (auto increment)
-            builder.Property(p => p.ServiceOwnerID).UseSqlServerIdentityColumn();
+            builder.Property(p => p.ID).UseSqlServerIdentityColumn();
         }
     }
 }

@@ -11,10 +11,10 @@ namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
             builder.ToTable("EnvironmentCategory", "dbo");
 
             // Set key for entity
-            builder.HasKey(p => p.EnvironmentCategoryID);
+            builder.HasKey(p => p.ID);
 
             // Set identity for entity (auto increment)
-            builder.Property(p => p.EnvironmentCategoryID).UseSqlServerIdentityColumn();
+            builder.Property(p => p.ID).UseSqlServerIdentityColumn();
         }
     }
 }

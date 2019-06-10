@@ -8,12 +8,12 @@ namespace ServiceMonitor.Core.DomainDrivenDesign
         {
         }
 
-        public ServiceEnvironmentStatus(int? serviceEnvironmentStatusID)
+        public ServiceEnvironmentStatus(int? id)
         {
-            ServiceEnvironmentStatusID = serviceEnvironmentStatusID;
+            ID = id;
         }
 
-        public int? ServiceEnvironmentStatusID { get; set; }
+        public int? ID { get; set; }
 
         public int? ServiceEnvironmentID { get; set; }
 

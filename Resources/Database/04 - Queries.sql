@@ -8,8 +8,8 @@ select
 from
 	[ServiceEnvironmentStatus]
 inner join [ServiceEnvironment]
-	on [ServiceEnvironmentStatus].[ServiceEnvironmentID] = [ServiceEnvironment].[ServiceEnvironmentID]
+	on [ServiceEnvironmentStatus].[ServiceEnvironmentID] = [ServiceEnvironment].[ID]
 inner join [Service]
-	on [ServiceEnvironment].[ServiceID] = [Service].[ServiceID]
+	on [ServiceEnvironment].[ServiceID] = [Service].[ID]
 inner join [EnvironmentCategory]
-	on [ServiceEnvironment].EnvironmentCategoryID = [EnvironmentCategory].[EnvironmentCategoryID]
+	on [ServiceEnvironment].EnvironmentCategoryID = [EnvironmentCategory].[ID]

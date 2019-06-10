@@ -6,12 +6,12 @@
         {
         }
 
-        public User(int? userID)
+        public User(int? id)
         {
-            UserID = userID;
+            ID = id;
         }
 
-        public int? UserID { get; set; }
+        public int? ID { get; set; }
 
         public string UserName { get; set; }
 

@@ -51,7 +51,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                         Logger?.LogInformation("The status for service environment was updated successfully");
                     }
 
-                    entity.ServiceEnvironmentStatusID = serviceEnvStatus.ServiceEnvironmentStatusID;
+                    entity.ServiceEnvironmentStatusID = serviceEnvStatus.ID;
                     entity.Date = DateTime.Now;
 
                     DbContext.ServiceEnvironmentStatusLogs.Add(entity);
