@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.Core.DomainDrivenDesign
+﻿namespace ServiceMonitor.Core.Domain
 {
     public class EnvironmentCategory
     {

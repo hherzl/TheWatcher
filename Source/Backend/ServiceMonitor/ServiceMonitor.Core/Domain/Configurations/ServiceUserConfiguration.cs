@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
+namespace ServiceMonitor.Core.Domain.Configurations
 {
-    public class ServiceOwnerConfiguration : IEntityTypeConfiguration<ServiceOwner>
+    public class ServiceUserConfiguration : IEntityTypeConfiguration<ServiceUser>
     {
-        public void Configure(EntityTypeBuilder<ServiceOwner> builder)
+        public void Configure(EntityTypeBuilder<ServiceUser> builder)
         {
             // Mapping for table
-            builder.ToTable("ServiceOwner", "dbo");
+            builder.ToTable("ServiceUser", "dbo");
 
             // Set key for entity
             builder.HasKey(p => p.ID);

@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.DomainDrivenDesign.DataContracts;
+using ServiceMonitor.Core.Domain.DataContracts;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign
+namespace ServiceMonitor.Core.Domain
 {
     public static class ServiceMonitorDbContextDashboardExtensions
     {

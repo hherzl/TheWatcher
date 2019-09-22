@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
-using ServiceMonitor.Core.DomainDrivenDesign;
-using ServiceMonitor.Core.DomainDrivenDesign.DataContracts;
+using ServiceMonitor.Core.Domain;
+using ServiceMonitor.Core.Domain.DataContracts;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {

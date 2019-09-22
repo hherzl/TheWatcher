@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
+namespace ServiceMonitor.Core.Domain.Configurations
 {
-    public class ServiceEnvironmentStatusConfiguration : IEntityTypeConfiguration<ServiceEnvironmentStatus>
+    public class ServiceCategoryConfiguration : IEntityTypeConfiguration<ServiceCategory>
     {
-        public void Configure(EntityTypeBuilder<ServiceEnvironmentStatus> builder)
+        public void Configure(EntityTypeBuilder<ServiceCategory> builder)
         {
             // Mapping for table
-            builder.ToTable("ServiceEnvironmentStatus", "dbo");
+            builder.ToTable("ServiceCategory", "dbo");
 
             // Set key for entity
             builder.HasKey(p => p.ID);

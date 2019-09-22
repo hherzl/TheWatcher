@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign.Configurations
+namespace ServiceMonitor.Core.Domain.Configurations
 {
     public class ServiceEnvironmentConfiguration : IEntityTypeConfiguration<ServiceEnvironment>
     {

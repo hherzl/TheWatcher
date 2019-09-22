@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Core.DomainDrivenDesign.Configurations;
+using ServiceMonitor.Core.Domain.Configurations;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign
+namespace ServiceMonitor.Core.Domain
 {
     public class ServiceMonitorDbContext : DbContext
     {

@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.Core.DomainDrivenDesign.DataContracts
+﻿namespace ServiceMonitor.Core.Domain.DataContracts
 {
     public class ServiceWatcherItemDto
     {

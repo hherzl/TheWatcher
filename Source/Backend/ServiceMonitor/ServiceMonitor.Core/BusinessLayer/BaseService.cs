@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.Core.DomainDrivenDesign;
+using ServiceMonitor.Core.Domain;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {

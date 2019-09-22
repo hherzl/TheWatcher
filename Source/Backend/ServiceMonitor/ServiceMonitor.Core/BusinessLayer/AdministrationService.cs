@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
-using ServiceMonitor.Core.DomainDrivenDesign;
+using ServiceMonitor.Core.Domain;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {

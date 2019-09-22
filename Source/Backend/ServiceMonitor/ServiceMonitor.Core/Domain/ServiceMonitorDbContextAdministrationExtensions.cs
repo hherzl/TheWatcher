@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace ServiceMonitor.Core.DomainDrivenDesign
+namespace ServiceMonitor.Core.Domain
 {
     public static class ServiceMonitorDbContextAdministrationExtensions
     {

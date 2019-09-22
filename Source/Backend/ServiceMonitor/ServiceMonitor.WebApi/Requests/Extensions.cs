@@ -1,4 +1,4 @@
-﻿using ServiceMonitor.Core.DomainDrivenDesign;
+﻿using ServiceMonitor.Core.Domain;
 
 namespace ServiceMonitor.WebAPI.Requests
 {

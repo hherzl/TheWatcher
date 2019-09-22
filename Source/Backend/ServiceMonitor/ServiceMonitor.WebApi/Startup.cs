@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Core.DomainDrivenDesign;
+using ServiceMonitor.Core.Domain;
 using ServiceMonitor.WebAPI.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
 
