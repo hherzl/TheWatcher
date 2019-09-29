@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using ServiceMonitor.Clients.Models;
+using ServiceMonitor.Clients.DataContracts;
 
 namespace ServiceMonitor.Clients.Contracts
 {

@@ -1,4 +1,4 @@
-﻿namespace ServiceMonitor.Clients.Models
+﻿namespace ServiceMonitor.Clients.DataContracts
 {
     public class ServiceStatusLogRequest
     {

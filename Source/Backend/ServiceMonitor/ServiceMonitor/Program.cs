@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Clients;
-using ServiceMonitor.Clients.Models;
+using ServiceMonitor.Clients.DataContracts;
 using ServiceMonitor.Common;
 using ServiceMonitor.Common.Contracts;
 

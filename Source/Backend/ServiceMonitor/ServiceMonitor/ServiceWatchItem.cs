@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ServiceMonitor.Clients.Models
+namespace ServiceMonitor
 {
     public class ServiceWatchItem
     {

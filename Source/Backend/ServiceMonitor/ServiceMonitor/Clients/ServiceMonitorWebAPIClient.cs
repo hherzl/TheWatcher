@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using ServiceMonitor.Clients.Contracts;
-using ServiceMonitor.Clients.Models;
+using ServiceMonitor.Clients.DataContracts;
 using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor.Clients
