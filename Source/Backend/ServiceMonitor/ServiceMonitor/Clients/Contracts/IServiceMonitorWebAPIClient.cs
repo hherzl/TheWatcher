@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ServiceMonitor.Clients.Models;
 
-namespace ServiceMonitor.Clients
+namespace ServiceMonitor.Clients.Contracts
 {
     public interface IServiceMonitorWebAPIClient
     {
