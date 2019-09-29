@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ServiceMonitor.Core.Domain.DataContracts;
 
-namespace ServiceMonitor.Core.Domain
+namespace ServiceMonitor.Core.Domain.Extensions
 {
     public static class ServiceMonitorDbContextDashboardExtensions
     {

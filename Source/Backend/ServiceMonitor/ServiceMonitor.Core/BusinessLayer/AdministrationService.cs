@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.BusinessLayer.Contracts;
 using ServiceMonitor.Core.BusinessLayer.Responses;
 using ServiceMonitor.Core.Domain;
+using ServiceMonitor.Core.Domain.Extensions;
 
 namespace ServiceMonitor.Core.BusinessLayer
 {
