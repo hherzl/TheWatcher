@@ -85,7 +85,7 @@ namespace ServiceMonitor.Seed
 
                 dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
-                    ServiceID = 2,
+                    ServiceID = 3,
                     EnvironmentCategoryID = 1,
                     Interval = 5000,
                     Url = "http://localhost:5612/api/values",
@@ -98,7 +98,7 @@ namespace ServiceMonitor.Seed
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
                     ServiceID = 1,
-                    TypeName = typeof(DatabaseWatcher).AssemblyQualifiedName
+                    TypeName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName
                 });
 
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
@@ -109,7 +109,7 @@ namespace ServiceMonitor.Seed
 
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
-                    ServiceID = 2,
+                    ServiceID = 3,
                     TypeName = typeof(HttpRequestWatcher).AssemblyQualifiedName
                 });
 

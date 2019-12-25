@@ -5,7 +5,7 @@ using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor.Common
 {
-    public class DatabaseWatcher : IWatcher
+    public class SqlServerDatabaseWatcher : IWatcher
     {
         public string ActionName
             => "OpenDatabaseConnection";

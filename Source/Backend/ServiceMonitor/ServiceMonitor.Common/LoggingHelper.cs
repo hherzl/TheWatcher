@@ -7,11 +7,17 @@ namespace ServiceMonitor.Common
     {
         public static ILogger<TModel> GetLogger<TModel>()
         {
-            var serviceProvider = new ServiceCollection()
-                .AddLogging()
-                .BuildServiceProvider();
+            var services = new ServiceCollection();
 
-            return serviceProvider
+            services.AddLogging(logging =>
+            {
+                //logging.AddConfiguration(config.GetSection("Logging"));
+
+                logging.AddConsole();
+            }).Configure<LoggerFilterOptions>(options => options.MinLevel = LogLevel.Debug);
+
+            return services
+                .BuildServiceProvider()
                 .GetService<ILoggerFactory>()
                 .CreateLogger<TModel>();
         }
