@@ -4,7 +4,7 @@ using ServiceMonitor.Clients.DataContracts;
 
 namespace ServiceMonitor.Clients.Contracts
 {
-    public interface IServiceMonitorWebAPIClient
+    public interface IServiceMonitorClient
     {
         Task<ServiceWatchResponse> GetServiceWatcherItemsAsync();
 

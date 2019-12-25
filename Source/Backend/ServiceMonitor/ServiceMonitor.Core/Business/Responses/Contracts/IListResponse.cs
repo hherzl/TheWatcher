@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ServiceMonitor.Core.BusinessLayer.Responses
+namespace ServiceMonitor.Core.Business.Responses.Contracts
 {
     public interface IListResponse<TModel> : IResponse where TModel : class
     {

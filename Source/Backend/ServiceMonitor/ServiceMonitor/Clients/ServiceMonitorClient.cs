@@ -6,16 +6,18 @@ using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor.Clients
 {
-    public class ServiceMonitorWebAPIClient : IServiceMonitorWebAPIClient
+    public class ServiceMonitorClient : IServiceMonitorClient
     {
-        private readonly HttpClient Client;
-        private readonly ApiUrl Url;
-        private readonly ISerializer Serializer;
+        readonly HttpClient Client;
+        readonly ApiUrl Url;
+        readonly ISerializer Serializer;
 
-        public ServiceMonitorWebAPIClient()
+        public ServiceMonitorClient()
         {
             Client = new HttpClient();
+
             Url = new ApiUrl(baseUrl: "http://localhost:10000");
+
             Serializer = new ServiceMonitorSerializer();
         }
 

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ServiceMonitor.Core.Domain;
 
-namespace ServiceMonitor.Core.BusinessLayer
+namespace ServiceMonitor.Core.Business
 {
     public abstract class BaseService
     {

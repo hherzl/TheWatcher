@@ -11,16 +11,16 @@ namespace ServiceMonitor
 {
     class Program
     {
-        private static ILogger Logger;
-        private static readonly AppSettings AppSettings;
+        static ILogger Logger;
+        static readonly AppSettings AppSettings;
 
         static Program()
         {
             Logger = LoggingHelper.GetLogger<Program>();
 
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
-
-            var configuration = builder.Build();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
 
             AppSettings = new AppSettings();
 
@@ -38,9 +38,9 @@ namespace ServiceMonitor
         {
             Logger.LogDebug("Starting service monitor...");
 
-            var client = new ServiceMonitorWebAPIClient();
+            var client = new ServiceMonitorClient();
 
-            var serviceWatcherItemsResponse = default(ServiceWatchResponse);
+            ServiceWatchResponse serviceWatcherItemsResponse = null;
 
             try
             {

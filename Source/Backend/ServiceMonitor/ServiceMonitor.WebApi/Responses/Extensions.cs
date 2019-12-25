@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using ServiceMonitor.Core.BusinessLayer.Responses;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 
 namespace ServiceMonitor.WebAPI.Responses
 {

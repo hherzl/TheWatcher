@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
-using ServiceMonitor.Core.BusinessLayer.Responses;
+using ServiceMonitor.Core.Business.Responses;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 using ServiceMonitor.Core.Domain;
 
-namespace ServiceMonitor.Core.BusinessLayer.Contracts
+namespace ServiceMonitor.Core.Business.Contracts
 {
     public interface IAdministrationService : IService
     {

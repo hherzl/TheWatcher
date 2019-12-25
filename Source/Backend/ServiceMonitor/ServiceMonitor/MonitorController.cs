@@ -11,7 +11,7 @@ namespace ServiceMonitor
 {
     public class MonitorController
     {
-        public MonitorController(ILogger logger, IWatcher watcher, IServiceMonitorWebAPIClient client, AppSettings appSettings)
+        public MonitorController(ILogger logger, IWatcher watcher, IServiceMonitorClient client, AppSettings appSettings)
         {
             Logger = logger;
             Watcher = watcher;
@@ -23,7 +23,7 @@ namespace ServiceMonitor
 
         public IWatcher Watcher { get; }
 
-        public IServiceMonitorWebAPIClient Client { get; }
+        public IServiceMonitorClient Client { get; }
 
         public AppSettings AppSettings { get; }
 

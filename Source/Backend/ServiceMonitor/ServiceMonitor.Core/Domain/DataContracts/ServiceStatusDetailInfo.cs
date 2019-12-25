@@ -2,12 +2,8 @@
 
 namespace ServiceMonitor.Core.Domain.DataContracts
 {
-    public class ServiceStatusDetailDto
+    public class ServiceStatusDetailInfo
     {
-        public ServiceStatusDetailDto()
-        {
-        }
-
         public int? ServiceEnvironmentStatusID { get; set; }
 
         public int? ServiceEnvironmentID { get; set; }

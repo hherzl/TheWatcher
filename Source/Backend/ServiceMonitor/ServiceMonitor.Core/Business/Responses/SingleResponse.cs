@@ -1,4 +1,6 @@
-﻿namespace ServiceMonitor.Core.BusinessLayer.Responses
+﻿using ServiceMonitor.Core.Business.Responses.Contracts;
+
+namespace ServiceMonitor.Core.Business.Responses
 {
     public class SingleResponse<TModel> : ISingleResponse<TModel> where TModel : class
     {

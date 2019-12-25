@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 
-namespace ServiceMonitor.Core.BusinessLayer.Responses
+namespace ServiceMonitor.Core.Business.Responses
 {
     public class ListResponse<TModel> : IListResponse<TModel> where TModel : class
     {

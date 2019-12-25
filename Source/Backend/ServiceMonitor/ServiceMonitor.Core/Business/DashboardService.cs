@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Core.BusinessLayer.Responses;
+using ServiceMonitor.Core.Business.Contracts;
+using ServiceMonitor.Core.Business.Responses;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 using ServiceMonitor.Core.Domain;
 using ServiceMonitor.Core.Domain.DataContracts;
 using ServiceMonitor.Core.Domain.Extensions;
 
-namespace ServiceMonitor.Core.BusinessLayer
+namespace ServiceMonitor.Core.Business
 {
     public class DashboardService : BaseService, IDashboardService
     {
@@ -17,11 +18,11 @@ namespace ServiceMonitor.Core.BusinessLayer
         {
         }
 
-        public async Task<IListResponse<ServiceWatcherItemDto>> GetActiveServiceWatcherItemsAsync()
+        public async Task<IListResponse<ServiceWatcherItemInfo>> GetActiveServiceWatcherItemsAsync()
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetActiveServiceWatcherItemsAsync));
 
-            var response = new ListResponse<ServiceWatcherItemDto>();
+            var response = new ListResponse<ServiceWatcherItemInfo>();
 
             try
             {
@@ -37,11 +38,11 @@ namespace ServiceMonitor.Core.BusinessLayer
             return response;
         }
 
-        public async Task<IListResponse<ServiceStatusDetailDto>> GetServiceStatusesAsync(string userName)
+        public async Task<IListResponse<ServiceStatusDetailInfo>> GetServiceStatusesAsync(string userName)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusesAsync));
 
-            var response = new ListResponse<ServiceStatusDetailDto>();
+            var response = new ListResponse<ServiceStatusDetailInfo>();
 
             try
             {
@@ -51,7 +52,7 @@ namespace ServiceMonitor.Core.BusinessLayer
                 {
                     Logger?.LogInformation("There isn't data for user '{0}'", userName);
 
-                    return new ListResponse<ServiceStatusDetailDto>();
+                    return new ListResponse<ServiceStatusDetailInfo>();
                 }
                 else
                 {

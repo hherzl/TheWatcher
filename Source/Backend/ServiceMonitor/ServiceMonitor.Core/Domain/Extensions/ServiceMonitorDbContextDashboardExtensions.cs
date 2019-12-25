@@ -8,7 +8,7 @@ namespace ServiceMonitor.Core.Domain.Extensions
 {
     public static class ServiceMonitorDbContextDashboardExtensions
     {
-        public static IQueryable<ServiceWatcherItemDto> GetActiveServiceWatcherItems(this ServiceMonitorDbContext dbContext)
+        public static IQueryable<ServiceWatcherItemInfo> GetActiveServiceWatcherItems(this ServiceMonitorDbContext dbContext)
         {
             return from serviceEnvironment in dbContext.ServiceEnvironments
                    join service in dbContext.Services
@@ -17,7 +17,7 @@ namespace ServiceMonitor.Core.Domain.Extensions
                     on serviceEnvironment.ServiceID equals serviceWatcher.ServiceID
                    join environmentCategory in dbContext.EnvironmentCategories
                     on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.ID
-                   select new ServiceWatcherItemDto
+                   select new ServiceWatcherItemInfo
                    {
                        ServiceEnvironmentID = serviceEnvironment.ID,
                        ServiceID = service.ID,
@@ -37,10 +37,10 @@ namespace ServiceMonitor.Core.Domain.Extensions
         public static IQueryable<ServiceUser> GetServiceUserByUserID(this ServiceMonitorDbContext dbContext, int? userID)
             => dbContext.ServiceUsers.Where(item => item.UserID == userID);
 
-        public static IQueryable<ServiceStatusDetailDto> GetServiceStatuses(this ServiceMonitorDbContext dbContext, User user)
+        public static IQueryable<ServiceStatusDetailInfo> GetServiceStatuses(this ServiceMonitorDbContext dbContext, User user)
         {
             if (user == null)
-                return new List<ServiceStatusDetailDto>().AsQueryable();
+                return new List<ServiceStatusDetailInfo>().AsQueryable();
 
             var servicesToWatch = dbContext
                 .ServiceUsers
@@ -55,7 +55,7 @@ namespace ServiceMonitor.Core.Domain.Extensions
                         join environmentCategory in dbContext.EnvironmentCategories
                             on serviceEnvironment.EnvironmentCategoryID equals environmentCategory.ID
                         where serviceEnvironment.Active == true
-                        select new ServiceStatusDetailDto
+                        select new ServiceStatusDetailInfo
                         {
                             ServiceEnvironmentStatusID = serviceEnvironmentStatus.ID,
                             ServiceEnvironmentID = serviceEnvironmentStatus.ServiceEnvironmentID,

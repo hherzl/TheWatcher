@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 
-namespace ServiceMonitor.Core.BusinessLayer.Responses
+namespace ServiceMonitor.Core.Business.Responses
 {
     public static class ResponseExtensions
     {

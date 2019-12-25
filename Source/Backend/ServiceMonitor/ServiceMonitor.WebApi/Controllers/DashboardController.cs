@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.Core.BusinessLayer.Contracts;
+using ServiceMonitor.Core.Business.Contracts;
 using ServiceMonitor.WebAPI.Responses;
 
 namespace ServiceMonitor.WebAPI.Controllers

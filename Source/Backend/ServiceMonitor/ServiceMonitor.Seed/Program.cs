@@ -33,7 +33,6 @@ namespace ServiceMonitor.Seed
                 await dbContext.SaveChangesAsync();
 
                 dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Development" });
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "QA" });
                 dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Production" });
 
                 await dbContext.SaveChangesAsync();

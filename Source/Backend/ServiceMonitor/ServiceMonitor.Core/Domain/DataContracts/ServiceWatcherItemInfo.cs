@@ -1,11 +1,7 @@
 ﻿namespace ServiceMonitor.Core.Domain.DataContracts
 {
-    public class ServiceWatcherItemDto
+    public class ServiceWatcherItemInfo
     {
-        public ServiceWatcherItemDto()
-        {
-        }
-
         public int? ServiceID { get; set; }
 
         public int? ServiceEnvironmentID { get; set; }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using ServiceMonitor.Core.BusinessLayer.Contracts;
-using ServiceMonitor.Core.BusinessLayer.Responses;
+using ServiceMonitor.Core.Business.Contracts;
+using ServiceMonitor.Core.Business.Responses;
+using ServiceMonitor.Core.Business.Responses.Contracts;
 using ServiceMonitor.Core.Domain;
 using ServiceMonitor.Core.Domain.Extensions;
 
-namespace ServiceMonitor.Core.BusinessLayer
+namespace ServiceMonitor.Core.Business
 {
     public class AdministrationService : BaseService, IAdministrationService
     {
