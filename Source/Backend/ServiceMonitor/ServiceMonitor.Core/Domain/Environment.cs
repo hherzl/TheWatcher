@@ -1,12 +1,13 @@
-﻿namespace ServiceMonitor.Core.Domain
+﻿
+namespace ServiceMonitor.Core.Domain
 {
-    public class ServiceCategory
+    public class Environment
     {
-        public ServiceCategory()
+        public Environment()
         {
         }
 
-        public ServiceCategory(short? id)
+        public Environment(short? id)
         {
             ID = id;
         }

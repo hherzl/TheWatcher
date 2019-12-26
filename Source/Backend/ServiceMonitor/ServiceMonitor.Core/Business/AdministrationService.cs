@@ -16,7 +16,7 @@ namespace ServiceMonitor.Core.Business
         {
         }
 
-        public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, int? serviceEnvironmentID)
+        public async Task<ISingleResponse<ServiceEnvironmentStatusLog>> CreateServiceEnvironmentStatusLogAsync(ServiceEnvironmentStatusLog entity, short? serviceEnvironmentID)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(CreateServiceEnvironmentStatusLogAsync));
 
@@ -26,14 +26,15 @@ namespace ServiceMonitor.Core.Business
             {
                 try
                 {
-                    var serviceEnvStatus = await DbContext.GetByServiceEnvironmentAsync(new ServiceEnvironment(serviceEnvironmentID));
+                    var serviceEnvStatus = await DbContext
+                        .GetServiceEnvironmentStatusByServiceEnvironmentAsync(new ServiceEnvironment(serviceEnvironmentID));
 
                     if (serviceEnvStatus == null)
                     {
                         serviceEnvStatus = new ServiceEnvironmentStatus
                         {
                             ServiceEnvironmentID = serviceEnvironmentID,
-                            Success = entity.Success,
+                            Successful = entity.Successful,
                             WatchCount = 1,
                             LastWatch = DateTime.Now
                         };
@@ -46,7 +47,7 @@ namespace ServiceMonitor.Core.Business
                     }
                     else
                     {
-                        serviceEnvStatus.Success = entity.Success;
+                        serviceEnvStatus.Successful = entity.Successful;
                         serviceEnvStatus.WatchCount += 1;
                         serviceEnvStatus.LastWatch = DateTime.Now;
 

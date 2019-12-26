@@ -1,4 +1,6 @@
-﻿namespace ServiceMonitor.Core.Domain
+﻿using System;
+
+namespace ServiceMonitor.Core.Domain
 {
     public class ServiceUser
     {
@@ -6,15 +8,15 @@
         {
         }
 
-        public ServiceUser(int? id)
+        public ServiceUser(short? id)
         {
             ID = id;
         }
 
-        public int? ID { get; set; }
+        public short? ID { get; set; }
 
-        public int? ServiceID { get; set; }
+        public short? ServiceID { get; set; }
 
-        public int? UserID { get; set; }
+        public Guid? UserID { get; set; }
     }
 }

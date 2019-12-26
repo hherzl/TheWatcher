@@ -10,10 +10,10 @@
 
         public string ActionName { get; set; }
 
-        public bool? Success { get; set; }
+        public bool? Successful { get; set; }
 
-        public string Message { get; set; }
+        public string ShortMessage { get; set; }
 
-        public string StackTrace { get; set; }
+        public string FullMessage { get; set; }
     }
 }

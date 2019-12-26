@@ -31,21 +31,6 @@ namespace ServiceMonitor.WebAPI.Responses
                 StatusCode = (int)status
             };
         }
-
-        public static IActionResult ToHttpResponse<TModel>(this ISingleResponse<TModel> response) where TModel : class
-        {
-            var status = HttpStatusCode.OK;
-
-            if (response.DidError)
-                status = HttpStatusCode.InternalServerError;
-            else if (response.Model == null)
-                status = HttpStatusCode.NotFound;
-
-            return new ObjectResult(response)
-            {
-                StatusCode = (int)status
-            };
-        }
     }
 #pragma warning restore CS1591
 }

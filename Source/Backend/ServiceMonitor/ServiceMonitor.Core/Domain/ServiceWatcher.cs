@@ -6,15 +6,15 @@
         {
         }
 
-        public ServiceWatcher(int? id)
+        public ServiceWatcher(short? id)
         {
             ID = id;
         }
 
-        public int? ID { get; set; }
+        public short? ID { get; set; }
 
-        public int? ServiceID { get; set; }
+        public short? ServiceID { get; set; }
 
-        public string TypeName { get; set; }
+        public short? WatcherID { get; set; }
     }
 }

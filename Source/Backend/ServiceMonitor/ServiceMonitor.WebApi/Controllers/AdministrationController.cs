@@ -12,8 +12,8 @@ namespace ServiceMonitor.WebAPI.Controllers
     [ApiController]
     public class AdministrationController : ControllerBase
     {
-        protected readonly ILogger Logger;
-        protected readonly IAdministrationService Service;
+        readonly ILogger Logger;
+        readonly IAdministrationService Service;
 
         public AdministrationController(ILogger<AdministrationController> logger, IAdministrationService service)
         {
@@ -32,11 +32,12 @@ namespace ServiceMonitor.WebAPI.Controllers
         [HttpPost("ServiceEnvironmentStatusLog")]
         [ProducesResponseType(201)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> PostServiceEnvironmentStatusLogAsync([FromBody]ServiceEnvironmentStatusLogRequest request)
+        public async Task<IActionResult> PostServiceEnvironmentStatusLogAsync([FromBody]PostServiceEnvironmentStatusLogRequest request)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(PostServiceEnvironmentStatusLogAsync));
 
-            var response = await Service.CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
+            var response = await Service
+                .CreateServiceEnvironmentStatusLogAsync(request.ToEntity(), request.ServiceEnvironmentID);
 
             return response.ToHttpCreatedResponse();
         }

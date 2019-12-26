@@ -4,7 +4,7 @@
         <name>ServiceMonitor.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:ServiceMonitor.WebAPI.Controllers.AdministrationController.PostServiceEnvironmentStatusLogAsync(ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest)">
+        <member name="M:ServiceMonitor.WebAPI.Controllers.AdministrationController.PostServiceEnvironmentStatusLogAsync(ServiceMonitor.WebAPI.Requests.PostServiceEnvironmentStatusLogRequest)">
             <summary>
             Saves a result from service watch action
             </summary>
@@ -20,56 +20,6 @@
             <returns>A sequence of services to watch</returns>
             <response code="200">A list of services to watch</response>
             <response code="500">If there was an internal server error</response>
-        </member>
-        <member name="T:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentStatusLogID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentStatusID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ServiceEnvironmentID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Target">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.ActionName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Success">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Message">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.StackTrace">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:ServiceMonitor.WebAPI.Requests.ServiceEnvironmentStatusLogRequest.Date">
-            <summary>
-            
-            </summary>
         </member>
     </members>
 </doc>

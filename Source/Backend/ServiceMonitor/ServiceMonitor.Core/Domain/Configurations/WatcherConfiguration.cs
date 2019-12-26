@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ServiceMonitor.Core.Domain.Configurations
 {
-    public class EnvironmentConfiguration : IEntityTypeConfiguration<Environment>
+    public class WatcherConfiguration : IEntityTypeConfiguration<Watcher>
     {
-        public void Configure(EntityTypeBuilder<Environment> builder)
+        public void Configure(EntityTypeBuilder<Watcher> builder)
         {
             // Mapping for table
-            builder.ToTable("Environment", "dbo");
+            builder.ToTable("Watcher", "dbo");
 
             // Set key for entity
             builder.HasKey(p => p.ID);

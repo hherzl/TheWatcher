@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -38,7 +39,7 @@ namespace ServiceMonitor.Core.Business
             return response;
         }
 
-        public async Task<IListResponse<ServiceStatusDetailInfo>> GetServiceStatusesAsync(string userName)
+        public async Task<IListResponse<ServiceStatusDetailInfo>> GetServiceStatusesAsync(Guid userID)
         {
             Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusesAsync));
 
@@ -46,42 +47,16 @@ namespace ServiceMonitor.Core.Business
 
             try
             {
-                var user = await DbContext.GetUserAsync(userName);
+                response.Model = await DbContext.GetServiceStatuses(userID).ToListAsync();
 
-                if (user == null)
-                {
-                    Logger?.LogInformation("There isn't data for user '{0}'", userName);
-
-                    return new ListResponse<ServiceStatusDetailInfo>();
-                }
+                if (response.Model?.Count() == 0)
+                    Logger?.LogInformation("There is no data for user with ID '{0}'", userID);
                 else
-                {
-                    response.Model = await DbContext.GetServiceStatuses(user).ToListAsync();
-
-                    Logger?.LogInformation("The service status details for '{0}' user were loaded successfully", userName);
-                }
+                    Logger?.LogInformation("The service status details for user with ID '{0}' were loaded successfully", userID);
             }
             catch (Exception ex)
             {
                 response.SetError(Logger, nameof(GetServiceStatusesAsync), ex);
-            }
-
-            return response;
-        }
-
-        public async Task<ISingleResponse<ServiceEnvironmentStatus>> GetServiceStatusAsync(ServiceEnvironmentStatus entity)
-        {
-            Logger?.LogDebug("'{0}' has been invoked", nameof(GetServiceStatusAsync));
-
-            var response = new SingleResponse<ServiceEnvironmentStatus>();
-
-            try
-            {
-                response.Model = await DbContext.GetServiceEnvironmentStatusAsync(entity);
-            }
-            catch (Exception ex)
-            {
-                response.SetError(Logger, nameof(GetServiceStatusAsync), ex);
             }
 
             return response;

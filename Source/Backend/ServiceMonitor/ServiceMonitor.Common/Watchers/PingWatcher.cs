@@ -17,7 +17,8 @@ namespace ServiceMonitor.Common
 
                 return new WatchResponse
                 {
-                    Success = reply.Status == IPStatus.Success ? true : false
+                    Successful = reply.Status == IPStatus.Success ? true : false,
+                    ShortMessage = reply.Status == IPStatus.Success ? "Successful ping" : "Failed ping"
                 };
             }
         }

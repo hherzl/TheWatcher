@@ -25,93 +25,118 @@ namespace ServiceMonitor.Seed
             using (var dbContext = GetServiceMonitorDbContext())
             {
                 dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Database" });
-                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Rest API" });
+                dbContext.ServiceCategories.Add(new ServiceCategory { Name = "RESTful API" });
                 dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Server" });
                 dbContext.ServiceCategories.Add(new ServiceCategory { Name = "URL" });
                 dbContext.ServiceCategories.Add(new ServiceCategory { Name = "Web Service" });
 
+                Console.WriteLine("Creating service categories...");
+
                 await dbContext.SaveChangesAsync();
 
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Development" });
-                dbContext.EnvironmentCategories.Add(new EnvironmentCategory { Name = "Production" });
+                dbContext.Environments.Add(new Core.Domain.Environment { Name = "Development" });
+                dbContext.Environments.Add(new Core.Domain.Environment { Name = "Production" });
+
+                Console.WriteLine("Creating environments...");
 
                 await dbContext.SaveChangesAsync();
 
                 dbContext.Services.Add(new Service { ServiceCategoryID = 100, Name = "Northwind Database" });
-
-                await dbContext.SaveChangesAsync();
-
-                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
-                {
-                    ServiceID = 1,
-                    EnvironmentCategoryID = 1,
-                    Interval = 15000,
-                    ConnectionString = "server=(local);database=Northwind;user id=johnd;password=SqlServer2018$",
-                    Description = "SQL Server Local Instance",
-                    Active = true
-                });
-
-                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
-                {
-                    ServiceID = 1,
-                    EnvironmentCategoryID = 2,
-                    Interval = 15000,
-                    ConnectionString = "server=(local);database=Northwind;user id=johnd;password=SqlServer",
-                    Description = "SQL Server Local Instance",
-                    Active = true
-                });
-
-                await dbContext.SaveChangesAsync();
-
+                dbContext.Services.Add(new Service { ServiceCategoryID = 200, Name = "Sample API" });
                 dbContext.Services.Add(new Service { ServiceCategoryID = 300, Name = "DNS" });
 
+                Console.WriteLine("Creating services...");
+
                 await dbContext.SaveChangesAsync();
 
                 dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
-                    ServiceID = 2,
-                    EnvironmentCategoryID = 1,
-                    Interval = 3000,
-                    Address = "192.168.1.1",
-                    Description = "DNS gateway",
+                    ServiceID = 1000,
+                    EnvironmentID = 100,
+                    Interval = 15000,
+                    ConnectionString = "server=(local);database=Northwind;integrated security=yes;",
+                    Description = "SQL Server Local Instance",
                     Active = true
                 });
 
-                await dbContext.SaveChangesAsync();
-
-                dbContext.Services.Add(new Service { ServiceCategoryID = 200, Name = "Sample API" });
-
-                await dbContext.SaveChangesAsync();
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
+                {
+                    ServiceID = 1000,
+                    EnvironmentID = 200,
+                    Interval = 15000,
+                    ConnectionString = "server=(local);database=Northwind;integrated security=yes;",
+                    Description = "SQL Server Local Instance",
+                    Active = true
+                });
 
                 dbContext.ServiceEnvironments.Add(new ServiceEnvironment
                 {
-                    ServiceID = 3,
-                    EnvironmentCategoryID = 1,
+                    ServiceID = 2000,
+                    EnvironmentID = 100,
                     Interval = 5000,
                     Url = "http://localhost:5612/api/values",
                     Description = "Sample Rest API",
                     Active = true
                 });
 
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
+                {
+                    ServiceID = 3000,
+                    EnvironmentID = 100,
+                    Interval = 3000,
+                    Address = "192.168.1.1",
+                    Description = "DNS gateway",
+                    Active = true
+                });
+
+                Console.WriteLine("Creating service environments...");
+
+                await dbContext.SaveChangesAsync();
+
+                dbContext.Watchers.Add(new Watcher
+                {
+                    Name = "SqlServerDatabaseWatcher",
+                    Description = "Watcher for SQL Server databases",
+                    AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName
+                });
+
+                dbContext.Watchers.Add(new Watcher
+                {
+                    Name = "HttpRequestWatcher",
+                    Description = "Watcher for http requests",
+                    AssemblyQualifiedName = typeof(HttpRequestWatcher).AssemblyQualifiedName
+                });
+
+                dbContext.Watchers.Add(new Watcher
+                {
+                    Name = "PingWatcher",
+                    Description = "Watcher for ping requests",
+                    AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName
+                });
+
+                Console.WriteLine("Creating watchers...");
+
                 await dbContext.SaveChangesAsync();
 
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
-                    ServiceID = 1,
-                    TypeName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName
+                    ServiceID = 1000,
+                    WatcherID = 1000
                 });
 
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
-                    ServiceID = 2,
-                    TypeName = typeof(PingWatcher).AssemblyQualifiedName
+                    ServiceID = 2000,
+                    WatcherID = 2000
                 });
 
                 dbContext.ServiceWatchers.Add(new ServiceWatcher
                 {
-                    ServiceID = 3,
-                    TypeName = typeof(HttpRequestWatcher).AssemblyQualifiedName
+                    ServiceID = 3000,
+                    WatcherID = 3000
                 });
+
+                Console.WriteLine("Creating service watchers...");
 
                 await dbContext.SaveChangesAsync();
             }

@@ -6,16 +6,16 @@
         {
         }
 
-        public ServiceEnvironment(int? id)
+        public ServiceEnvironment(short? id)
         {
             ID = id;
         }
 
-        public int? ID { get; set; }
+        public short? ID { get; set; }
 
-        public int? ServiceID { get; set; }
+        public short? ServiceID { get; set; }
 
-        public int? EnvironmentCategoryID { get; set; }
+        public short? EnvironmentID { get; set; }
 
         public int? Interval { get; set; }
 

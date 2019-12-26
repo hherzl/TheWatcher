@@ -15,9 +15,9 @@ namespace ServiceMonitor.Core.Domain
 
         public int? ID { get; set; }
 
-        public int? ServiceEnvironmentID { get; set; }
+        public short? ServiceEnvironmentID { get; set; }
 
-        public bool? Success { get; set; }
+        public bool? Successful { get; set; }
 
         public int? WatchCount { get; set; }
 

@@ -2,10 +2,10 @@
 {
     public interface IWatchResponse
     {
-        bool Success { get; set; }
+        bool Successful { get; set; }
 
-        string Message { get; set; }
+        string ShortMessage { get; set; }
 
-        string StackTrace { get; set; }
+        string FullMessage { get; set; }
     }
 }

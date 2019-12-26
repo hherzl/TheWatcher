@@ -37,7 +37,7 @@ namespace ServiceMonitor
 
                     var watchResponse = await Watcher.WatchAsync(new WatcherParameter(item.ToDictionary()));
 
-                    if (watchResponse.Success)
+                    if (watchResponse.Successful)
                         Logger?.LogInformation(" Success watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
                     else
                         Logger?.LogError(" Failed watch for '{0}' in '{1}' environment", item.ServiceName, item.Environment);
@@ -48,9 +48,9 @@ namespace ServiceMonitor
                         ServiceEnvironmentID = item.ServiceEnvironmentID,
                         Target = item.ServiceName,
                         ActionName = Watcher.ActionName,
-                        Success = watchResponse.Success,
-                        Message = watchResponse.Message,
-                        StackTrace = watchResponse.StackTrace
+                        Successful = watchResponse.Successful,
+                        ShortMessage = watchResponse.ShortMessage,
+                        FullMessage = watchResponse.FullMessage
                     };
 
                     try

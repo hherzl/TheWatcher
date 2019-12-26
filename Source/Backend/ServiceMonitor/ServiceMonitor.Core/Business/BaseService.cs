@@ -6,17 +6,17 @@ namespace ServiceMonitor.Core.Business
 {
     public abstract class BaseService
     {
-        protected ILogger Logger;
+        protected readonly ILogger Logger;
         protected readonly ServiceMonitorDbContext DbContext;
         protected bool Disposed;
 
-        public BaseService(ILogger logger, ServiceMonitorDbContext dbContext)
+        protected BaseService(ILogger<BaseService> logger, ServiceMonitorDbContext dbContext)
         {
             Logger = logger;
             DbContext = dbContext;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (Disposed)
                 return;

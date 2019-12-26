@@ -10,13 +10,17 @@ namespace ServiceMonitor.Core.Domain
         {
         }
 
-        public DbSet<EnvironmentCategory> EnvironmentCategories { get; set; }
+        public DbSet<Environment> Environments { get; set; }
 
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
 
         public DbSet<Service> Services { get; set; }
 
+        public DbSet<Watcher> Watchers { get; set; }
+
         public DbSet<ServiceWatcher> ServiceWatchers { get; set; }
+
+        public DbSet<ServiceUser> ServiceUsers { get; set; }
 
         public DbSet<ServiceEnvironment> ServiceEnvironments { get; set; }
 
@@ -24,31 +28,18 @@ namespace ServiceMonitor.Core.Domain
 
         public DbSet<ServiceEnvironmentStatus> ServiceEnvironmentStatuses { get; set; }
 
-        public DbSet<Owner> Owners { get; set; }
-
-        public DbSet<ServiceOwner> ServiceOwners { get; set; }
-
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<ServiceUser> ServiceUsers { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .ApplyConfiguration(new EnvironmentCategoryConfiguration())
+                .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ServiceCategoryConfiguration())
                 .ApplyConfiguration(new ServiceConfiguration())
+                .ApplyConfiguration(new WatcherConfiguration())
                 .ApplyConfiguration(new ServiceWatcherConfiguration())
+                .ApplyConfiguration(new ServiceUserConfiguration())
                 .ApplyConfiguration(new ServiceEnvironmentConfiguration())
                 .ApplyConfiguration(new ServiceEnvironmentStatusLogConfiguration())
                 .ApplyConfiguration(new ServiceEnvironmentStatusConfiguration())
-                ;
-
-            modelBuilder
-                .ApplyConfiguration(new OwnerConfiguration())
-                .ApplyConfiguration(new ServiceOwnerConfiguration())
-                .ApplyConfiguration(new UserConfiguration())
-                .ApplyConfiguration(new ServiceUserConfiguration())
                 ;
 
             base.OnModelCreating(modelBuilder);

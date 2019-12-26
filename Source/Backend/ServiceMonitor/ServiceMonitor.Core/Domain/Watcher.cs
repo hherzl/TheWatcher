@@ -1,12 +1,12 @@
 ﻿namespace ServiceMonitor.Core.Domain
 {
-    public class ServiceCategory
+    public class Watcher
     {
-        public ServiceCategory()
+        public Watcher()
         {
         }
 
-        public ServiceCategory(short? id)
+        public Watcher(short? id)
         {
             ID = id;
         }
@@ -14,5 +14,9 @@
         public short? ID { get; set; }
 
         public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string AssemblyQualifiedName { get; set; }
     }
 }

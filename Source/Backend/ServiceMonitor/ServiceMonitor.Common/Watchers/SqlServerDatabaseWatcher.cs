@@ -20,12 +20,12 @@ namespace ServiceMonitor.Common
                 {
                     await connection.OpenAsync();
 
-                    response.Success = true;
+                    response.Successful = true;
                 }
                 catch (Exception ex)
                 {
-                    response.Message = ex.Message;
-                    response.StackTrace = ex.ToString();
+                    response.ShortMessage = ex.Message;
+                    response.FullMessage = ex.ToString();
                 }
             }
 

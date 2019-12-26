@@ -10,9 +10,9 @@ namespace ServiceMonitor.WebAPI.Requests
         {
             ConfigMapper = new MapperConfiguration(config =>
             {
-                config.CreateMap<ServiceEnvironmentStatusLog, ServiceEnvironmentStatusLogRequest>();
+                config.CreateMap<ServiceEnvironmentStatusLog, PostServiceEnvironmentStatusLogRequest>();
 
-                config.CreateMap<ServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>();
+                config.CreateMap<PostServiceEnvironmentStatusLogRequest, ServiceEnvironmentStatusLog>();
             }).CreateMapper();
         }
 

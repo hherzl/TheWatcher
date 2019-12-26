@@ -8,9 +8,9 @@ namespace ServiceMonitor.Core.Domain
         {
         }
 
-        public ServiceEnvironmentStatusLog(int? serviceEnvironmentStatusLogID)
+        public ServiceEnvironmentStatusLog(int? id)
         {
-            ID = serviceEnvironmentStatusLogID;
+            ID = id;
         }
 
         public int? ID { get; set; }
@@ -21,11 +21,11 @@ namespace ServiceMonitor.Core.Domain
 
         public string ActionName { get; set; }
 
-        public bool? Success { get; set; }
+        public bool? Successful { get; set; }
 
-        public string Message { get; set; }
+        public string ShortMessage { get; set; }
 
-        public string StackTrace { get; set; }
+        public string FullMessage { get; set; }
 
         public DateTime? Date { get; set; }
     }
