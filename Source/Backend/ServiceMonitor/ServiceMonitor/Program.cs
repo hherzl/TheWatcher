@@ -56,11 +56,11 @@ namespace ServiceMonitor
             {
                 var watcherType = Type.GetType(item.TypeName, true);
 
-                var watcherInstance = Activator.CreateInstance(watcherType) as IWatcher;
+                var watcherInstance = (IWatcher)Activator.CreateInstance(watcherType);
 
                 await Task.Factory.StartNew(async () =>
                 {
-                    var controller = new MonitorController(Logger, watcherInstance, client, AppSettings);
+                    var controller = new MonitorService(Logger, watcherInstance, client, AppSettings);
 
                     await controller.ProcessAsync(item);
                 });

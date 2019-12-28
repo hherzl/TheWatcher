@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ServiceMonitor.Clients.Contracts;
 using ServiceMonitor.Clients.DataContracts;
-using ServiceMonitor.Common.Contracts;
+using ServiceMonitor.Helpers;
 
 namespace ServiceMonitor.Clients
 {
@@ -10,32 +10,36 @@ namespace ServiceMonitor.Clients
     {
         readonly HttpClient Client;
         readonly ApiUrl Url;
-        readonly ISerializer Serializer;
 
         public ServiceMonitorClient()
         {
             Client = new HttpClient();
 
             Url = new ApiUrl(baseUrl: "http://localhost:10000");
-
-            Serializer = new ServiceMonitorSerializer();
         }
 
         public async Task<ServiceWatchResponse> GetServiceWatcherItemsAsync()
         {
-            var response = await Client.GetAsync(
-                Url.Controller("Dashboard").Action("ServiceWatcherItem").ToString()
-            );
+            var url = Url
+                .Controller("Dashboard")
+                .Action("ServiceWatcherItem")
+                .ToString();
+
+            var response = await Client.GetAsync(url);
 
             var content = await response.Content.ReadAsStringAsync();
 
-            return Serializer.Deserialze<ServiceWatchResponse>(content);
+            return SerializationHelper.Deserialze<ServiceWatchResponse>(content);
         }
 
         public async Task<HttpResponseMessage> PostServiceEnvironmentStatusLog(ServiceStatusLogRequest request)
-            => await Client.PostAsync(
-                Url.Controller("Administration").Action("ServiceEnvironmentStatusLog").ToString(),
-                ContentHelper.GetStringContent(request)
-            );
+        {
+            var url = Url
+                .Controller("Administration")
+                .Action("ServiceEnvironmentStatusLog")
+                .ToString();
+
+            return await Client.PostAsync(url, ContentHelper.GetStringContent(request));
+        }
     }
 }

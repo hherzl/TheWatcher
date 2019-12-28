@@ -9,9 +9,9 @@ using ServiceMonitor.Common.Contracts;
 
 namespace ServiceMonitor
 {
-    public class MonitorController
+    public class MonitorService
     {
-        public MonitorController(ILogger logger, IWatcher watcher, IServiceMonitorClient client, AppSettings appSettings)
+        public MonitorService(ILogger logger, IWatcher watcher, IServiceMonitorClient client, AppSettings appSettings)
         {
             Logger = logger;
             Watcher = watcher;
