@@ -14,28 +14,24 @@ All tables have primary key with one column.
 
 ### Dbo Schema
 
-	dbo.EnvironmentCategory
+	dbo.Environment
 	dbo.ServiceCategory
 	dbo.Service
 	dbo.ServiceWatcher
 	dbo.ServiceEnvironment
 	dbo.ServiceEnvironmentStatus
 	dbo.ServiceEnvironmentStatusLog
-	dbo.Owner
-	dbo.ServiceOwner
-	dbo.User
 	dbo.ServiceUser
+	dbo.Watcher
 
 |Table|Description|
 |-----|-----------|
-|dbo.EnvironmentCategory|Contains all categories for environments: development, qa and production|
-|dbo.ServiceCategory|Contains all categories for services: database, rest API, server, URL and web service|
+|dbo.Environment|Contains all environments for services|
+|dbo.ServiceCategory|Contains all categories for services|
 |dbo.Service|Contains all services definitions|
-|dbo.ServiceWatcher|Contains all components from C# side to perform watch operations|
-|dbo.ServiceEnvironment|Contains the relation for service and environment, for example we can define a service named FinanceService with different environments: development, qa and production|
+|dbo.ServiceWatcher|Contains the associations between services and watchers|
+|dbo.ServiceEnvironment|Contains the relation for service and environment, for example we can define a service named FinanceService with different environments: DEV, QAQ and PROD|
 |dbo.ServiceEnvironmentStatus|Contains the status for each service per environment|
 |dbo.ServiceEnvironmentStatusLog|Contains the details for each service environment status|
-|dbo.Owner|Contains the user list for application that represents all owners|
-|dbo.ServiceOwner|Contains the relation between service and owner|
-|dbo.User|Contains all users to watching services|
 |dbo.ServiceUser|Contains the relation between service and user|
+|dbo.Watcher|Contains all registered watchers: C# classes to perform watch operations|
