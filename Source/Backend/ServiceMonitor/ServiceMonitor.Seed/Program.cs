@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ServiceMonitor.Common;
+using ServiceMonitor.Common.Watchers;
 using ServiceMonitor.Core.Domain;
 
 namespace ServiceMonitor.Seed
@@ -44,6 +44,7 @@ namespace ServiceMonitor.Seed
                 dbContext.Services.Add(new Service { ServiceCategoryID = 100, Name = "Northwind Database" });
                 dbContext.Services.Add(new Service { ServiceCategoryID = 200, Name = "Sample API" });
                 dbContext.Services.Add(new Service { ServiceCategoryID = 300, Name = "DNS" });
+                dbContext.Services.Add(new Service { ServiceCategoryID = 100, Name = "DVD Rental Database" });
 
                 Console.WriteLine("Creating services...");
 
@@ -89,6 +90,16 @@ namespace ServiceMonitor.Seed
                     Active = true
                 });
 
+                dbContext.ServiceEnvironments.Add(new ServiceEnvironment
+                {
+                    ServiceID = 4000,
+                    EnvironmentID = 200,
+                    Interval = 20000,
+                    ConnectionString = "Server=localhost; Port=5432; Database=dvdrental; User Id=postgres; Password=Pass123$;",
+                    Description = "Postgre SQL Local Instance",
+                    Active = true
+                });
+
                 Console.WriteLine("Creating service environments...");
 
                 await dbContext.SaveChangesAsync();
@@ -114,6 +125,13 @@ namespace ServiceMonitor.Seed
                     AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName
                 });
 
+                dbContext.Watchers.Add(new Watcher
+                {
+                    Name = "PostgreSqlDatabaPingWatcher",
+                    Description = "Watcher for Postgre SQL databases",
+                    AssemblyQualifiedName = typeof(PostgreSqlDatabaseWatcher).AssemblyQualifiedName
+                });
+
                 Console.WriteLine("Creating watchers...");
 
                 await dbContext.SaveChangesAsync();
@@ -134,6 +152,12 @@ namespace ServiceMonitor.Seed
                 {
                     ServiceID = 3000,
                     WatcherID = 3000
+                });
+
+                dbContext.ServiceWatchers.Add(new ServiceWatcher
+                {
+                    ServiceID = 4000,
+                    WatcherID = 4000
                 });
 
                 Console.WriteLine("Creating service watchers...");

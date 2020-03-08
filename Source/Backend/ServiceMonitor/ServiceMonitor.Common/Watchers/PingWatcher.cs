@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ServiceMonitor.Common.Contracts;
 
-namespace ServiceMonitor.Common
+namespace ServiceMonitor.Common.Watchers
 {
     public class PingWatcher : IWatcher
     {
