@@ -127,7 +127,7 @@ namespace ServiceMonitor.Seed
 
                 dbContext.Watchers.Add(new Watcher
                 {
-                    Name = "PostgreSqlDatabaPingWatcher",
+                    Name = "PostgreSqlDatabaseWatcher",
                     Description = "Watcher for Postgre SQL databases",
                     AssemblyQualifiedName = typeof(PostgreSqlDatabaseWatcher).AssemblyQualifiedName
                 });
