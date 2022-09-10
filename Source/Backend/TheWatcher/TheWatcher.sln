@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.API.Panel", "TheWatcher.API.Panel\TheWatcher.API.Panel.csproj", "{44CC2BCC-7717-42B5-B2A3-8697060201D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Service.Monitor", "TheWatcher.Service.Monitor\TheWatcher.Service.Monitor.csproj", "{D15C907D-6737-4C33-8D07-CE5F1507E892}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
