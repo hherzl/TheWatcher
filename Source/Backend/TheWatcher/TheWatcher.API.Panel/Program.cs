@@ -1,6 +1,10 @@
+using Serilog;
+using Serilog.Events;
 using TheWatcher.Domain.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
@@ -9,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<TheWatcherDbContext>();
+builder.Services.AddDbContext<TheWatcherDbContext>();
 
 var app = builder.Build();
 
@@ -26,4 +30,26 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("TheWatcher.API.Panel.log")
+    .CreateLogger()
+    ;
+
+try
+{
+    Log.Information("Starting web host");
+    app.Run();
+    return 0;
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Host terminated unexpectedly");
+    return 1;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
