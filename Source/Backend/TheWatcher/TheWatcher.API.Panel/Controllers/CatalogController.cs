@@ -3,7 +3,7 @@
 namespace TheWatcher.API.Panel.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1")]
     public class CatalogController : ControllerBase
     {
         private readonly ILogger<CatalogController> _logger;
@@ -11,6 +11,12 @@ namespace TheWatcher.API.Panel.Controllers
         public CatalogController(ILogger<CatalogController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpGet("catalog")]
+        public IActionResult GetCatalog()
+        {
+            return Ok();
         }
     }
 }
