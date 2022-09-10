@@ -130,7 +130,7 @@ SqlServerDatabaseScriptCodeBuilder.CreateScript(db, @"C:\Temp\Databases", true, 
 
 // Create instance of Entity Framework Core project
 var project = EntityFrameworkCoreProject
-    .CreateForV3x("Correos.Domain.Core", db, @"C:\Temp\TheWatcher.Domain.Core");
+    .CreateForV3x("TheWatcher.Domain.Core", db, @"C:\Temp\TheWatcher.Domain.Core");
 
 // Apply settings for Entity Framework Core project
 project.GlobalSelection(settings =>

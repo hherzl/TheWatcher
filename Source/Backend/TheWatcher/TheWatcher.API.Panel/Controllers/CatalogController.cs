@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TheWatcher.Domain.Core;
 
 namespace TheWatcher.API.Panel.Controllers
 {
@@ -7,10 +8,12 @@ namespace TheWatcher.API.Panel.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly ILogger<CatalogController> _logger;
+        private readonly TheWatcherDbContext _dbContext;
 
-        public CatalogController(ILogger<CatalogController> logger)
+        public CatalogController(ILogger<CatalogController> logger, TheWatcherDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         [HttpGet("catalog")]
