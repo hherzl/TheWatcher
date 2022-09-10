@@ -1,6 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-while (true)
+﻿while (true)
 {
     Console.WriteLine("TheWatcher.Service.Monitor is running...");
+
+    Thread.Sleep(1000);
 }

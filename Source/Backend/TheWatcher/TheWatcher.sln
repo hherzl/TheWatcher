@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watcher.SqlServe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Domain.Core", "TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj", "{3758C810-F949-452F-BFB4-6F7F052AD729}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Domain.Common", "TheWatcher.Domain.Common\TheWatcher.Domain.Common.csproj", "{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
