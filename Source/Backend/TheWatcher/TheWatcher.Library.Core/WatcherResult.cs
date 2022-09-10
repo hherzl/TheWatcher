@@ -2,7 +2,7 @@
 
 namespace TheWatcher.Library.Core
 {
-    public class WatchResponse : IWatchResponse
+    public class WatcherResult : IWatcherResult
     {
         public bool Successful { get; set; }
 

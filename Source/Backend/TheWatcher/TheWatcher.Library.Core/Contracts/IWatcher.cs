@@ -4,6 +4,6 @@
     {
         string ActionName { get; }
 
-        Task<WatchResponse> WatchAsync(WatcherParameter parameter);
+        Task<WatcherResult> WatchAsync(WatcherParameter parameter);
     }
 }

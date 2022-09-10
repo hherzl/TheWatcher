@@ -9,12 +9,12 @@ namespace TheWatcher.Watcher.SqlServer
         public string ActionName
             => "OpenDatabaseConnection";
 
-        public async Task<WatchResponse> WatchAsync(WatcherParameter parameter)
+        public async Task<WatcherResult> WatchAsync(WatcherParameter parameter)
         {
             if (parameter == null)
                 throw new ArgumentNullException(nameof(parameter));
 
-            var response = new WatchResponse();
+            var result = new WatcherResult();
 
             using (var connection = new SqlConnection(parameter.Values[WatcherParameter.ConnectionString]))
             {
@@ -22,16 +22,16 @@ namespace TheWatcher.Watcher.SqlServer
                 {
                     await connection.OpenAsync();
 
-                    response.Successful = true;
+                    result.Successful = true;
                 }
                 catch (Exception ex)
                 {
-                    response.ShortMessage = ex.Message;
-                    response.FullMessage = ex.ToString();
+                    result.ShortMessage = ex.Message;
+                    result.FullMessage = ex.ToString();
                 }
             }
 
-            return response;
+            return result;
         }
     }
 }

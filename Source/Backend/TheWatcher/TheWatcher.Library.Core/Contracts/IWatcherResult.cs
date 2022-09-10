@@ -1,6 +1,6 @@
 ﻿namespace TheWatcher.Library.Core.Contracts
 {
-    internal interface IWatchResponse
+    internal interface IWatcherResult
     {
         bool Successful { get; set; }
 

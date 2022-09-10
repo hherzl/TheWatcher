@@ -4,9 +4,7 @@
     {
         public const string? ConnectionString = "ConnectionString";
 
-        public WatcherParameter()
-        {
-        }
+        public WatcherParameter() { }
 
         public WatcherParameter(IDictionary<string, string>? dictionary)
         {
