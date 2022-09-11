@@ -1,3 +1,27 @@
+alter table [dbo].[Watcher] add constraint [PK_dbo_Watcher]
+	primary key ([Id])
+go
+
+alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_AssemblyQualifiedName]
+	unique ([AssemblyQualifiedName])
+go
+
+alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_Name]
+	unique ([Name])
+go
+
+alter table [dbo].[WatcherParameter] add constraint [PK_dbo_WatcherParameter]
+	primary key ([Id])
+go
+
+alter table [dbo].[WatcherParameter] add constraint [UQ_dbo_WatcherParameter_WatcherId_Parameter]
+	unique ([WatcherId], [Parameter])
+go
+
+alter table [dbo].[WatcherParameter] add constraint [FK_dbo_WatcherParameter_WatcherId_dbo_Watcher]
+	foreign key ([WatcherId]) references [dbo].[Watcher]
+go
+
 alter table [dbo].[ResourceCategory] add constraint [PK_dbo_ResourceCategory]
 	primary key ([Id])
 go
@@ -6,8 +30,8 @@ alter table [dbo].[ResourceCategory] add constraint [UQ_dbo_ResourceCategory_Nam
 	unique ([Name])
 go
 
-alter table [dbo].[Environment] add constraint [PK_dbo_Environment]
-	primary key ([Id])
+alter table [dbo].[ResourceCategory] add constraint [FK_dbo_ResourceCategory_WatcherId_dbo_Watcher]
+	foreign key ([WatcherId]) references [dbo].[Watcher]
 go
 
 alter table [dbo].[Resource] add constraint [PK_dbo_Resource]
@@ -16,6 +40,14 @@ go
 
 alter table [dbo].[Resource] add constraint [FK_dbo_Resource_ResourceCategoryId_dbo_ResourceCategory]
 	foreign key ([ResourceCategoryId]) references [dbo].[ResourceCategory]
+go
+
+alter table [dbo].[Environment] add constraint [PK_dbo_Environment]
+	primary key ([Id])
+go
+
+alter table [dbo].[Environment] add constraint [UQ_dbo_Environment_Name]
+	unique ([Name])
 go
 
 alter table [dbo].[ResourceWatch] add constraint [PK_dbo_ResourceWatch]
@@ -34,42 +66,14 @@ alter table [dbo].[ResourceWatch] add constraint [FK_dbo_ResourceWatch_Environme
 	foreign key ([EnvironmentId]) references [dbo].[Environment]
 go
 
-alter table [dbo].[ResourceWatcherParameter] add constraint [PK_dbo_ResourceWatcherParameter]
+alter table [dbo].[ResourceWatchParameter] add constraint [PK_dbo_ResourceWatchParameter]
 	primary key ([Id])
 go
 
-alter table [dbo].[ResourceWatcherParameter] add constraint [UQ_dbo_ResourceWatcherParameter_ResourceId_Parameter]
-	unique ([ResourceId], [Parameter])
+alter table [dbo].[ResourceWatchParameter] add constraint [UQ_dbo_ResourceWatchParameter_ResourceWatchId_Parameter]
+	unique ([ResourceWatchId], [Parameter])
 go
 
-alter table [dbo].[ResourceWatcherParameter] add constraint [FK_dbo_ResourceWatcherParameter_ResourceId_dbo_Resource]
-	foreign key ([ResourceId]) references [dbo].[Resource]
-go
-
-alter table [dbo].[Watcher] add constraint [PK_dbo_Watcher]
-	primary key ([Id])
-go
-
-alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_AssemblyQualifiedName]
-	unique ([AssemblyQualifiedName])
-go
-
-alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_Name]
-	unique ([Name])
-go
-
-alter table [dbo].[ResourceWatcher] add constraint [PK_dbo_ResourceWatcher]
-	primary key ([Id])
-go
-
-alter table [dbo].[ResourceWatcher] add constraint [UQ_dbo_ResourceWatcher_ResourceId_WatcherId]
-	unique ([ResourceId], [WatcherId])
-go
-
-alter table [dbo].[ResourceWatcher] add constraint [FK_dbo_ResourceWatcher_ResourceId_dbo_Resource]
-	foreign key ([ResourceId]) references [dbo].[Resource]
-go
-
-alter table [dbo].[ResourceWatcher] add constraint [FK_dbo_ResourceWatcher_WatcherId_dbo_Watcher]
-	foreign key ([WatcherId]) references [dbo].[Watcher]
+alter table [dbo].[ResourceWatchParameter] add constraint [FK_dbo_ResourceWatchParameter_ResourceWatchId_dbo_ResourceWatch]
+	foreign key ([ResourceWatchId]) references [dbo].[ResourceWatch]
 go

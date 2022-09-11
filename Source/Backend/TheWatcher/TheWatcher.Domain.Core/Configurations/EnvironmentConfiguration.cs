@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Environment = TheWatcher.Domain.Core.Models.Environment;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class EnvironmentConfiguration : IEntityTypeConfiguration<Models.Environment>
+	internal class EnvironmentConfiguration : IEntityTypeConfiguration<Environment>
 	{
-		public void Configure(EntityTypeBuilder<Models.Environment> builder)
+		public void Configure(EntityTypeBuilder<Environment> builder)
 		{
 			// Set configuration for entity
 			builder.ToTable("Environment", "dbo");
@@ -64,6 +65,14 @@ namespace TheWatcher.Domain.Core.Configurations
 				.Property(p => p.Version)
 				.HasColumnType("rowversion")
 				;
-		}
+
+            // Add configuration for row version
+
+            builder
+                .Property(p => p.Version)
+                .ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+        }
 	}
 }

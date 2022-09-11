@@ -11,29 +11,57 @@ var db = SqlServerDatabase.CreateWithDefaults("TheWatcher");
 db.AddDefaultTypeMapFor(typeof(string), "nvarchar");
 db.AddDefaultTypeMapFor(typeof(DateTime), "datetime");
 
+var watcher = db
+    .DefineEntity(new
+    {
+        Id = (short)0,
+        AssemblyQualifiedName = "",
+        Name = "",
+        Description = ""
+    })
+    .SetNaming("Watcher")
+    .SetColumnFor(e => e.AssemblyQualifiedName, length: 511)
+    .SetColumnFor(e => e.Name, length: 100)
+    .SetColumnFor(e => e.Description, nullable: true)
+    .SetIdentity(e => e.Id)
+    .SetPrimaryKey(e => e.Id)
+    .AddUnique(e => e.AssemblyQualifiedName)
+    .AddUnique(e => e.Name)
+    ;
+
+var watcherParameter = db
+    .DefineEntity(new
+    {
+        Id = (short)0,
+        WatcherId = (short)0,
+        Parameter = "",
+        Value = "",
+        IsDefault = false,
+        Description = ""
+    })
+    .SetNaming("WatcherParameter")
+    .SetColumnFor(e => e.Parameter, length: 100)
+    .SetColumnFor(e => e.Value, nullable: true)
+    .SetColumnFor(e => e.Description, nullable: true)
+    .SetIdentity(e => e.Id)
+    .SetPrimaryKey(e => e.Id)
+    .AddUnique(e => new { e.WatcherId, e.Parameter })
+    .AddForeignKey(e => e.WatcherId, watcher.Table)
+    ;
+
 var resourceCategory = db
     .DefineEntity(new
     {
         Id = (short)0,
-        Name = ""
+        Name = "",
+        WatcherId = (short)0
     })
     .SetNaming("ResourceCategory")
     .SetColumnFor(e => e.Name, length: 100)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
     .AddUnique(e => e.Name)
-    ;
-
-var environment = db
-    .DefineEntity(new
-    {
-        Id = (short)0,
-        Name = ""
-    })
-    .SetNaming("Environment")
-    .SetColumnFor(e => e.Name, length: 100)
-    .SetIdentity(e => e.Id)
-    .SetPrimaryKey(e => e.Id)
+    .AddForeignKey(e => e.WatcherId, watcher.Table)
     ;
 
 var resource = db
@@ -50,6 +78,19 @@ var resource = db
     .AddForeignKey(e => e.ResourceCategoryId, resourceCategory.Table)
     ;
 
+var environment = db
+    .DefineEntity(new
+    {
+        Id = (short)0,
+        Name = ""
+    })
+    .SetNaming("Environment")
+    .SetColumnFor(e => e.Name, length: 100)
+    .SetIdentity(e => e.Id)
+    .SetPrimaryKey(e => e.Id)
+    .AddUnique(e => e.Name)
+    ;
+
 var resourceWatch = db
     .DefineEntity(new
     {
@@ -60,6 +101,7 @@ var resourceWatch = db
         Description = ""
     })
     .SetNaming("ResourceWatch")
+    .SetColumnFor(e => e.Description, nullable: true)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
     .AddUnique(e => new { e.ResourceId, e.EnvironmentId })
@@ -67,52 +109,23 @@ var resourceWatch = db
     .AddForeignKey(e => e.EnvironmentId, environment.Table)
     ;
 
-var resourceWatcherParameter = db
+var resourceWatchParameter = db
     .DefineEntity(new
     {
         Id = (short)0,
-        ResourceId = (short)0,
+        ResourceWatchId = (short)0,
         Parameter = "",
+        Value = "",
         Description = ""
     })
-    .SetNaming("ResourceWatcherParameter")
+    .SetNaming("ResourceWatchParameter")
     .SetColumnFor(e => e.Parameter, length: 100)
+    .SetColumnFor(e => e.Value, nullable: true)
+    .SetColumnFor(e => e.Description, nullable: true)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
-    .AddUnique(e => new { e.ResourceId, e.Parameter })
-    .AddForeignKey(e => e.ResourceId, resource.Table)
-    ;
-
-var watcher = db
-    .DefineEntity(new
-    {
-        Id = (short)0,
-        AssemblyQualifiedName = "",
-        Name = "",
-        Description = ""
-    })
-    .SetNaming("Watcher")
-    .SetColumnFor(e => e.AssemblyQualifiedName, length: 511)
-    .SetColumnFor(e => e.Name, length: 100)
-    .SetIdentity(e => e.Id)
-    .SetPrimaryKey(e => e.Id)
-    .AddUnique(e => e.AssemblyQualifiedName)
-    .AddUnique(e => e.Name)
-    ;
-
-var resourceWatcher = db
-    .DefineEntity(new
-    {
-        Id = (short)0,
-        ResourceId = (short)0,
-        WatcherId = (short)0
-    })
-    .SetNaming("ResourceWatcher")
-    .SetIdentity(e => e.Id)
-    .SetPrimaryKey(e => e.Id)
-    .AddUnique(e => new { e.ResourceId, e.WatcherId })
-    .AddForeignKey(e => e.ResourceId, resource.Table)
-    .AddForeignKey(e => e.WatcherId, watcher.Table)
+    .AddUnique(e => new { e.ResourceWatchId, e.Parameter })
+    .AddForeignKey(e => e.ResourceWatchId, resourceWatch.Table)
     ;
 
 dynamic importBag = new ExpandoObject();

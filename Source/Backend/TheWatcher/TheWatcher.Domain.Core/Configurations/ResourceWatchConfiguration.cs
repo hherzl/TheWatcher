@@ -45,7 +45,6 @@ namespace TheWatcher.Domain.Core.Configurations
 			builder
 				.Property(p => p.Description)
 				.HasColumnType("nvarchar(max)")
-				.IsRequired()
 				;
 
 			builder
@@ -83,13 +82,20 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("rowversion")
 				;
 
-			// Add configuration for uniques
+            // Add configuration for row version
 
-			builder
+            builder
+                .Property(p => p.Version)
+                .ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+
+            // Add configuration for uniques
+
+            builder
 				.HasIndex(p => new { p.ResourceId, p.EnvironmentId })
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_ResourceWatch_ResourceId_EnvironmentId")
-				;
+				.HasDatabaseName("UQ_dbo_ResourceWatch_ResourceId_EnvironmentId");
 
 			// Add configuration for foreign keys
 
@@ -97,15 +103,13 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasOne(p => p.ResourceFk)
 				.WithMany(b => b.ResourceWatchList)
 				.HasForeignKey(p => p.ResourceId)
-				.HasConstraintName("FK_dbo_ResourceWatch_ResourceId_dbo_Resource")
-				;
+				.HasConstraintName("FK_dbo_ResourceWatch_ResourceId_dbo_Resource");
 
 			builder
 				.HasOne(p => p.EnvironmentFk)
 				.WithMany(b => b.ResourceWatchList)
 				.HasForeignKey(p => p.EnvironmentId)
-				.HasConstraintName("FK_dbo_ResourceWatch_EnvironmentId_dbo_Environment")
-				;
+				.HasConstraintName("FK_dbo_ResourceWatch_EnvironmentId_dbo_Environment");
 		}
 	}
 }

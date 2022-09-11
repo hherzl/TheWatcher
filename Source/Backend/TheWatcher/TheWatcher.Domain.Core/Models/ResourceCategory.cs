@@ -18,6 +18,8 @@ namespace TheWatcher.Domain.Core.Models
 
 		public string? Name { get; set; }
 
+		public short? WatcherId { get; set; }
+
 		public bool? Active { get; set; }
 
 		public string? CreationUser { get; set; }
@@ -28,7 +30,9 @@ namespace TheWatcher.Domain.Core.Models
 
 		public DateTime? LastUpdateDateTime { get; set; }
 
-		public byte[]? Version { get; set; }
+		public byte[] Version { get; set; }
+
+		public virtual Watcher WatcherFk { get; set; }
 
 		public virtual Collection<Resource> ResourceList { get; set; }
 	}

@@ -4,12 +4,12 @@ using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class ResourceWatcherConfiguration : IEntityTypeConfiguration<ResourceWatcher>
+	internal class ResourceWatchParameterConfiguration : IEntityTypeConfiguration<ResourceWatchParameter>
 	{
-		public void Configure(EntityTypeBuilder<ResourceWatcher> builder)
+		public void Configure(EntityTypeBuilder<ResourceWatchParameter> builder)
 		{
 			// Set configuration for entity
-			builder.ToTable("ResourceWatcher", "dbo");
+			builder.ToTable("ResourceWatchParameter", "dbo");
 
 			// Set key for entity
 			builder.HasKey(p => p.Id);
@@ -25,15 +25,26 @@ namespace TheWatcher.Domain.Core.Configurations
 				;
 
 			builder
-				.Property(p => p.ResourceId)
+				.Property(p => p.ResourceWatchId)
 				.HasColumnType("smallint")
 				.IsRequired()
 				;
 
 			builder
-				.Property(p => p.WatcherId)
-				.HasColumnType("smallint")
+				.Property(p => p.Parameter)
+				.HasColumnType("nvarchar")
+				.HasMaxLength(100)
 				.IsRequired()
+				;
+
+			builder
+				.Property(p => p.Value)
+				.HasColumnType("nvarchar(max)")
+				;
+
+			builder
+				.Property(p => p.Description)
+				.HasColumnType("nvarchar(max)")
 				;
 
 			builder
@@ -71,29 +82,28 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("rowversion")
 				;
 
-			// Add configuration for uniques
+            // Add configuration for row version
 
-			builder
-				.HasIndex(p => new { p.ResourceId, p.WatcherId })
+            builder
+                .Property(p => p.Version)
+                .ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+
+            // Add configuration for uniques
+
+            builder
+				.HasIndex(p => new { p.ResourceWatchId, p.Parameter })
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_ResourceWatcher_ResourceId_WatcherId")
-				;
+				.HasDatabaseName("UQ_dbo_ResourceWatchParameter_ResourceWatchId_Parameter");
 
 			// Add configuration for foreign keys
 
 			builder
-				.HasOne(p => p.ResourceFk)
-				.WithMany(b => b.ResourceWatcherList)
-				.HasForeignKey(p => p.ResourceId)
-				.HasConstraintName("FK_dbo_ResourceWatcher_ResourceId_dbo_Resource")
-				;
-
-			builder
-				.HasOne(p => p.WatcherFk)
-				.WithMany(b => b.ResourceWatcherList)
-				.HasForeignKey(p => p.WatcherId)
-				.HasConstraintName("FK_dbo_ResourceWatcher_WatcherId_dbo_Watcher")
-				;
+				.HasOne(p => p.ResourceWatchFk)
+				.WithMany(b => b.ResourceWatchParameterList)
+				.HasForeignKey(p => p.ResourceWatchId)
+				.HasConstraintName("FK_dbo_ResourceWatchParameter_ResourceWatchId_dbo_ResourceWatch");
 		}
 	}
 }

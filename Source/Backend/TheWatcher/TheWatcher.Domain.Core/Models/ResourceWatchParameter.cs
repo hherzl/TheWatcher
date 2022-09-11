@@ -3,24 +3,24 @@ using TheWatcher.Domain.Common;
 
 namespace TheWatcher.Domain.Core.Models
 {
-	public partial class ResourceWatch : IEntity
+	public partial class ResourceWatchParameter : IEntity
 	{
-		public ResourceWatch()
+		public ResourceWatchParameter()
 		{
 		}
 
-		public ResourceWatch(short? id)
+		public ResourceWatchParameter(short? id)
 		{
 			Id = id;
 		}
 
 		public short? Id { get; set; }
 
-		public short? ResourceId { get; set; }
+		public short? ResourceWatchId { get; set; }
 
-		public short? EnvironmentId { get; set; }
+		public string? Parameter { get; set; }
 
-		public int? Interval { get; set; }
+		public string? Value { get; set; }
 
 		public string? Description { get; set; }
 
@@ -36,10 +36,6 @@ namespace TheWatcher.Domain.Core.Models
 
 		public byte[] Version { get; set; }
 
-		public virtual Resource ResourceFk { get; set; }
-
-		public virtual Environment EnvironmentFk { get; set; }
-
-		public virtual Collection<ResourceWatchParameter> ResourceWatchParameterList { get; set; }
+		public virtual ResourceWatch ResourceWatchFk { get; set; }
 	}
 }

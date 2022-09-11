@@ -1,23 +1,28 @@
+using System.Collections.ObjectModel;
 using TheWatcher.Domain.Common;
 
 namespace TheWatcher.Domain.Core.Models
 {
-	public partial class ResourceWatcherParameter : IEntity
+	public partial class WatcherParameter : IEntity
 	{
-		public ResourceWatcherParameter()
+		public WatcherParameter()
 		{
 		}
 
-		public ResourceWatcherParameter(short? id)
+		public WatcherParameter(short? id)
 		{
 			Id = id;
 		}
 
 		public short? Id { get; set; }
 
-		public short? ResourceId { get; set; }
+		public short? WatcherId { get; set; }
 
 		public string? Parameter { get; set; }
+
+		public string? Value { get; set; }
+
+		public bool? IsDefault { get; set; }
 
 		public string? Description { get; set; }
 
@@ -31,8 +36,8 @@ namespace TheWatcher.Domain.Core.Models
 
 		public DateTime? LastUpdateDateTime { get; set; }
 
-		public byte[]? Version { get; set; }
+		public byte[] Version { get; set; }
 
-		public virtual Resource ResourceFk { get; set; }
+		public virtual Watcher WatcherFk { get; set; }
 	}
 }

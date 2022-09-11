@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.API.Panel", "TheWatcher.API.Panel\TheWatcher.API.Panel.csproj", "{44CC2BCC-7717-42B5-B2A3-8697060201D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Panel", "TheWatcher.API.Panel\TheWatcher.API.Panel.csproj", "{44CC2BCC-7717-42B5-B2A3-8697060201D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Service.Monitor", "TheWatcher.Service.Monitor\TheWatcher.Service.Monitor.csproj", "{D15C907D-6737-4C33-8D07-CE5F1507E892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Service.Monitor", "TheWatcher.Service.Monitor\TheWatcher.Service.Monitor.csproj", "{D15C907D-6737-4C33-8D07-CE5F1507E892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Library.Core", "TheWatcher.Library.Core\TheWatcher.Library.Core.csproj", "{DBE74243-9933-4DB5-974B-567312DC632A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Library.Core", "TheWatcher.Library.Core\TheWatcher.Library.Core.csproj", "{DBE74243-9933-4DB5-974B-567312DC632A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watcher.SqlServer", "TheWatcher.Watcher.SqlServer\TheWatcher.Watcher.SqlServer.csproj", "{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watcher.SqlServer", "TheWatcher.Watcher.SqlServer\TheWatcher.Watcher.SqlServer.csproj", "{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Domain.Core", "TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj", "{3758C810-F949-452F-BFB4-6F7F052AD729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Core", "TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj", "{3758C810-F949-452F-BFB4-6F7F052AD729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Domain.Common", "TheWatcher.Domain.Common\TheWatcher.Domain.Common.csproj", "{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Common", "TheWatcher.Domain.Common\TheWatcher.Domain.Common.csproj", "{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Seed.Dbo", "TheWatcher.Seed.Dbo\TheWatcher.Seed.Dbo.csproj", "{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

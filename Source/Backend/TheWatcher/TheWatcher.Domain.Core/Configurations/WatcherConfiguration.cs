@@ -41,7 +41,6 @@ namespace TheWatcher.Domain.Core.Configurations
 			builder
 				.Property(p => p.Description)
 				.HasColumnType("nvarchar(max)")
-				.IsRequired()
 				;
 
 			builder
@@ -79,19 +78,25 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("rowversion")
 				;
 
-			// Add configuration for uniques
+            // Add configuration for row version
 
-			builder
+            builder
+                .Property(p => p.Version)
+                .ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+
+            // Add configuration for uniques
+
+            builder
 				.HasIndex(p => p.AssemblyQualifiedName)
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_Watcher_AssemblyQualifiedName")
-				;
+				.HasDatabaseName("UQ_dbo_Watcher_AssemblyQualifiedName");
 
 			builder
 				.HasIndex(p => p.Name)
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_Watcher_Name")
-				;
+				.HasDatabaseName("UQ_dbo_Watcher_Name");
 		}
 	}
 }

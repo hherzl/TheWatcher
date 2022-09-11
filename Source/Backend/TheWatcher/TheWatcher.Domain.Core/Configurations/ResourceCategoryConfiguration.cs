@@ -32,6 +32,11 @@ namespace TheWatcher.Domain.Core.Configurations
 				;
 
 			builder
+				.Property(p => p.WatcherId)
+				.HasColumnType("smallint")
+				;
+
+			builder
 				.Property(p => p.Active)
 				.HasColumnType("bit")
 				.IsRequired()
@@ -66,13 +71,28 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("rowversion")
 				;
 
-			// Add configuration for uniques
+            // Add configuration for row version
 
-			builder
+            builder
+                .Property(p => p.Version)
+                .ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+
+            // Add configuration for uniques
+
+            builder
 				.HasIndex(p => p.Name)
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_ResourceCategory_Name")
-				;
+				.HasDatabaseName("UQ_dbo_ResourceCategory_Name");
+
+			// Add configuration for foreign keys
+
+			builder
+				.HasOne(p => p.WatcherFk)
+				.WithMany(b => b.ResourceCategoryList)
+				.HasForeignKey(p => p.WatcherId)
+				.HasConstraintName("FK_dbo_ResourceCategory_WatcherId_dbo_Watcher");
 		}
 	}
 }

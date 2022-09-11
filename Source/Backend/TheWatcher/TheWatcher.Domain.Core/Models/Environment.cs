@@ -28,7 +28,7 @@ namespace TheWatcher.Domain.Core.Models
 
 		public DateTime? LastUpdateDateTime { get; set; }
 
-		public byte[]? Version { get; set; }
+		public byte[] Version { get; set; }
 
 		public virtual Collection<ResourceWatch> ResourceWatchList { get; set; }
 	}

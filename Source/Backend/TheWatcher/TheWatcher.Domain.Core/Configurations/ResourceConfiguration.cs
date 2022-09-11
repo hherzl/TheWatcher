@@ -71,14 +71,21 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("rowversion")
 				;
 
-			// Add configuration for foreign keys
+            // Add configuration for row version
 
-			builder
+            builder
+                .Property(p => p.Version)
+				.ValueGeneratedOnAddOrUpdate()
+                .IsRowVersion()
+                ;
+
+            // Add configuration for foreign keys
+
+            builder
 				.HasOne(p => p.ResourceCategoryFk)
 				.WithMany(b => b.ResourceList)
 				.HasForeignKey(p => p.ResourceCategoryId)
-				.HasConstraintName("FK_dbo_Resource_ResourceCategoryId_dbo_ResourceCategory")
-				;
+				.HasConstraintName("FK_dbo_Resource_ResourceCategoryId_dbo_ResourceCategory");
 		}
 	}
 }
