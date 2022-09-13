@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 using CatFactory.EntityFrameworkCore;
 using CatFactory.ObjectRelationalMapping;
 using CatFactory.SqlServer;
@@ -97,10 +98,16 @@ var resourceWatch = db
         Id = (short)0,
         ResourceId = (short)0,
         EnvironmentId = (short)0,
+        Successful = false,
+        WatchCount = 0,
+        LastWatch = DateTime.Now,
         Interval = 0,
         Description = ""
     })
     .SetNaming("ResourceWatch")
+    .SetColumnFor(e => e.Successful, nullable: true)
+    .SetColumnFor(e => e.WatchCount, nullable: true)
+    .SetColumnFor(e => e.LastWatch, nullable: true)
     .SetColumnFor(e => e.Description, nullable: true)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
@@ -125,6 +132,26 @@ var resourceWatchParameter = db
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
     .AddUnique(e => new { e.ResourceWatchId, e.Parameter })
+    .AddForeignKey(e => e.ResourceWatchId, resourceWatch.Table)
+    ;
+
+var resourceWatchLog = db
+    .DefineEntity(new
+    {
+        Id = (short)0,
+        ResourceWatchId = (short)0,
+        AssemblyQualifiedName = "",
+        ActionName = "",
+        Successful = false,
+        Message = "",
+        ErrorMessage = ""
+    })
+    .SetNaming("ResourceWatchLog")
+    .SetColumnFor(e => e.AssemblyQualifiedName, length: 511)
+    .SetColumnFor(e => e.ActionName, length: 511)
+    .SetColumnFor(e => e.ErrorMessage, nullable: true)
+    .SetIdentity(e => e.Id)
+    .SetPrimaryKey(e => e.Id)
     .AddForeignKey(e => e.ResourceWatchId, resourceWatch.Table)
     ;
 

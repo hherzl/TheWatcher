@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TheWatcher.Library.Core": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:60390;http://localhost:60392"
+    }
+  }
+}

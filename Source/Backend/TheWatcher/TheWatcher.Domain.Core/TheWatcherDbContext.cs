@@ -26,6 +26,8 @@ namespace TheWatcher.Domain.Core
 
         public DbSet<ResourceWatchParameter> ResourceWatchParameter { get; set; }
 
+        public DbSet<ResourceWatchLog> ResourceWatchLog { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Apply all configurations for tables
@@ -39,6 +41,7 @@ namespace TheWatcher.Domain.Core
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ResourceWatchConfiguration())
                 .ApplyConfiguration(new ResourceWatchParameterConfiguration())
+                .ApplyConfiguration(new ResourceWatchLogConfiguration())
             ;
 
             base.OnModelCreating(modelBuilder);

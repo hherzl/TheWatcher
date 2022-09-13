@@ -3,43 +3,51 @@ using TheWatcher.Domain.Common;
 
 namespace TheWatcher.Domain.Core.Models
 {
-	public partial class ResourceWatch : IEntity
-	{
-		public ResourceWatch()
-		{
-		}
+    public partial class ResourceWatch : IEntity
+    {
+        public ResourceWatch()
+        {
+        }
 
-		public ResourceWatch(short? id)
-		{
-			Id = id;
-		}
+        public ResourceWatch(short? id)
+        {
+            Id = id;
+        }
 
-		public short? Id { get; set; }
+        public short? Id { get; set; }
 
-		public short? ResourceId { get; set; }
+        public short? ResourceId { get; set; }
 
-		public short? EnvironmentId { get; set; }
+        public short? EnvironmentId { get; set; }
 
-		public int? Interval { get; set; }
+        public bool? Successful { get; set; }
 
-		public string? Description { get; set; }
+        public int? WatchCount { get; set; }
 
-		public bool? Active { get; set; }
+        public DateTime? LastWatch { get; set; }
 
-		public string? CreationUser { get; set; }
+        public int? Interval { get; set; }
 
-		public DateTime? CreationDateTime { get; set; }
+        public string? Description { get; set; }
 
-		public string? LastUpdateUser { get; set; }
+        public bool? Active { get; set; }
 
-		public DateTime? LastUpdateDateTime { get; set; }
+        public string? CreationUser { get; set; }
 
-		public byte[] Version { get; set; }
+        public DateTime? CreationDateTime { get; set; }
 
-		public virtual Resource ResourceFk { get; set; }
+        public string? LastUpdateUser { get; set; }
 
-		public virtual Environment EnvironmentFk { get; set; }
+        public DateTime? LastUpdateDateTime { get; set; }
 
-		public virtual Collection<ResourceWatchParameter> ResourceWatchParameterList { get; set; }
-	}
+        public byte[] Version { get; set; }
+
+        public virtual Resource ResourceFk { get; set; }
+
+        public virtual Environment EnvironmentFk { get; set; }
+
+        public virtual Collection<ResourceWatchParameter> ResourceWatchParameterList { get; set; }
+
+        public virtual Collection<ResourceWatchLog> ResourceWatchLogList { get; set; }
+    }
 }
