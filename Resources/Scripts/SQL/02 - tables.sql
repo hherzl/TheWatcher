@@ -1,3 +1,7 @@
+if object_id('dbo.ResourceWatchLog') is not null
+	drop table [dbo].[ResourceWatchLog]
+go
+
 if object_id('dbo.ResourceWatchParameter') is not null
 	drop table [dbo].[ResourceWatchParameter]
 go
@@ -104,6 +108,9 @@ create table [dbo].[ResourceWatch]
 	[Id] smallint not null identity(1, 1),
 	[ResourceId] smallint not null,
 	[EnvironmentId] smallint not null,
+	[Successful] bit null,
+	[WatchCount] int null,
+	[LastWatch] datetime null,
 	[Interval] int not null,
 	[Description] nvarchar(max) null,
 	[Active] bit not null,
@@ -122,6 +129,24 @@ create table [dbo].[ResourceWatchParameter]
 	[Parameter] nvarchar(100) not null,
 	[Value] nvarchar(max) null,
 	[Description] nvarchar(max) null,
+	[Active] bit not null,
+	[CreationUser] nvarchar(50) not null,
+	[CreationDateTime] datetime not null,
+	[LastUpdateUser] nvarchar(50) null,
+	[LastUpdateDateTime] datetime null,
+	[Version] rowversion null
+)
+go
+
+create table [dbo].[ResourceWatchLog]
+(
+	[Id] smallint not null identity(1, 1),
+	[ResourceWatchId] smallint not null,
+	[AssemblyQualifiedName] nvarchar(511) not null,
+	[ActionName] nvarchar(511) not null,
+	[Successful] bit not null,
+	[Message] nvarchar(max) not null,
+	[ErrorMessage] nvarchar(max) null,
 	[Active] bit not null,
 	[CreationUser] nvarchar(50) not null,
 	[CreationDateTime] datetime not null,

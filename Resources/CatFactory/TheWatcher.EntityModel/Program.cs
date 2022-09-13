@@ -1,5 +1,4 @@
-﻿using System;
-using System.Dynamic;
+﻿using System.Dynamic;
 using CatFactory.EntityFrameworkCore;
 using CatFactory.ObjectRelationalMapping;
 using CatFactory.SqlServer;
@@ -59,6 +58,7 @@ var resourceCategory = db
     })
     .SetNaming("ResourceCategory")
     .SetColumnFor(e => e.Name, length: 100)
+    .SetColumnFor(e => e.WatcherId, nullable: true)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
     .AddUnique(e => e.Name)

@@ -4,8 +4,8 @@
     {
         bool Successful { get; set; }
 
-        string? ShortMessage { get; set; }
+        string? Message { get; set; }
 
-        string? FullMessage { get; set; }
+        string? ErrorMessage { get; set; }
     }
 }

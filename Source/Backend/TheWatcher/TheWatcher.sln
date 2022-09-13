@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Core", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Common", "TheWatcher.Domain.Common\TheWatcher.Domain.Common.csproj", "{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Seed.Dbo", "TheWatcher.Seed.Dbo\TheWatcher.Seed.Dbo.csproj", "{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Seed.Dbo", "TheWatcher.Seed.Dbo\TheWatcher.Seed.Dbo.csproj", "{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watcher.PingWatcher", "TheWatcher.Watcher.PingWatcher\TheWatcher.Watcher.PingWatcher.csproj", "{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

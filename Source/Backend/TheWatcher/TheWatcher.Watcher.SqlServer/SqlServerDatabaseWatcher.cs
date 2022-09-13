@@ -16,19 +16,18 @@ namespace TheWatcher.Watcher.SqlServer
 
             var result = new WatcherResult();
 
-            using (var connection = new SqlConnection(parameter.Values[WatcherParameter.ConnectionString]))
-            {
-                try
-                {
-                    await connection.OpenAsync();
+            using var cnn = new SqlConnection(parameter.Values[WatcherParameter.ConnectionString]);
 
-                    result.Successful = true;
-                }
-                catch (Exception ex)
-                {
-                    result.ShortMessage = ex.Message;
-                    result.FullMessage = ex.ToString();
-                }
+            try
+            {
+                await cnn.OpenAsync();
+
+                result.Successful = true;
+            }
+            catch (Exception ex)
+            {
+                result.Message = ex.Message;
+                result.ErrorMessage = ex.ToString();
             }
 
             return result;

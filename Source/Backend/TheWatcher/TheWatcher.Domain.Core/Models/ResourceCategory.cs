@@ -18,7 +18,7 @@ namespace TheWatcher.Domain.Core.Models
 
 		public string? Name { get; set; }
 
-		public short? WatcherId { get; set; }
+		public short? WatcherId { get; set; }	
 
 		public bool? Active { get; set; }
 

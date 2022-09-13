@@ -2,7 +2,8 @@
 {
     public class WatcherParameter
     {
-        public const string? ConnectionString = "ConnectionString";
+        public const string IPAddress = "IPAddress";
+        public const string ConnectionString = "ConnectionString";
 
         public WatcherParameter() { }
 

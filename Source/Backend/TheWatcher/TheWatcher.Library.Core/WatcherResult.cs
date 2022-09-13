@@ -6,8 +6,8 @@ namespace TheWatcher.Library.Core
     {
         public bool Successful { get; set; }
 
-        public string? ShortMessage { get; set; }
+        public string? Message { get; set; }
 
-        public string? FullMessage { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }

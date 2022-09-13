@@ -77,3 +77,11 @@ go
 alter table [dbo].[ResourceWatchParameter] add constraint [FK_dbo_ResourceWatchParameter_ResourceWatchId_dbo_ResourceWatch]
 	foreign key ([ResourceWatchId]) references [dbo].[ResourceWatch]
 go
+
+alter table [dbo].[ResourceWatchLog] add constraint [PK_dbo_ResourceWatchLog]
+	primary key ([Id])
+go
+
+alter table [dbo].[ResourceWatchLog] add constraint [FK_dbo_ResourceWatchLog_ResourceWatchId_dbo_ResourceWatch]
+	foreign key ([ResourceWatchId]) references [dbo].[ResourceWatch]
+go
