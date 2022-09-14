@@ -17,6 +17,43 @@ namespace TheWatcher.API.Panel.Controllers
             _dbContext = dbContext;
         }
 
+        [HttpGet("watcher")]
+        public async Task<IActionResult> GetWatchersAsync()
+        {
+            var watchers =
+                from watcher in _dbContext.Watcher
+                select new
+                {
+                    Id = watcher.Id,
+                    Name = watcher.Name,
+                    Description = watcher.Description
+                };
+
+            var list = await watchers.ToListAsync();
+
+            return Ok(list);
+        }
+
+        [HttpGet("watcher/{id}")]
+        public async Task<IActionResult> GetWatcherAsync(short? id)
+        {
+            var entity = await _dbContext.Watcher.Include(e => e.WatcherParameterList).FirstOrDefaultAsync(item => item.Id == id);
+
+            if (entity == null)
+                return NotFound();
+
+            var value = new
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AssemblyQualifiedName = entity.AssemblyQualifiedName,
+                Description = entity.Description,
+                Parameters = entity.WatcherParameterList.Select(item => new { item.Id, item.IsDefault, item.Parameter, item.Value, item.Description }).ToList()
+            };
+
+            return Ok(value);
+        }
+
         [HttpGet("resource")]
         public async Task<IActionResult> GetResourcesAsync()
         {
