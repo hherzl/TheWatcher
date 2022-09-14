@@ -72,5 +72,32 @@ namespace TheWatcher.API.Panel.Controllers
 
             return Ok(list);
         }
+
+        [HttpGet("resource/{id}")]
+        public async Task<IActionResult> GetResourceAsync(short? id)
+        {
+            var entity = await _dbContext
+                .Resource
+                .Include(e => e.ResourceCategoryFk.WatcherFk)
+                .Include(e => e.ResourceWatchList)
+                    .ThenInclude(e => e.EnvironmentFk)
+                .FirstOrDefaultAsync(item => item.Id == id);
+
+            if (entity == null)
+                return NotFound();
+
+            var value = new
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                ResourceCategoryId = entity.ResourceCategoryId,
+                ResourceCategory = entity.ResourceCategoryFk.Name,
+                WatcherId = entity.ResourceCategoryFk.WatcherId,
+                Watcher = entity.ResourceCategoryFk.WatcherFk.Name,
+                Watches = entity.ResourceWatchList.Select(item => new { item.Id, item.EnvironmentId, Environment = item.EnvironmentFk.Name, item.Successful, item.WatchCount, item.LastWatch, item.Interval }).ToList()
+            };
+
+            return Ok(value);
+        }
     }
 }
