@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TheWatcher.Domain.Core;
 
 namespace TheWatcher.API.Panel.Controllers
@@ -16,10 +17,23 @@ namespace TheWatcher.API.Panel.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("catalog")]
-        public IActionResult GetCatalog()
+        [HttpGet("resource")]
+        public async Task<IActionResult> GetResourcesAsync()
         {
-            return Ok();
+            var resources =
+                from resource in _dbContext.Resource
+                join category in _dbContext.ResourceCategory on resource.ResourceCategoryId equals category.Id
+                select new
+                {
+                    Id = resource.Id,
+                    Name = resource.Name,
+                    CategoryId = resource.ResourceCategoryId,
+                    Category = category.Name
+                };
+
+            var list = await resources.ToListAsync();
+
+            return Ok(list);
         }
     }
 }
