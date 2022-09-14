@@ -11,6 +11,7 @@ static TheWatcherDbContext GetTheWatcherDbContext()
     => new TheWatcherDbContext(new DbContextOptionsBuilder<TheWatcherDbContext>().UseSqlServer(CnnStr).Options);
 
 Console.WriteLine("Seeding...");
+Console.WriteLine();
 
 using var ctx = GetTheWatcherDbContext();
 
@@ -31,6 +32,8 @@ ctx.Watcher.Add(new Watcher
     CreationDateTime = DateTime.Now
 });
 
+ctx.SaveChanges();
+
 ctx.Watcher.Add(new Watcher
 {
     AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
@@ -43,9 +46,10 @@ ctx.Watcher.Add(new Watcher
 
 ctx.SaveChanges();
 
+Console.WriteLine(" The watchers were created successfully");
 Console.WriteLine();
 
-Console.WriteLine(" Creating parameters for watchers...");
+Console.WriteLine("  Creating parameters for watchers...");
 
 ctx.WatcherParameter.Add(new WatcherParameter
 {
@@ -71,6 +75,7 @@ ctx.WatcherParameter.Add(new WatcherParameter
 
 ctx.SaveChanges();
 
+Console.WriteLine("  The watcher parameters were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating resource categories...");
@@ -95,6 +100,7 @@ ctx.ResourceCategory.Add(new ResourceCategory { Name = "Web Service", Active = t
 
 ctx.SaveChanges();
 
+Console.WriteLine(" The resource categories were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating resources...");
@@ -119,6 +125,7 @@ ctx.Resource.Add(new Resource
 
 ctx.SaveChanges();
 
+Console.WriteLine(" The watchers were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating environments...");
@@ -130,6 +137,7 @@ ctx.Environment.Add(new Environment { Name = "Production", Active = true, Creati
 
 ctx.SaveChanges();
 
+Console.WriteLine(" The environments were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating resource watches...");
@@ -156,6 +164,7 @@ ctx.ResourceWatch.Add(new ResourceWatch
 
 ctx.SaveChanges();
 
+Console.WriteLine("The resource watches were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating resource watches parameters...");
@@ -181,3 +190,5 @@ ctx.ResourceWatchParameter.Add(new ResourceWatchParameter
 });
 
 ctx.SaveChanges();
+
+Console.WriteLine(" The resource watches parameters were created successfully");
