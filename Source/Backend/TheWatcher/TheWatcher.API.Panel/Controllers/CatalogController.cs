@@ -81,6 +81,8 @@ namespace TheWatcher.API.Panel.Controllers
                 .Include(e => e.ResourceCategoryFk.WatcherFk)
                 .Include(e => e.ResourceWatchList)
                     .ThenInclude(e => e.EnvironmentFk)
+                .Include(e => e.ResourceWatchList)
+                    .ThenInclude(e => e.ResourceWatchParameterList)
                 .FirstOrDefaultAsync(item => item.Id == id);
 
             if (entity == null)
@@ -94,7 +96,16 @@ namespace TheWatcher.API.Panel.Controllers
                 ResourceCategory = entity.ResourceCategoryFk.Name,
                 WatcherId = entity.ResourceCategoryFk.WatcherId,
                 Watcher = entity.ResourceCategoryFk.WatcherFk.Name,
-                Watches = entity.ResourceWatchList.Select(item => new { item.Id, item.EnvironmentId, Environment = item.EnvironmentFk.Name, item.Successful, item.WatchCount, item.LastWatch, item.Interval }).ToList()
+                Watches = entity.ResourceWatchList.Select(watch => new
+                {
+                    watch.Id,
+                    watch.EnvironmentId,
+                    Environment = watch.EnvironmentFk.Name,
+                    watch.Successful,
+                    watch.WatchCount,
+                    watch.LastWatch, watch.Interval,
+                    Parameters = watch.ResourceWatchParameterList.Select(parameter => new { parameter.Parameter, parameter.Value, parameter.Description }).ToList()
+                }).ToList()
             };
 
             return Ok(value);
