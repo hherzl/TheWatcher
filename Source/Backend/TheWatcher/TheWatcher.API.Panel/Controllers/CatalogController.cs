@@ -64,8 +64,8 @@ namespace TheWatcher.API.Panel.Controllers
                 {
                     Id = resource.Id,
                     Name = resource.Name,
-                    CategoryId = resource.ResourceCategoryId,
-                    Category = category.Name
+                    ResourceCategoryId = resource.ResourceCategoryId,
+                    ResourceCategory = category.Name
                 };
 
             var list = await resources.ToListAsync();
@@ -109,6 +109,30 @@ namespace TheWatcher.API.Panel.Controllers
             };
 
             return Ok(value);
+        }
+
+        [HttpGet("monitor")]
+        public async Task<IActionResult> GetMonitorAsync()
+        {
+            var resourceWatches =
+                from resourceWatch in _dbContext.ResourceWatch
+                join resource in _dbContext.Resource on resourceWatch.ResourceId equals resource.Id
+                join environment in _dbContext.Environment on resourceWatch.EnvironmentId equals environment.Id
+                select new
+                {
+                    ResourceId = resourceWatch.ResourceId,
+                    Resource = resource.Name,
+                    EnvironmentId = resourceWatch.EnvironmentId,
+                    Environment = environment.Name,
+                    Successful = resourceWatch.Successful,
+                    WatchCount = resourceWatch.WatchCount,
+                    LastWatch = resourceWatch.LastWatch,
+                    Interval = resourceWatch.Interval
+                };
+
+            var list = await resourceWatches.ToListAsync();
+
+            return Ok(list);
         }
     }
 }

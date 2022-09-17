@@ -108,16 +108,18 @@ Console.WriteLine("Creating resources...");
 ctx.Resource.Add(new Resource
 {
     Name = "The Watcher Sample for Default Gateway",
-    ResourceCategoryId = 1,
+    ResourceCategoryId = 3,
     Active = true,
     CreationUser = audit.CreationUser,
     CreationDateTime = DateTime.Now
 });
 
+ctx.SaveChanges();
+
 ctx.Resource.Add(new Resource
 {
     Name = "The Watcher Sample SQL Server Database",
-    ResourceCategoryId = 3,
+    ResourceCategoryId = 1,
     Active = true,
     CreationUser = audit.CreationUser,
     CreationDateTime = DateTime.Now
@@ -131,8 +133,17 @@ Console.WriteLine();
 Console.WriteLine("Creating environments...");
 
 ctx.Environment.Add(new Environment { Name = "Development", Active = true, CreationUser = audit.CreationUser, CreationDateTime = DateTime.Now });
+
+ctx.SaveChanges();
+
 ctx.Environment.Add(new Environment { Name = "QA", Active = true, CreationUser = audit.CreationUser, CreationDateTime = DateTime.Now });
+
+ctx.SaveChanges();
+
 ctx.Environment.Add(new Environment { Name = "Staging", Active = true, CreationUser = audit.CreationUser, CreationDateTime = DateTime.Now });
+
+ctx.SaveChanges();
+
 ctx.Environment.Add(new Environment { Name = "Production", Active = true, CreationUser = audit.CreationUser, CreationDateTime = DateTime.Now });
 
 ctx.SaveChanges();
@@ -151,6 +162,8 @@ ctx.ResourceWatch.Add(new ResourceWatch
     CreationUser = audit.CreationUser,
     CreationDateTime = DateTime.Now
 });
+
+ctx.SaveChanges();
 
 ctx.ResourceWatch.Add(new ResourceWatch
 {
@@ -178,6 +191,8 @@ ctx.ResourceWatchParameter.Add(new ResourceWatchParameter
     CreationUser = audit.CreationUser,
     CreationDateTime = DateTime.Now
 });
+
+ctx.SaveChanges();
 
 ctx.ResourceWatchParameter.Add(new ResourceWatchParameter
 {
