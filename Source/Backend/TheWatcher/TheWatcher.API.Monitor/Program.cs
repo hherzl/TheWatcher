@@ -1,20 +1,19 @@
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
-using TheWatcher.Domain.Core;
+using TheWatcher.API.Monitor;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+builder.Services.AddHostedService<MonitorService>();
+
+builder.Host.UseSerilog();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")));
 
 var app = builder.Build();
 
@@ -35,7 +34,7 @@ Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .Enrich.FromLogContext()
     .WriteTo.Console()
-    .WriteTo.File("TheWatcher.API.Panel.log")
+    .WriteTo.File("TheWatcher.API.Monitor.log")
     .CreateLogger()
     ;
 
