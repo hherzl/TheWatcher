@@ -24,7 +24,12 @@ namespace TheWatcher.Domain.Core.Configurations
 				.IsRequired()
 				;
 
-			builder
+            builder
+                .Property(p => p.Guid)
+                .IsRequired()
+                ;
+
+            builder
 				.Property(p => p.AssemblyQualifiedName)
 				.HasColumnType("nvarchar")
 				.HasMaxLength(511)
@@ -87,6 +92,11 @@ namespace TheWatcher.Domain.Core.Configurations
                 ;
 
             // Add configuration for uniques
+
+            builder
+                .HasIndex(p => p.Guid)
+                .IsUnique()
+                .HasDatabaseName("UQ_dbo_Watcher_Guid");
 
             builder
 				.HasIndex(p => p.AssemblyQualifiedName)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheWatcher.Domain.Core;
 using TheWatcher.Domain.Core.Models;
+using TheWatcher.Library.Core.Contracts;
 using TheWatcher.Watcher.PingWatcher;
 using TheWatcher.Watcher.SqlServer;
 using Environment = TheWatcher.Domain.Core.Models.Environment;
@@ -24,6 +25,7 @@ Console.WriteLine("Creating watchers...");
 
 ctx.Watcher.Add(new Watcher
 {
+    Guid = new PingWatcher().Guid,
     AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName,
     Name = typeof(PingWatcher).FullName,
     Description = "Watcher for Ping requests",
@@ -36,6 +38,7 @@ ctx.SaveChanges();
 
 ctx.Watcher.Add(new Watcher
 {
+    Guid = new SqlServerDatabaseWatcher().Guid,
     AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
     Name = typeof(SqlServerDatabaseWatcher).FullName,
     Description = "Watcher for SQL Server databases",

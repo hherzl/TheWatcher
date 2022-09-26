@@ -33,6 +33,7 @@ go
 create table [dbo].[Watcher]
 (
 	[Id] smallint not null identity(1, 1),
+	[Guid] uniqueidentifier not null,
 	[AssemblyQualifiedName] nvarchar(511) not null,
 	[Name] nvarchar(100) not null,
 	[Description] nvarchar(max) null,

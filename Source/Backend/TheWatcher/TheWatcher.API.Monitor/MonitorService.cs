@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.Features;
-
-namespace TheWatcher.API.Monitor
+﻿namespace TheWatcher.API.Monitor
 {
     public class MonitorService : IHostedService, IDisposable
     {

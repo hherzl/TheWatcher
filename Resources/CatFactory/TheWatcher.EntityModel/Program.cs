@@ -15,6 +15,7 @@ var watcher = db
     .DefineEntity(new
     {
         Id = (short)0,
+        Guid = Guid.Empty,
         AssemblyQualifiedName = "",
         Name = "",
         Description = ""
@@ -25,6 +26,7 @@ var watcher = db
     .SetColumnFor(e => e.Description, nullable: true)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
+    .AddUnique(e => e.Guid)
     .AddUnique(e => e.AssemblyQualifiedName)
     .AddUnique(e => e.Name)
     ;

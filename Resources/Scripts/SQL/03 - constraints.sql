@@ -2,6 +2,10 @@ alter table [dbo].[Watcher] add constraint [PK_dbo_Watcher]
 	primary key ([Id])
 go
 
+alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_Guid]
+	unique ([Guid])
+go
+
 alter table [dbo].[Watcher] add constraint [UQ_dbo_Watcher_AssemblyQualifiedName]
 	unique ([AssemblyQualifiedName])
 go

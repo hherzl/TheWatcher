@@ -45,8 +45,9 @@ namespace TheWatcher.API.Panel.Controllers
             var value = new
             {
                 Id = entity.Id,
-                Name = entity.Name,
+                Guid = entity.Guid,
                 AssemblyQualifiedName = entity.AssemblyQualifiedName,
+                Name = entity.Name,
                 Description = entity.Description,
                 Parameters = entity.WatcherParameterList.Select(item => new { item.Id, item.IsDefault, item.Parameter, item.Value, item.Description }).ToList()
             };

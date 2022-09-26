@@ -16,7 +16,9 @@ namespace TheWatcher.Domain.Core.Models
 
 		public short? Id { get; set; }
 
-		public string? AssemblyQualifiedName { get; set; }
+		public Guid? Guid { get; set; }
+
+        public string? AssemblyQualifiedName { get; set; }
 
 		public string? Name { get; set; }
 
