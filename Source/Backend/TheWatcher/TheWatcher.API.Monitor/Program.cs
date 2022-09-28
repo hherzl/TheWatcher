@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
-using TheWatcher.API.Monitor;
+using TheWatcher.API.Monitor.Services;
+using TheWatcher.Domain.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Host.UseSerilog();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")));
 
 var app = builder.Build();
 

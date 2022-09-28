@@ -5,7 +5,10 @@
         public const string IPAddress = "IPAddress";
         public const string ConnectionString = "ConnectionString";
 
-        public WatcherParameter() { }
+        public WatcherParameter()
+        {
+            Values = new Dictionary<string, string>();
+        }
 
         public WatcherParameter(IDictionary<string, string>? dictionary)
         {

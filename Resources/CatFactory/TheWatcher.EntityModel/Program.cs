@@ -11,6 +11,9 @@ var db = SqlServerDatabase.CreateWithDefaults("TheWatcher");
 db.AddDefaultTypeMapFor(typeof(string), "nvarchar");
 db.AddDefaultTypeMapFor(typeof(DateTime), "datetime");
 
+// todo: add full name for class
+// todo: add version?
+
 var watcher = db
     .DefineEntity(new
     {
