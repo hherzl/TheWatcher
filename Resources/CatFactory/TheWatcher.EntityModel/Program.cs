@@ -11,27 +11,29 @@ var db = SqlServerDatabase.CreateWithDefaults("TheWatcher");
 db.AddDefaultTypeMapFor(typeof(string), "nvarchar");
 db.AddDefaultTypeMapFor(typeof(DateTime), "datetime");
 
-// todo: add full name for class
 // todo: add version?
 
 var watcher = db
     .DefineEntity(new
     {
         Id = (short)0,
-        Guid = Guid.Empty,
-        AssemblyQualifiedName = "",
         Name = "",
-        Description = ""
+        Description = "",
+        AssemblyQualifiedName = "",
+        ClassName = "",
+        Guid = Guid.Empty
     })
     .SetNaming("Watcher")
-    .SetColumnFor(e => e.AssemblyQualifiedName, length: 511)
     .SetColumnFor(e => e.Name, length: 100)
     .SetColumnFor(e => e.Description, nullable: true)
+    .SetColumnFor(e => e.AssemblyQualifiedName, length: 511)
+    .SetColumnFor(e => e.ClassName, length: 511)
     .SetIdentity(e => e.Id)
     .SetPrimaryKey(e => e.Id)
-    .AddUnique(e => e.Guid)
-    .AddUnique(e => e.AssemblyQualifiedName)
     .AddUnique(e => e.Name)
+    .AddUnique(e => e.AssemblyQualifiedName)
+    .AddUnique(e => e.ClassName)
+    .AddUnique(e => e.Guid)
     ;
 
 var watcherParameter = db

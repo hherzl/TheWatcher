@@ -5,8 +5,6 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Panel", "TheWatcher.API.Panel\TheWatcher.API.Panel.csproj", "{44CC2BCC-7717-42B5-B2A3-8697060201D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Service.Monitor", "TheWatcher.Service.Monitor\TheWatcher.Service.Monitor.csproj", "{D15C907D-6737-4C33-8D07-CE5F1507E892}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Library.Core", "TheWatcher.Library.Core\TheWatcher.Library.Core.csproj", "{DBE74243-9933-4DB5-974B-567312DC632A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watcher.SqlServer", "TheWatcher.Watcher.SqlServer\TheWatcher.Watcher.SqlServer.csproj", "{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}"
@@ -19,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Seed.Dbo", "TheW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watcher.PingWatcher", "TheWatcher.Watcher.PingWatcher\TheWatcher.Watcher.PingWatcher.csproj", "{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.API.Monitor", "TheWatcher.API.Monitor\TheWatcher.API.Monitor.csproj", "{D49B1B9F-A942-486B-986F-7AD4F232657B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Monitor", "TheWatcher.API.Monitor\TheWatcher.API.Monitor.csproj", "{D49B1B9F-A942-486B-986F-7AD4F232657B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.API.Common", "TheWatcher.API.Common\TheWatcher.API.Common.csproj", "{9E683F82-E8F3-4EA8-8578-4648132D286C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CC2BCC-7717-42B5-B2A3-8697060201D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D15C907D-6737-4C33-8D07-CE5F1507E892}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

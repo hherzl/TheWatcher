@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheWatcher.API.Common\TheWatcher.API.Common.csproj" />
-    <ProjectReference Include="..\TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

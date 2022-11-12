@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TheWatcher.API.Common.Models;
+using TheWatcher.API.Panel.Models;
 using TheWatcher.Domain.Core;
 
 namespace TheWatcher.API.Panel.Controllers
@@ -20,18 +22,20 @@ namespace TheWatcher.API.Panel.Controllers
         [HttpGet("watcher")]
         public async Task<IActionResult> GetWatchersAsync()
         {
+            var response = new ListResponse<WatcherItemModel>();
+
             var watchers =
                 from watcher in _dbContext.Watcher
-                select new
+                select new WatcherItemModel
                 {
                     Id = watcher.Id,
                     Name = watcher.Name,
                     Description = watcher.Description
                 };
 
-            var list = await watchers.ToListAsync();
+            response.Model = await watchers.ToListAsync();
 
-            return Ok(list);
+            return response.ToOkResult();
         }
 
         [HttpGet("watcher/{id}")]

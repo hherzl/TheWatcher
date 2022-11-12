@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheWatcher.Domain.Core;
 using TheWatcher.Domain.Core.Models;
-using TheWatcher.Library.Core.Contracts;
 using TheWatcher.Watcher.PingWatcher;
 using TheWatcher.Watcher.SqlServer;
 using Environment = TheWatcher.Domain.Core.Models.Environment;

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TheWatcher.API.Common\TheWatcher.API.Common.csproj" />
     <ProjectReference Include="..\TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj" />
     <ProjectReference Include="..\TheWatcher.Library.Core\TheWatcher.Library.Core.csproj" />
     <ProjectReference Include="..\TheWatcher.Watcher.PingWatcher\TheWatcher.Watcher.PingWatcher.csproj" />
