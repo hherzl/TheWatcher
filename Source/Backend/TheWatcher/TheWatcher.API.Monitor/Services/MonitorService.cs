@@ -90,7 +90,7 @@ namespace TheWatcher.API.Monitor.Services
 
                 var watcherType = Type.GetType(cast.AssemblyQualifiedName, true);
 
-                var watcherInstance = Activator.CreateInstance(watcherType) as IWatcher;
+                var watcherInstance = (IWatcher)Activator.CreateInstance(watcherType);
 
                 await Task.Factory.StartNew(async () =>
                 {
