@@ -1,8 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using TheWatcher.Library.Core;
 using TheWatcher.Library.Core.Contracts;
 
-namespace TheWatcher.Watcher.SqlServer
+namespace TheWatcher.Watchers.SqlServer
 {
     public class SqlServerDatabaseWatcher : IWatcher
     {

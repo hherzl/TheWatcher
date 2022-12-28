@@ -7,19 +7,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Panel", "The
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Library.Core", "TheWatcher.Library.Core\TheWatcher.Library.Core.csproj", "{DBE74243-9933-4DB5-974B-567312DC632A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watcher.SqlServer", "TheWatcher.Watcher.SqlServer\TheWatcher.Watcher.SqlServer.csproj", "{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Core", "TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj", "{3758C810-F949-452F-BFB4-6F7F052AD729}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Domain.Common", "TheWatcher.Domain.Common\TheWatcher.Domain.Common.csproj", "{3FF55F50-C8D6-4B6C-8EF3-318DC0AA7342}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Seed.Dbo", "TheWatcher.Seed.Dbo\TheWatcher.Seed.Dbo.csproj", "{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watcher.PingWatcher", "TheWatcher.Watcher.PingWatcher\TheWatcher.Watcher.PingWatcher.csproj", "{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Monitor", "TheWatcher.API.Monitor\TheWatcher.API.Monitor.csproj", "{D49B1B9F-A942-486B-986F-7AD4F232657B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.API.Common", "TheWatcher.API.Common\TheWatcher.API.Common.csproj", "{9E683F82-E8F3-4EA8-8578-4648132D286C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.API.Common", "TheWatcher.API.Common\TheWatcher.API.Common.csproj", "{9E683F82-E8F3-4EA8-8578-4648132D286C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Watchers", "Watchers", "{0B65BF35-BA72-414E-B710-FC83187E0605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watchers.PingWatcher", "Watchers\TheWatcher.Watchers.PingWatcher\TheWatcher.Watchers.PingWatcher.csproj", "{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watchers.SqlServer", "Watchers\TheWatcher.Watchers.SqlServer\TheWatcher.Watchers.SqlServer.csproj", "{11169F75-5CF6-40D8-9C46-6096DF1F92A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +37,6 @@ Global
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBE74243-9933-4DB5-974B-567312DC632A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C313E84E-0E28-4E47-BC9B-1D3DFACF357A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3758C810-F949-452F-BFB4-6F7F052AD729}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,10 +49,6 @@ Global
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407B485A-7E6B-4DF7-AD42-B1B6F28C71AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5280D326-BB35-41FE-9E2D-B3CD38FCBA08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49B1B9F-A942-486B-986F-7AD4F232657B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,9 +57,21 @@ Global
 		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E683F82-E8F3-4EA8-8578-4648132D286C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11169F75-5CF6-40D8-9C46-6096DF1F92A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11169F75-5CF6-40D8-9C46-6096DF1F92A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11169F75-5CF6-40D8-9C46-6096DF1F92A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11169F75-5CF6-40D8-9C46-6096DF1F92A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC3591AE-B2D9-43E6-8D60-3DEDF7B4A73D} = {0B65BF35-BA72-414E-B710-FC83187E0605}
+		{11169F75-5CF6-40D8-9C46-6096DF1F92A7} = {0B65BF35-BA72-414E-B710-FC83187E0605}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09D2FE22-C83D-44AE-85D6-DD48782926CA}

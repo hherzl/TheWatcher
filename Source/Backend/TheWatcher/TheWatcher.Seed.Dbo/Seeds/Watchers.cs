@@ -1,5 +1,5 @@
-﻿using TheWatcher.Watcher.PingWatcher;
-using TheWatcher.Watcher.SqlServer;
+﻿using TheWatcher.Watchers.PingWatcher;
+using TheWatcher.Watchers.SqlServer;
 using Foo = TheWatcher.Domain.Core.Models.Watcher;
 
 namespace TheWatcher.Seed.Dbo.Seeds
