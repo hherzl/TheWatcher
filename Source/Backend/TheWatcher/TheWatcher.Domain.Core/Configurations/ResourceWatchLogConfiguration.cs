@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TheWatcher.Domain.Core.Configurations.Common;
 using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-    internal class ResourceWatchLogConfiguration : IEntityTypeConfiguration<ResourceWatchLog>
+    internal class ResourceWatchLogConfiguration : EntityConfiguration<ResourceWatchLog>
     {
-        public void Configure(EntityTypeBuilder<ResourceWatchLog> builder)
+        public override void Configure(EntityTypeBuilder<ResourceWatchLog> builder)
         {
+            base.Configure(builder);
+
             // Set configuration for entity
             builder.ToTable("ResourceWatchLog", "dbo");
 
@@ -61,56 +64,14 @@ namespace TheWatcher.Domain.Core.Configurations
                 .HasColumnType("nvarchar(max)")
                 ;
 
-            builder
-                .Property(p => p.Active)
-                .HasColumnType("bit")
-                .IsRequired()
-                ;
-
-            builder
-                .Property(p => p.CreationUser)
-                .HasColumnType("nvarchar")
-                .HasMaxLength(50)
-                .IsRequired()
-                ;
-
-            builder
-                .Property(p => p.CreationDateTime)
-                .HasColumnType("datetime")
-                .IsRequired()
-                ;
-
-            builder
-                .Property(p => p.LastUpdateUser)
-                .HasColumnType("nvarchar")
-                .HasMaxLength(50)
-                ;
-
-            builder
-                .Property(p => p.LastUpdateDateTime)
-                .HasColumnType("datetime")
-                ;
-
-            builder
-                .Property(p => p.Version)
-                .HasColumnType("rowversion")
-                ;
-
-            // Add configuration for row version
-
-            builder
-                .Property(p => p.Version)
-                .ValueGeneratedOnAddOrUpdate()
-                .IsRowVersion()
-                ;
-
             // Add configuration for foreign keys
 
             builder
                 .HasOne(p => p.ResourceWatchFk)
                 .WithMany(b => b.ResourceWatchLogList)
                 .HasForeignKey(p => p.ResourceWatchId)
-                .HasConstraintName("FK_dbo_ResourceWatchLog_ResourceWatchId_dbo_ResourceWatch");
+                .HasConstraintName("FK_dbo_ResourceWatchLog_ResourceWatchId_dbo_ResourceWatch")
+                ;
         }
     }
 }

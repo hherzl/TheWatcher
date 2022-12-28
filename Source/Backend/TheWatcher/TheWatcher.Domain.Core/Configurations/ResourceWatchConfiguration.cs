@@ -1,15 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TheWatcher.Domain.Core.Configurations.Common;
 using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class ResourceWatchConfiguration : IEntityTypeConfiguration<ResourceWatch>
+	internal class ResourceWatchConfiguration : EntityConfiguration<ResourceWatch>
 	{
-		public void Configure(EntityTypeBuilder<ResourceWatch> builder)
+		public override void Configure(EntityTypeBuilder<ResourceWatch> builder)
 		{
-			// Set configuration for entity
-			builder.ToTable("ResourceWatch", "dbo");
+            base.Configure(builder);
+
+            // Set configuration for entity
+            builder.ToTable("ResourceWatch", "dbo");
 
 			// Set key for entity
 			builder.HasKey(p => p.Id);
@@ -47,55 +50,13 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("nvarchar(max)")
 				;
 
-			builder
-				.Property(p => p.Active)
-				.HasColumnType("bit")
-				.IsRequired()
-				;
+			// Add configuration for uniques
 
 			builder
-				.Property(p => p.CreationUser)
-				.HasColumnType("nvarchar")
-				.HasMaxLength(50)
-				.IsRequired()
-				;
-
-			builder
-				.Property(p => p.CreationDateTime)
-				.HasColumnType("datetime")
-				.IsRequired()
-				;
-
-			builder
-				.Property(p => p.LastUpdateUser)
-				.HasColumnType("nvarchar")
-				.HasMaxLength(50)
-				;
-
-			builder
-				.Property(p => p.LastUpdateDateTime)
-				.HasColumnType("datetime")
-				;
-
-			builder
-				.Property(p => p.Version)
-				.HasColumnType("rowversion")
-				;
-
-            // Add configuration for row version
-
-            builder
-                .Property(p => p.Version)
-                .ValueGeneratedOnAddOrUpdate()
-                .IsRowVersion()
-                ;
-
-            // Add configuration for uniques
-
-            builder
 				.HasIndex(p => new { p.ResourceId, p.EnvironmentId })
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_ResourceWatch_ResourceId_EnvironmentId");
+				.HasDatabaseName("UQ_dbo_ResourceWatch_ResourceId_EnvironmentId")
+				;
 
 			// Add configuration for foreign keys
 
@@ -103,13 +64,15 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasOne(p => p.ResourceFk)
 				.WithMany(b => b.ResourceWatchList)
 				.HasForeignKey(p => p.ResourceId)
-				.HasConstraintName("FK_dbo_ResourceWatch_ResourceId_dbo_Resource");
+				.HasConstraintName("FK_dbo_ResourceWatch_ResourceId_dbo_Resource")
+				;
 
 			builder
 				.HasOne(p => p.EnvironmentFk)
 				.WithMany(b => b.ResourceWatchList)
 				.HasForeignKey(p => p.EnvironmentId)
-				.HasConstraintName("FK_dbo_ResourceWatch_EnvironmentId_dbo_Environment");
+				.HasConstraintName("FK_dbo_ResourceWatch_EnvironmentId_dbo_Environment")
+				;
 		}
 	}
 }

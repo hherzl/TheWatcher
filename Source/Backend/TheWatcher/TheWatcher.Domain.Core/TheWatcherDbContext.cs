@@ -1,5 +1,5 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using TheWatcher.Domain.Core.Configurations;
 using TheWatcher.Domain.Core.Models;
 using Environment = TheWatcher.Domain.Core.Models.Environment;
 
@@ -30,19 +30,7 @@ namespace TheWatcher.Domain.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Apply all configurations for tables
-
-            // Schema 'dbo'
-            modelBuilder
-                .ApplyConfiguration(new WatcherConfiguration())
-                .ApplyConfiguration(new WatcherParameterConfiguration())
-                .ApplyConfiguration(new ResourceCategoryConfiguration())
-                .ApplyConfiguration(new ResourceConfiguration())
-                .ApplyConfiguration(new EnvironmentConfiguration())
-                .ApplyConfiguration(new ResourceWatchConfiguration())
-                .ApplyConfiguration(new ResourceWatchParameterConfiguration())
-                .ApplyConfiguration(new ResourceWatchLogConfiguration())
-            ;
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(modelBuilder);
         }

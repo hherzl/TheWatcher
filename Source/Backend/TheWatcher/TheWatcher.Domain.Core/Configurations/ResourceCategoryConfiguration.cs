@@ -1,13 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TheWatcher.Domain.Core.Configurations.Common;
 using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class ResourceCategoryConfiguration : IEntityTypeConfiguration<ResourceCategory>
+	internal class ResourceCategoryConfiguration : EntityConfiguration<ResourceCategory>
 	{
-		public void Configure(EntityTypeBuilder<ResourceCategory> builder)
+		public override void Configure(EntityTypeBuilder<ResourceCategory> builder)
 		{
+			base.Configure(builder);
+
 			// Set configuration for entity
 			builder.ToTable("ResourceCategory", "dbo");
 
@@ -36,55 +39,13 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasColumnType("smallint")
 				;
 
-			builder
-				.Property(p => p.Active)
-				.HasColumnType("bit")
-				.IsRequired()
-				;
+			// Add configuration for uniques
 
 			builder
-				.Property(p => p.CreationUser)
-				.HasColumnType("nvarchar")
-				.HasMaxLength(50)
-				.IsRequired()
-				;
-
-			builder
-				.Property(p => p.CreationDateTime)
-				.HasColumnType("datetime")
-				.IsRequired()
-				;
-
-			builder
-				.Property(p => p.LastUpdateUser)
-				.HasColumnType("nvarchar")
-				.HasMaxLength(50)
-				;
-
-			builder
-				.Property(p => p.LastUpdateDateTime)
-				.HasColumnType("datetime")
-				;
-
-			builder
-				.Property(p => p.Version)
-				.HasColumnType("rowversion")
-				;
-
-            // Add configuration for row version
-
-            builder
-                .Property(p => p.Version)
-                .ValueGeneratedOnAddOrUpdate()
-                .IsRowVersion()
-                ;
-
-            // Add configuration for uniques
-
-            builder
 				.HasIndex(p => p.Name)
 				.IsUnique()
-				.HasDatabaseName("UQ_dbo_ResourceCategory_Name");
+				.HasDatabaseName("UQ_dbo_ResourceCategory_Name")
+				;
 
 			// Add configuration for foreign keys
 
@@ -92,7 +53,8 @@ namespace TheWatcher.Domain.Core.Configurations
 				.HasOne(p => p.WatcherFk)
 				.WithMany(b => b.ResourceCategoryList)
 				.HasForeignKey(p => p.WatcherId)
-				.HasConstraintName("FK_dbo_ResourceCategory_WatcherId_dbo_Watcher");
+				.HasConstraintName("FK_dbo_ResourceCategory_WatcherId_dbo_Watcher")
+				;
 		}
 	}
 }
