@@ -14,11 +14,11 @@ namespace TheWatcher.Watchers.PingWatcher
         public string ActionName
             => "Ping";
 
-        public async Task<WatcherResult> WatchAsync(WatcherParameter parameter)
+        public async Task<WatcherResult> WatchAsync(WatcherParam parameter)
         {
             var ping = new Ping();
 
-            var reply = await ping.SendPingAsync(parameter.Values[WatcherParameter.IPAddress]);
+            var reply = await ping.SendPingAsync(parameter.Values[WatcherParam.IPAddress]);
 
             return new WatcherResult
             {

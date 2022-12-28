@@ -14,14 +14,14 @@ namespace TheWatcher.Watchers.SqlServer
         public string ActionName
             => "OpenDatabaseConnection";
 
-        public async Task<WatcherResult> WatchAsync(WatcherParameter parameter)
+        public async Task<WatcherResult> WatchAsync(WatcherParam parameter)
         {
             if (parameter == null)
                 throw new ArgumentNullException(nameof(parameter));
 
             var result = new WatcherResult();
 
-            using var cnn = new SqlConnection(parameter.Values[WatcherParameter.ConnectionString]);
+            using var cnn = new SqlConnection(parameter.Values[WatcherParam.ConnectionString]);
 
             try
             {

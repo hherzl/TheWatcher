@@ -1,6 +1,5 @@
 ﻿using TheWatcher.API.Monitor.Services.Models;
 using TheWatcher.Domain.Core;
-using TheWatcher.Library.Core;
 using TheWatcher.Library.Core.Contracts;
 
 namespace TheWatcher.API.Monitor.Services
@@ -27,36 +26,26 @@ namespace TheWatcher.API.Monitor.Services
 
             using var ctx = scope.ServiceProvider.GetService<TheWatcherDbContext>();
 
-            var resourcesWatches =
-                from resourceWatch in ctx.ResourceWatch
-                join resource in ctx.Resource on resourceWatch.ResourceId equals resource.Id
-                join resourceCategory in ctx.ResourceCategory on resource.ResourceCategoryId equals resourceCategory.Id
-                join watcher in ctx.Watcher on resourceCategory.WatcherId equals watcher.Id
-                join environment in ctx.Environment on resourceWatch.EnvironmentId equals environment.Id
-                select new ResourceWatchItemModel
-                {
-                    Id = resourceWatch.Id,
-                    Resource = resource.Name,
-                    ResourceCategory = resourceCategory.Name,
-                    AssemblyQualifiedName = watcher.AssemblyQualifiedName,
-                    Interval = resourceWatch.Interval,
-                    Environment = environment.Name
-                };
-
-            var list = resourcesWatches.ToList();
-
-            foreach (var resourceWatch in list)
+            var list = ctx.GetResourceWatchItems().Select(item => new ResourceWatchItemModel
             {
-                resourceWatch.Parameter = new WatcherParameter();
+                Id = item.Id,
+                Resource = item.Resource,
+                ResourceCategory = item.ResourceCategory,
+                AssemblyQualifiedName = item.AssemblyQualifiedName,
+                Environment = item.Environment,
+                Interval = item.Interval
+            }).ToList();
 
-                var parameters = ctx.ResourceWatchParameter.Where(x => x.ResourceWatchId == resourceWatch.Id).ToList();
+            foreach (var resourceWatchItem in list)
+            {
+                var parameters = ctx.ResourceWatchParameter.Where(x => x.ResourceWatchId == resourceWatchItem.Id).ToList();
 
                 foreach (var param in parameters)
                 {
-                    resourceWatch.Parameter.Values.Add(param.Parameter, param.Value);
+                    resourceWatchItem.Param.Values.Add(param.Parameter, param.Value);
                 }
 
-                _timers.Add(new Timer(Monitoring, resourceWatch, TimeSpan.Zero, TimeSpan.FromMilliseconds((double)resourceWatch.Interval)));
+                _timers.Add(new Timer(Monitoring, resourceWatchItem, TimeSpan.Zero, TimeSpan.FromMilliseconds((double)resourceWatchItem.Interval)));
             }
 
             return Task.CompletedTask;
@@ -94,7 +83,7 @@ namespace TheWatcher.API.Monitor.Services
 
                 await Task.Factory.StartNew(async () =>
                 {
-                    var result = await watcherInstance.WatchAsync(cast.Parameter);
+                    var result = await watcherInstance.WatchAsync(cast.Param);
 
                     _logger.LogInformation($"The watch for '{cast.Resource}' was '{(result.Successful ? "Successfully" : "Failed")}'");
 

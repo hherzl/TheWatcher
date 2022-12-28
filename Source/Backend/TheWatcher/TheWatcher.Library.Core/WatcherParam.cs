@@ -1,16 +1,16 @@
 ﻿namespace TheWatcher.Library.Core
 {
-    public class WatcherParameter
+    public class WatcherParam
     {
         public const string IPAddress = "IPAddress";
         public const string ConnectionString = "ConnectionString";
 
-        public WatcherParameter()
+        public WatcherParam()
         {
             Values = new Dictionary<string, string>();
         }
 
-        public WatcherParameter(IDictionary<string, string>? dictionary)
+        public WatcherParam(IDictionary<string, string>? dictionary)
         {
             Values = dictionary;
         }

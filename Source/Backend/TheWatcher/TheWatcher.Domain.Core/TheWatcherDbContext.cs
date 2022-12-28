@@ -13,19 +13,12 @@ namespace TheWatcher.Domain.Core
         }
 
         public DbSet<Watcher> Watcher { get; set; }
-
         public DbSet<WatcherParameter> WatcherParameter { get; set; }
-
         public DbSet<ResourceCategory> ResourceCategory { get; set; }
-
         public DbSet<Resource> Resource { get; set; }
-
         public DbSet<Environment> Environment { get; set; }
-
         public DbSet<ResourceWatch> ResourceWatch { get; set; }
-
         public DbSet<ResourceWatchParameter> ResourceWatchParameter { get; set; }
-
         public DbSet<ResourceWatchLog> ResourceWatchLog { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
