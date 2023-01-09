@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CatFactory.EntityFrameworkCore" Version="1.0.0-beta-sun-build54" />
-    <PackageReference Include="CatFactory.SqlServer" Version="1.0.0-beta-sun-build62" />
+    <PackageReference Include="CatFactory.EntityFrameworkCore" Version="1.0.0-beta-sun-build55" />
+    <PackageReference Include="CatFactory.SqlServer" Version="1.0.0-beta-sun-build67" />
   </ItemGroup>
 
 </Project>

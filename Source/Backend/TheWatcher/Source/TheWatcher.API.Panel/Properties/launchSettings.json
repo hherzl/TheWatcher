@@ -1,20 +1,12 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:6101",
-      "sslPort": 6100
-    }
-  },
   "profiles": {
     "TheWatcher.API.Panel": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:6100;http://localhost:6101",
+      "applicationUrl": "https://localhost:13005;http://localhost:13006",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

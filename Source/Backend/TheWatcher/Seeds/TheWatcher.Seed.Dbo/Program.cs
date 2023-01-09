@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TheWatcher.Domain.Core;
+﻿using TheWatcher.Seed.Dbo;
 using TheWatcher.Seed.Dbo.Seeds;
-
-const string CnnStr = "Server=(local);Database=TheWatcher;Integrated Security=yes;TrustServerCertificate=true;";
-
-static TheWatcherDbContext GetTheWatcherDbContext()
-    => new TheWatcherDbContext(new DbContextOptionsBuilder<TheWatcherDbContext>().UseSqlServer(CnnStr).Options);
 
 Console.WriteLine("Seeding...");
 Console.WriteLine();
 
-using var ctx = GetTheWatcherDbContext();
+using var ctx = DbContextHelper.GetTheWatcherDbContext();
 
 var audit = new
 {

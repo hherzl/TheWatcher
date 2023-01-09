@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TheWatcher.Library.Core\TheWatcher.Library.Core.csproj" />
+    <ProjectReference Include="..\..\Source\TheWatcher.Library.Core\TheWatcher.Library.Core.csproj" />
   </ItemGroup>
 
 </Project>
