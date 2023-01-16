@@ -1,6 +1,6 @@
 ﻿using Env = TheWatcher.Domain.Core.Models.Environment;
 
-namespace TheWatcher.Seed.Dbo.Seeds
+namespace TheWatcher.Seed.Db.Seeds
 {
     internal class Environments
     {

@@ -1,5 +1,5 @@
-﻿using TheWatcher.Seed.Dbo;
-using TheWatcher.Seed.Dbo.Seeds;
+﻿using TheWatcher.Seed.Db.Helpers;
+using TheWatcher.Seed.Db.Seeds;
 
 Console.WriteLine("Seeding...");
 Console.WriteLine();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheWatcher.Domain.Core;
 
-namespace TheWatcher.Seed.Dbo
+namespace TheWatcher.Seed.Db.Helpers
 {
     internal static class DbContextHelper
     {

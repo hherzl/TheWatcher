@@ -1,6 +1,6 @@
 ﻿using TheWatcher.Domain.Core.Models;
 
-namespace TheWatcher.Seed.Dbo.Seeds
+namespace TheWatcher.Seed.Db.Seeds
 {
     internal class ResourceCategories
     {

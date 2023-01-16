@@ -3,7 +3,7 @@ using TheWatcher.Watchers.MongoDB;
 using TheWatcher.Watchers.PingWatcher;
 using TheWatcher.Watchers.SqlServer;
 
-namespace TheWatcher.Seed.Dbo.Seeds
+namespace TheWatcher.Seed.Db.Seeds
 {
     internal class Watchers
     {
