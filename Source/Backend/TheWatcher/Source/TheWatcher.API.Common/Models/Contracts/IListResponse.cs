@@ -1,4 +1,4 @@
-﻿namespace TheWatcher.API.Common.Models
+﻿namespace TheWatcher.API.Common.Models.Contracts
 {
     public interface IListResponse<TModel> : IResponse
     {

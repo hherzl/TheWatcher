@@ -1,11 +1,9 @@
-﻿namespace TheWatcher.API.Common.Models
+﻿using TheWatcher.API.Common.Models.Contracts;
+
+namespace TheWatcher.API.Common.Models
 {
-    public class ListResponse<TModel> : IListResponse<TModel>
+    public class ListResponse<TModel> : Response, IListResponse<TModel>
     {
-        public string? Message { get; set; }
-
-        public bool? Failed { get; set; }
-
         public IEnumerable<TModel> Model { get; set; }
     }
 }
