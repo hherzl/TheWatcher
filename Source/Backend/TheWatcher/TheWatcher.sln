@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seeds", "Seeds", "{600E952F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Seed.Dbo", "Seeds\TheWatcher.Seed.Dbo\TheWatcher.Seed.Dbo.csproj", "{A7F4B56E-423F-4A8C-A79B-E7DDF3A401F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watchers.MongoDB", "TheWatcher.Watchers.MongoDB\TheWatcher.Watchers.MongoDB.csproj", "{5EBC3C0C-AF80-4D61-B97B-FA606249B49A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{A7F4B56E-423F-4A8C-A79B-E7DDF3A401F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7F4B56E-423F-4A8C-A79B-E7DDF3A401F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7F4B56E-423F-4A8C-A79B-E7DDF3A401F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EBC3C0C-AF80-4D61-B97B-FA606249B49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBC3C0C-AF80-4D61-B97B-FA606249B49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBC3C0C-AF80-4D61-B97B-FA606249B49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBC3C0C-AF80-4D61-B97B-FA606249B49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{E049FF90-F1C2-4BCC-869D-456A21B05E78} = {E6A8F357-C5F2-414B-9814-3C00FC3183FD}
 		{BE2F5A9C-A3AF-41E9-A7E0-BFDAF2F4D707} = {E6A8F357-C5F2-414B-9814-3C00FC3183FD}
 		{A7F4B56E-423F-4A8C-A79B-E7DDF3A401F7} = {600E952F-2AC4-4B96-BD4A-7E046AF6B28D}
+		{5EBC3C0C-AF80-4D61-B97B-FA606249B49A} = {0B65BF35-BA72-414E-B710-FC83187E0605}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09D2FE22-C83D-44AE-85D6-DD48782926CA}

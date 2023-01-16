@@ -1,12 +1,12 @@
-﻿using System.Data.SqlClient;
+﻿using MongoDB.Driver;
 using TheWatcher.Library.Core;
 using TheWatcher.Library.Core.Contracts;
 
-namespace TheWatcher.Watchers.SqlServer
+namespace TheWatcher.Watchers.MongoDB
 {
-    public sealed class SqlServerDatabaseWatcher : IWatcher
+    public sealed class MongoDBWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("A1059C4E-1615-49EB-993D-274458DD212B");
+        private static readonly Guid ClassGuid = new("5F766F68-1554-4F9C-9098-61CA3BA5A0D2");
 
         public Guid Guid
             => ClassGuid;
@@ -21,11 +21,13 @@ namespace TheWatcher.Watchers.SqlServer
 
             var result = new WatcherResult();
 
-            using var cnn = new SqlConnection(parameter.Values[WatcherParam.ConnectionString]);
-
             try
             {
-                await cnn.OpenAsync();
+                var client = new MongoClient(parameter.Values[WatcherParam.ConnectionString]);
+
+                await client.StartSessionAsync();
+
+                var database = client.GetDatabase(parameter.Values[WatcherParam.DatabaseName]);
 
                 result.Successful = true;
             }

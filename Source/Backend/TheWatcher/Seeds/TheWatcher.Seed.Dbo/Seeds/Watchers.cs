@@ -1,29 +1,41 @@
-﻿using TheWatcher.Watchers.PingWatcher;
+﻿using TheWatcher.Domain.Core.Models;
+using TheWatcher.Watchers.MongoDB;
+using TheWatcher.Watchers.PingWatcher;
 using TheWatcher.Watchers.SqlServer;
-using Foo = TheWatcher.Domain.Core.Models.Watcher;
 
 namespace TheWatcher.Seed.Dbo.Seeds
 {
     internal class Watchers
     {
-        public static IEnumerable<Foo> Items
+        public static IEnumerable<Watcher> Items
         {
             get
             {
-                yield return new Foo
+                yield return new Watcher
                 {
-                    Guid = new PingWatcher().Guid,
-                    AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName,
                     Name = typeof(PingWatcher).FullName,
                     Description = "Watcher for Ping requests",
+                    AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName,
+                    ClassName = typeof(PingWatcher).Name,
+                    Guid = new PingWatcher().Guid
                 };
 
-                yield return new Foo
+                yield return new Watcher
                 {
-                    Guid = new SqlServerDatabaseWatcher().Guid,
-                    AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
                     Name = typeof(SqlServerDatabaseWatcher).FullName,
-                    Description = "Watcher for SQL Server databases"
+                    Description = "Watcher for SQL Server databases",
+                    AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
+                    ClassName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
+                    Guid = new SqlServerDatabaseWatcher().Guid
+                };
+
+                yield return new Watcher
+                {
+                    Name = typeof(MongoDBWatcher).FullName,
+                    Description = "Watcher for MongoDB",
+                    AssemblyQualifiedName = typeof(MongoDBWatcher).AssemblyQualifiedName,
+                    ClassName = typeof(MongoDBWatcher).AssemblyQualifiedName,
+                    Guid = new MongoDBWatcher().Guid
                 };
             }
         }

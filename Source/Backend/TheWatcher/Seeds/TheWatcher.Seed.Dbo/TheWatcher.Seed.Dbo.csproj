@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\TheWatcher.Domain.Core\TheWatcher.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\TheWatcher.Watchers.MongoDB\TheWatcher.Watchers.MongoDB.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.PingWatcher\TheWatcher.Watchers.PingWatcher.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.SqlServer\TheWatcher.Watchers.SqlServer.csproj" />
   </ItemGroup>

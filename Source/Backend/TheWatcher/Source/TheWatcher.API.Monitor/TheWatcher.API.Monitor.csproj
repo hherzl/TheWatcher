@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TheWatcher.Watchers.MongoDB\TheWatcher.Watchers.MongoDB.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.PingWatcher\TheWatcher.Watchers.PingWatcher.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.SqlServer\TheWatcher.Watchers.SqlServer.csproj" />
     <ProjectReference Include="..\TheWatcher.API.Common\TheWatcher.API.Common.csproj" />

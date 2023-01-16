@@ -10,7 +10,7 @@ namespace TheWatcher.Seed.Dbo.Seeds
             {
                 yield return new ResourceCategory
                 {
-                    Name = "Database",
+                    Name = "SQL Server Database",
                     WatcherId = 2
                 };
 
@@ -33,6 +33,12 @@ namespace TheWatcher.Seed.Dbo.Seeds
                 yield return new ResourceCategory
                 {
                     Name = "Web Service"
+                };
+
+                yield return new ResourceCategory
+                {
+                    Name = "MongoDB Database",
+                    WatcherId = 3
                 };
             }
         }

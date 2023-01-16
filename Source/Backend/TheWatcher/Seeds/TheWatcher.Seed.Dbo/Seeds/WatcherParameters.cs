@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using TheWatcher.Domain.Core.Models;
+﻿using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Seed.Dbo.Seeds
 {
@@ -26,6 +20,14 @@ namespace TheWatcher.Seed.Dbo.Seeds
                 {
                     WatcherId = 2,
                     Parameter = "ConnectionString",
+                    Value = "",
+                    IsDefault = false
+                };
+
+                yield return new WatcherParameter
+                {
+                    WatcherId = 3,
+                    Parameter = "DatabaseName",
                     Value = "",
                     IsDefault = false
                 };

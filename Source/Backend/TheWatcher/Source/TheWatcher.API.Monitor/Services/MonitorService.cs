@@ -18,27 +18,36 @@ namespace TheWatcher.API.Monitor.Services
 
         public Task StartAsync(CancellationToken stoppingToken)
         {
-            _logger.LogDebug("Starting monitor...");
+            _logger.LogDebug("Starting watchers...");
 
             _timers = new List<Timer>();
 
             var scope = _serviceScopeFactory.CreateScope();
 
-            using var ctx = scope.ServiceProvider.GetService<TheWatcherDbContext>();
+            using var dbContext = scope.ServiceProvider.GetService<TheWatcherDbContext>();
 
-            var list = ctx.GetResourceWatchItems().Select(item => new ResourceWatchItemModel
-            {
-                Id = item.Id,
-                Resource = item.Resource,
-                ResourceCategory = item.ResourceCategory,
-                AssemblyQualifiedName = item.AssemblyQualifiedName,
-                Environment = item.Environment,
-                Interval = item.Interval
-            }).ToList();
+            var list = dbContext.GetResourceWatchItems().ToList();
 
-            foreach (var resourceWatchItem in list)
+            var model = list
+                .Select(item => new ResourceWatchItemModel
+                {
+                    Id = item.Id,
+                    Resource = item.Resource,
+                    ResourceCategory = item.ResourceCategory,
+                    AssemblyQualifiedName = item.AssemblyQualifiedName,
+                    Environment = item.Environment,
+                    Interval = item.Interval
+                })
+                .ToList()
+                ;
+
+            foreach (var resourceWatchItem in model)
             {
-                var parameters = ctx.ResourceWatchParameter.Where(x => x.ResourceWatchId == resourceWatchItem.Id).ToList();
+                var parameters = dbContext
+                    .ResourceWatchParameter
+                    .Where(x => x.ResourceWatchId == resourceWatchItem.Id)
+                    .ToList()
+                    ;
 
                 foreach (var param in parameters)
                 {
@@ -53,7 +62,7 @@ namespace TheWatcher.API.Monitor.Services
 
         public Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogDebug("Stopping monitor...");
+            _logger.LogDebug("Stopping watchers...");
 
             foreach (var item in _timers)
             {
@@ -75,7 +84,7 @@ namespace TheWatcher.API.Monitor.Services
         {
             if (state is ResourceWatchItemModel cast)
             {
-                _logger.LogInformation($"Monitor for '{cast.Resource}' resource is working in '{cast.Environment}' environment, interval: '{cast.Interval}'...");
+                _logger.LogInformation($"Watcher for '{cast.Resource}' resource is executing in '{cast.Environment}' environment, interval: '{cast.Interval}'...");
 
                 var watcherType = Type.GetType(cast.AssemblyQualifiedName, true);
 
@@ -85,7 +94,10 @@ namespace TheWatcher.API.Monitor.Services
                 {
                     var result = await watcherInstance.WatchAsync(cast.Param);
 
-                    _logger.LogInformation($"The watch for '{cast.Resource}' was '{(result.Successful ? "Successfully" : "Failed")}'");
+                    if (result.Successful)
+                        _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");
+                    else
+                        _logger.LogError($"The watch for '{cast.Resource}' was 'Failed' in '{cast.Environment}'");
 
                     // todo: save result in database
                 });
