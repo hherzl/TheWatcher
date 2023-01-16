@@ -20,6 +20,7 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("watcher")]
+        [ProducesResponseType(200, Type = typeof(IListResponse<WatcherItemModel>))]
         public async Task<IActionResult> GetWatchersAsync()
         {
             var response = new ListResponse<WatcherItemModel>();
@@ -39,6 +40,7 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("watcher/{id}")]
+        [ProducesResponseType(200, Type = typeof(IListResponse<WatcherDetailsModel>))]
         public async Task<IActionResult> GetWatcherAsync(short? id)
         {
             var entity = await _dbContext.Watcher.Include(e => e.WatcherParameterList).FirstOrDefaultAsync(item => item.Id == id);
@@ -60,12 +62,15 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("resource")]
+        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceItemModel>))]
         public async Task<IActionResult> GetResourcesAsync()
         {
+            var response = new ListResponse<ResourceItemModel>();
+
             var resources =
                 from resource in _dbContext.Resource
                 join category in _dbContext.ResourceCategory on resource.ResourceCategoryId equals category.Id
-                select new
+                select new ResourceItemModel
                 {
                     Id = resource.Id,
                     Name = resource.Name,
@@ -73,12 +78,13 @@ namespace TheWatcher.API.Panel.Controllers
                     ResourceCategory = category.Name
                 };
 
-            var list = await resources.ToListAsync();
+            response.Model = await resources.ToListAsync();
 
-            return Ok(list);
+            return response.ToOkResult();
         }
 
         [HttpGet("resource/{id}")]
+        [ProducesResponseType(200, Type = typeof(ResourceDetailsModel))]
         public async Task<IActionResult> GetResourceAsync(short? id)
         {
             var entity = await _dbContext
@@ -108,7 +114,8 @@ namespace TheWatcher.API.Panel.Controllers
                     Environment = watch.EnvironmentFk.Name,
                     watch.Successful,
                     watch.WatchCount,
-                    watch.LastWatch, watch.Interval,
+                    watch.LastWatch,
+                    watch.Interval,
                     Parameters = watch.ResourceWatchParameterList.Select(parameter => new { parameter.Parameter, parameter.Value, parameter.Description }).ToList()
                 }).ToList()
             };
@@ -117,13 +124,16 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("monitor")]
+        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceWatchItemModel>))]
         public async Task<IActionResult> GetMonitorAsync()
         {
+            var response = new ListResponse<ResourceWatchItemModel>();
+
             var resourceWatches =
                 from resourceWatch in _dbContext.ResourceWatch
                 join resource in _dbContext.Resource on resourceWatch.ResourceId equals resource.Id
                 join environment in _dbContext.Environment on resourceWatch.EnvironmentId equals environment.Id
-                select new
+                select new ResourceWatchItemModel
                 {
                     ResourceId = resourceWatch.ResourceId,
                     Resource = resource.Name,
@@ -135,9 +145,9 @@ namespace TheWatcher.API.Panel.Controllers
                     Interval = resourceWatch.Interval
                 };
 
-            var list = await resourceWatches.ToListAsync();
+            response.Model = await resourceWatches.ToListAsync();
 
-            return Ok(list);
+            return response.ToOkResult();
         }
     }
 }
