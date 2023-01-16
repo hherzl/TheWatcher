@@ -10,20 +10,26 @@ namespace TheWatcher.Seed.Db.Seeds
             {
                 yield return new Resource
                 {
-                    Name = "Watcher Sample for Default Gateway",
+                    Name = "Watcher Sample for Default gateway",
                     ResourceCategoryId = 3
                 };
 
                 yield return new Resource
                 {
-                    Name = "Watcher Sample SQL Server Database",
+                    Name = "SQL Server Database Watcher Sample",
                     ResourceCategoryId = 1
                 };
 
                 yield return new Resource
                 {
-                    Name = "Watcher Sample MongoDB",
+                    Name = "Mongo DB Watcher Sample",
                     ResourceCategoryId = 6
+                };
+
+                yield return new Resource
+                {
+                    Name = "Rabbit MQ Watcher Sample",
+                    ResourceCategoryId = 7
                 };
             }
         }

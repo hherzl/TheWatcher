@@ -29,7 +29,7 @@ namespace TheWatcher.Watchers.MongoDB
 
                 var database = client.GetDatabase(parameter.Values[WatcherParam.DatabaseName]);
 
-                result.Successful = true;
+                result.IsSuccess = true;
             }
             catch (Exception ex)
             {

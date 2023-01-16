@@ -28,6 +28,13 @@ namespace TheWatcher.Seed.Db.Seeds
                     EnvironmentId = 1,
                     Interval = 20000
                 };
+
+                yield return new ResourceWatch
+                {
+                    ResourceId = 4,
+                    EnvironmentId = 1,
+                    Interval = 30000
+                };
             }
         }
     }

@@ -1,18 +1,18 @@
-﻿using System.Data.SqlClient;
+﻿using RabbitMQ.Client;
 using TheWatcher.Library.Core;
 using TheWatcher.Library.Core.Contracts;
 
-namespace TheWatcher.Watchers.SqlServer
+namespace TheWatcher.Watchers.RabbitMQ
 {
-    public sealed class SqlServerDatabaseWatcher : IWatcher
+    public sealed class RabbitMQWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("A1059C4E-1615-49EB-993D-274458DD212B");
+        private static readonly Guid ClassGuid = new("EC0CAAF2-436C-4FD5-AEE3-7BD8E27F714B");
 
         public Guid Guid
             => ClassGuid;
 
         public string ActionName
-            => "OpenDatabaseConnection";
+            => "CreateBrokerConnection";
 
         public async Task<WatcherResult> WatchAsync(WatcherParam parameter)
         {
@@ -21,11 +21,15 @@ namespace TheWatcher.Watchers.SqlServer
 
             var result = new WatcherResult();
 
-            using var cnn = new SqlConnection(parameter.Values[WatcherParam.ConnectionString]);
-
             try
             {
-                await cnn.OpenAsync();
+                var factory = new ConnectionFactory
+                {
+                    HostName = parameter.Values[WatcherParam.HostName]
+                };
+
+                using var connection = factory.CreateConnection();
+                using var channel = connection.CreateModel();
 
                 result.IsSuccess = true;
             }

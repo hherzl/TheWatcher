@@ -35,6 +35,13 @@ namespace TheWatcher.Seed.Db.Seeds
                     Parameter = "DatabaseName",
                     Value = "TheWatcher"
                 };
+
+                yield return new ResourceWatchParameter
+                {
+                    ResourceWatchId = 4,
+                    Parameter = "HostName",
+                    Value = "localhost"
+                };
             }
         }
     }

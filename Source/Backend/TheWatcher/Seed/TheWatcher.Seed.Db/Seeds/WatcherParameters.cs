@@ -31,6 +31,14 @@ namespace TheWatcher.Seed.Db.Seeds
                     Value = "",
                     IsDefault = false
                 };
+
+                yield return new WatcherParameter
+                {
+                    WatcherId = 4,
+                    Parameter = "HostName",
+                    Value = "",
+                    IsDefault = false
+                };
             }
         }
     }

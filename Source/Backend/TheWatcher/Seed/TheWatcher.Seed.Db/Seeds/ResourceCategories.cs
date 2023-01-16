@@ -40,6 +40,12 @@ namespace TheWatcher.Seed.Db.Seeds
                     Name = "MongoDB Database",
                     WatcherId = 3
                 };
+
+                yield return new ResourceCategory
+                {
+                    Name = "Broker",
+                    WatcherId = 4
+                };
             }
         }
     }

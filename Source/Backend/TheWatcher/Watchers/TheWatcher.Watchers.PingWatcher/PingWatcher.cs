@@ -22,7 +22,7 @@ namespace TheWatcher.Watchers.PingWatcher
 
             return new WatcherResult
             {
-                Successful = reply.Status == IPStatus.Success ? true : false,
+                IsSuccess = reply.Status == IPStatus.Success ? true : false,
                 Message = reply.Status == IPStatus.Success ? "Successful ping" : "Failed ping"
             };
         }

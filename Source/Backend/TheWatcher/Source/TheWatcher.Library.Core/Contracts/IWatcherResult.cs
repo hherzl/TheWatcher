@@ -2,7 +2,7 @@
 {
     public interface IWatcherResult
     {
-        bool Successful { get; set; }
+        bool IsSuccess { get; set; }
 
         string? Message { get; set; }
 

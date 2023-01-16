@@ -5,6 +5,7 @@
         public const string IPAddress = "IPAddress";
         public const string ConnectionString = "ConnectionString";
         public const string DatabaseName = "DatabaseName";
+        public const string HostName = "HostName";
 
         public WatcherParam()
         {

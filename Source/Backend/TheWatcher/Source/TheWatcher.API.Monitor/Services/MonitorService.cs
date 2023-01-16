@@ -94,7 +94,7 @@ namespace TheWatcher.API.Monitor.Services
                 {
                     var result = await watcherInstance.WatchAsync(cast.Param);
 
-                    if (result.Successful)
+                    if (result.IsSuccess)
                         _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");
                     else
                         _logger.LogError($"The watch for '{cast.Resource}' was 'Failed' in '{cast.Environment}'");
