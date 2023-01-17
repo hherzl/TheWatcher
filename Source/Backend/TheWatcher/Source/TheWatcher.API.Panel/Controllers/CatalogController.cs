@@ -55,7 +55,7 @@ namespace TheWatcher.API.Panel.Controllers
 
             var response = new SingleResponse<WatcherDetailsModel>
             {
-                Model = new WatcherDetailsModel
+                Model = new()
                 {
                     Id = entity.Id,
                     Guid = entity.Guid,
@@ -110,7 +110,7 @@ namespace TheWatcher.API.Panel.Controllers
 
             var response = new SingleResponse<ResourceDetailsModel>
             {
-                Model = new ResourceDetailsModel
+                Model = new()
                 {
                     Id = entity.Id,
                     Name = entity.Name,

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.MongoDB\TheWatcher.Watchers.MongoDB.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.PingWatcher\TheWatcher.Watchers.PingWatcher.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.RabbitMQ\TheWatcher.Watchers.RabbitMQ.csproj" />

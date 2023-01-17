@@ -1,4 +1,7 @@
-﻿using TheWatcher.API.Monitor.Services.Models;
+﻿using Microsoft.AspNetCore.SignalR;
+using TheWatcher.API.Monitor.Hubs;
+using TheWatcher.API.Monitor.Hubs.Models;
+using TheWatcher.API.Monitor.Services.Models;
 using TheWatcher.Domain.Core;
 using TheWatcher.Library.Core.Contracts;
 
@@ -14,19 +17,23 @@ namespace TheWatcher.API.Monitor.Services
         {
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
+            _timers = new();
         }
+
+        private TheWatcherDbContext _dbContext;
+        private IHubContext<MonitorHub> _hubContext;
 
         public Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogDebug("Starting watchers...");
 
-            _timers = new List<Timer>();
-
             var scope = _serviceScopeFactory.CreateScope();
 
-            using var dbContext = scope.ServiceProvider.GetService<TheWatcherDbContext>();
+            _dbContext = scope?.ServiceProvider.GetService<TheWatcherDbContext>();
 
-            var list = dbContext.GetResourceWatchItems().ToList();
+            _hubContext = scope?.ServiceProvider.GetService<IHubContext<MonitorHub>>();
+
+            var list = _dbContext.GetResourceWatchItems().ToList();
 
             var model = list
                 .Select(item => new ResourceWatchItemModel
@@ -43,7 +50,7 @@ namespace TheWatcher.API.Monitor.Services
 
             foreach (var resourceWatchItem in model)
             {
-                var parameters = dbContext
+                var parameters = _dbContext
                     .ResourceWatchParameter
                     .Where(x => x.ResourceWatchId == resourceWatchItem.Id)
                     .ToList()
@@ -93,6 +100,8 @@ namespace TheWatcher.API.Monitor.Services
                 await Task.Factory.StartNew(async () =>
                 {
                     var result = await watcherInstance.WatchAsync(cast.Param);
+
+                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg { Resource = cast.Resource, IsSuccess = result.IsSuccess });
 
                     if (result.IsSuccess)
                         _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");

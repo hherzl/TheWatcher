@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using TheWatcher.API.Monitor.Hubs;
 using TheWatcher.API.Monitor.Services;
 using TheWatcher.Domain.Core;
 
@@ -22,6 +23,24 @@ builder
     .AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")))
     ;
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("GUI", builder =>
+    {
+        builder
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins("https://localhost:4200")
+            ;
+    });
+});
+
+builder
+    .Services
+    .AddSignalR(options => options.EnableDetailedErrors = true)
+    ;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,11 +50,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("GUI");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<MonitorHub>("/monitorhub");
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)

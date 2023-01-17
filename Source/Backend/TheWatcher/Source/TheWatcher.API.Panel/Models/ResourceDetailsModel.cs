@@ -9,7 +9,7 @@
         public short? WatcherId { get; set; }
         public string? Watcher { get; set; }
 
-        public List<ResourceWatchDetailsModel> Watches { get; set; }
+        public List<ResourceWatchDetailsModel>? Watches { get; set; }
     }
 
     public record ResourceWatchDetailsModel
@@ -22,7 +22,7 @@
         public DateTime? LastWatch { get; set; }
         public int? Interval { get; set; }
 
-        public List<ResourceWatchParameterDetailsModel> Parameters { get; set; }
+        public List<ResourceWatchParameterDetailsModel>? Parameters { get; set; }
     }
 
     public record ResourceWatchParameterDetailsModel
