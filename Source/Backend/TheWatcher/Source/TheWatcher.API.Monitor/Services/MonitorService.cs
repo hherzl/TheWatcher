@@ -11,7 +11,7 @@ namespace TheWatcher.API.Monitor.Services
     {
         private readonly ILogger<MonitorService> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private List<Timer>? _timers;
+        private readonly List<Timer> _timers;
 
         public MonitorService(ILogger<MonitorService> logger, IServiceScopeFactory serviceScopeFactory)
         {
@@ -29,9 +29,9 @@ namespace TheWatcher.API.Monitor.Services
 
             var scope = _serviceScopeFactory.CreateScope();
 
-            _dbContext = scope?.ServiceProvider.GetService<TheWatcherDbContext>();
+            _dbContext = scope.ServiceProvider.GetService<TheWatcherDbContext>();
 
-            _hubContext = scope?.ServiceProvider.GetService<IHubContext<MonitorHub>>();
+            _hubContext = scope.ServiceProvider.GetService<IHubContext<MonitorHub>>();
 
             var list = _dbContext.GetResourceWatchItems().ToList();
 
@@ -73,7 +73,7 @@ namespace TheWatcher.API.Monitor.Services
 
             foreach (var item in _timers)
             {
-                item?.Change(Timeout.Infinite, 0);
+                item.Change(Timeout.Infinite, 0);
             }
 
             return Task.CompletedTask;
@@ -83,7 +83,7 @@ namespace TheWatcher.API.Monitor.Services
         {
             foreach (var item in _timers)
             {
-                item?.Dispose();
+                item.Dispose();
             }
         }
 
@@ -101,7 +101,11 @@ namespace TheWatcher.API.Monitor.Services
                 {
                     var result = await watcherInstance.WatchAsync(cast.Param);
 
-                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg { Resource = cast.Resource, IsSuccess = result.IsSuccess });
+                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg
+                    {
+                        Resource = cast.Resource,
+                        IsSuccess = result.IsSuccess
+                    });
 
                     if (result.IsSuccess)
                         _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");

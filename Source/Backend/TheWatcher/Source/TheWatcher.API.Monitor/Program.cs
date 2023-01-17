@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using TheWatcher.API.Common;
 using TheWatcher.API.Monitor.Hubs;
 using TheWatcher.API.Monitor.Services;
 using TheWatcher.Domain.Core;
@@ -23,18 +24,22 @@ builder
     .AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")))
     ;
 
-builder.Services.AddCors(options =>
+var corsSettings = new CorsSettings();
+
+builder.Configuration.Bind("CorsSettings", corsSettings);
+
+foreach (var item in corsSettings.Policies)
 {
-    options.AddPolicy("GUI", builder =>
+    builder.Services.AddCors(options => options.AddPolicy(item.Name, builder =>
     {
         builder
             .AllowCredentials()
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .WithOrigins("https://localhost:4200")
+            .WithOrigins(item.Policy.Origins.ToList().ToArray())
             ;
-    });
-});
+    }));
+}
 
 builder
     .Services
@@ -50,7 +55,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("GUI");
+foreach (var item in corsSettings.Policies)
+{
+    app.UseCors(item.Name);
+}
 
 app.UseHttpsRedirection();
 
