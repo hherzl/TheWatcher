@@ -39,10 +39,12 @@ namespace TheWatcher.API.Monitor.Services
                 .Select(item => new ResourceWatchItemModel
                 {
                     Id = item.Id,
+                    ResourceId = item.ResourceId,
                     Resource = item.Resource,
                     ResourceCategory = item.ResourceCategory,
                     AssemblyQualifiedName = item.AssemblyQualifiedName,
                     Environment = item.Environment,
+                    EnvironmenId = item.EnvironmentId,
                     Interval = item.Interval
                 })
                 .ToList()
@@ -87,7 +89,7 @@ namespace TheWatcher.API.Monitor.Services
             }
         }
 
-        public async void Monitoring(object? state)
+        public async void Monitoring(object state)
         {
             if (state is ResourceWatchItemModel cast)
             {
@@ -101,18 +103,20 @@ namespace TheWatcher.API.Monitor.Services
                 {
                     var result = await watcherInstance.WatchAsync(cast.Param);
 
-                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg
-                    {
-                        Resource = cast.Resource,
-                        IsSuccess = result.IsSuccess
-                    });
-
                     if (result.IsSuccess)
                         _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");
                     else
                         _logger.LogError($"The watch for '{cast.Resource}' was 'Failed' in '{cast.Environment}'");
 
-                    // todo: save result in database
+                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg
+                    {
+                        Resource = cast.Resource,
+                        ResourceId = cast.ResourceId,
+                        Environment = cast.Environment,
+                        EnvironmentId = cast.EnvironmenId,
+                        IsSuccess = result.IsSuccess,
+                        LastWatch = DateTime.Now
+                    });
                 });
             }
         }

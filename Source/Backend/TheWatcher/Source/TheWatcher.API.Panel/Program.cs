@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using TheWatcher.API.Common;
 using TheWatcher.Domain.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,23 @@ builder
     .AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")))
     ;
 
+var corsSettings = new CorsSettings();
+
+builder.Configuration.Bind("CorsSettings", corsSettings);
+
+foreach (var item in corsSettings.Policies)
+{
+    builder.Services.AddCors(options => options.AddPolicy(item.Name, builder =>
+    {
+        builder
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins(item.Policy.Origins.ToList().ToArray())
+            ;
+    }));
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +44,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+foreach (var item in corsSettings.Policies)
+{
+    app.UseCors(item.Name);
 }
 
 app.UseHttpsRedirection();

@@ -1,6 +1,42 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Environment</th>
+        <th>Successful</th>
+        <th>Watch count</th>
+        <th>Last watch</th>
+        <th>Interval</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of response?.model">
+        <td>
+          {{ item.resource }}
+        </td>
+        <td>
+          {{ item.environment }}
+        </td>
+        <td>
+          {{ item.successful ? 'running' : 'failed' }}
+        </td>
+        <td>
+          {{ item.watchCount }}
+        </td>
+        <td>
+          {{ item.lastWatch | date: 'long' }}
+        </td>
+        <td>
+          {{ item.interval }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -20,5 +56,5 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list> -->
 </div>

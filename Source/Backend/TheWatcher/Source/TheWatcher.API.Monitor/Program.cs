@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 
 builder
     .Services
-    .AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")))
+    .AddDbContext<TheWatcherDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TheWatcher")), ServiceLifetime.Transient)
     ;
 
 var corsSettings = new CorsSettings();

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import * as signalR from '@aspnet/signalr';
+import { MonitorClientService, ResourceWatchItemModel } from 'src/app/services/monitor-client.service';
+import { ListResponse } from 'src/app/services/common';
 
 @Component({
   selector: 'app-home',
@@ -30,11 +32,17 @@ export class HomeComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private monitorClient: MonitorClientService) { }
 
   private hubConnection!: signalR.HubConnection;
+  public response!: ListResponse<ResourceWatchItemModel>;
 
   ngOnInit(): void {
+
+    this.monitorClient.getMonitor().subscribe(result => {
+      this.response = result;
+    });
+
     this.hubConnection = new signalR
       .HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Debug)
@@ -53,11 +61,21 @@ export class HomeComponent implements OnInit {
 
     this.hubConnection.on('receiveResourceWatch', (notification: ResourceWatchArg) => {
       console.log(notification);
+
+      this.response.model.forEach((item) => {
+        if (item.resourceId == notification.resourceId && item.environmentId == notification.environmentId) {
+          item.successful = notification.isSuccess;
+          item.watchCount += 1;
+        }
+      });
     });
   }
 }
 
-export class ResourceWatchArg {
+class ResourceWatchArg {
   public resource!: string;
+  public resourceId!: number;
+  public environmentId!: number;
+  public environment!: string;
   public isSuccess!: boolean;
 }
