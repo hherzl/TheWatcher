@@ -114,7 +114,7 @@ namespace TheWatcher.API.Monitor.Services
                     Environment = cast.Environment,
                     EnvironmentId = cast.EnvironmentId,
                     IsSuccess = result.IsSuccess,
-                    LastWatch = DateTime.Now
+                    LastWatch = result.LastWatch
                 });
 
                 var ctx = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
@@ -122,7 +122,7 @@ namespace TheWatcher.API.Monitor.Services
                 var resourceWatch = await ctx.GetResourceWatchAsync(cast.Id);
 
                 resourceWatch.Successful = result.IsSuccess;
-                resourceWatch.LastWatch = DateTime.Now;
+                resourceWatch.LastWatch = result.LastWatch;
                 resourceWatch.WatchCount += 1;
                 resourceWatch.LastUpdateDateTime = DateTime.Now;
                 resourceWatch.LastUpdateUser = typeof(MonitorService).Name;
