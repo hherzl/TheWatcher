@@ -16,15 +16,20 @@ namespace TheWatcher.Watchers.PingWatcher
 
         public async Task<WatcherResult> WatchAsync(WatcherParam parameter)
         {
-            var ping = new Ping();
+            var result = new WatcherResult();
 
-            var reply = await ping.SendPingAsync(parameter.Values[WatcherParam.IPAddress]);
-
-            return new WatcherResult
+            try
             {
-                IsSuccess = reply.Status == IPStatus.Success ? true : false,
-                Message = reply.Status == IPStatus.Success ? "Successful ping" : "Failed ping"
-            };
+                var reply = await new Ping().SendPingAsync(parameter.Values[WatcherParam.IPAddress]);
+
+                result.IsSuccess = reply.Status == IPStatus.Success ? true : false;
+            }
+            catch
+            {
+                result.IsSuccess = false;
+            }
+
+            return result;
         }
     }
 }
