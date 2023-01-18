@@ -12,14 +12,21 @@ namespace TheWatcher.Domain.Core
                 join resourceCategory in ctx.ResourceCategory on resource.ResourceCategoryId equals resourceCategory.Id
                 join watcher in ctx.Watcher on resourceCategory.WatcherId equals watcher.Id
                 join environment in ctx.Environment on resourceWatch.EnvironmentId equals environment.Id
+                where resourceWatch.Active == true
                 select new ResourceWatchQueryModel
                 {
                     Id = resourceWatch.Id,
+                    ResourceId = resourceWatch.ResourceId,
                     Resource = resource.Name,
+                    ResourceCategoryId = resource.Id,
                     ResourceCategory = resourceCategory.Name,
                     AssemblyQualifiedName = watcher.AssemblyQualifiedName,
-                    Interval = resourceWatch.Interval,
-                    Environment = environment.Name
+                    EnvironmentId = environment.Id,
+                    Environment = environment.Name,
+                    Successful = resourceWatch.Successful,
+                    WatchCount = resourceWatch.WatchCount,
+                    LastWatch = resourceWatch.LastWatch,
+                    Interval = resourceWatch.Interval
                 };
 
             return query;

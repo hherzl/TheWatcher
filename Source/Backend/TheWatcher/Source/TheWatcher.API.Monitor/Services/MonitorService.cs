@@ -44,7 +44,7 @@ namespace TheWatcher.API.Monitor.Services
                     ResourceCategory = item.ResourceCategory,
                     AssemblyQualifiedName = item.AssemblyQualifiedName,
                     Environment = item.Environment,
-                    EnvironmenId = item.EnvironmentId,
+                    EnvironmentId = item.EnvironmentId,
                     Interval = item.Interval
                 })
                 .ToList()
@@ -113,7 +113,7 @@ namespace TheWatcher.API.Monitor.Services
                         Resource = cast.Resource,
                         ResourceId = cast.ResourceId,
                         Environment = cast.Environment,
-                        EnvironmentId = cast.EnvironmenId,
+                        EnvironmentId = cast.EnvironmentId,
                         IsSuccess = result.IsSuccess,
                         LastWatch = DateTime.Now
                     });

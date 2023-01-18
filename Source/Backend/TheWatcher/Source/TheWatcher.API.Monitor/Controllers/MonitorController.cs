@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using TheWatcher.API.Common.Models;
 using TheWatcher.API.Common.Models.Contracts;
-using TheWatcher.API.Monitor.Models;
 using TheWatcher.Domain.Core;
+using TheWatcher.Domain.Core.QueryModels;
 
 namespace TheWatcher.API.Monitor.Controllers
 {
@@ -21,28 +21,13 @@ namespace TheWatcher.API.Monitor.Controllers
         }
 
         [HttpGet("monitor")]
-        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceWatchItemModel>))]
+        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceWatchQueryModel>))]
         public async Task<IActionResult> GetMonitorAsync()
         {
-            var response = new ListResponse<ResourceWatchItemModel>();
-
-            var resourceWatches =
-                from resourceWatch in _dbContext.ResourceWatch
-                join resource in _dbContext.Resource on resourceWatch.ResourceId equals resource.Id
-                join environment in _dbContext.Environment on resourceWatch.EnvironmentId equals environment.Id
-                select new ResourceWatchItemModel
-                {
-                    ResourceId = resourceWatch.ResourceId,
-                    Resource = resource.Name,
-                    EnvironmentId = resourceWatch.EnvironmentId,
-                    Environment = environment.Name,
-                    Successful = resourceWatch.Successful,
-                    WatchCount = resourceWatch.WatchCount,
-                    LastWatch = resourceWatch.LastWatch,
-                    Interval = resourceWatch.Interval
-                };
-
-            response.Model = await resourceWatches.ToListAsync();
+            var response = new ListResponse<ResourceWatchQueryModel>
+            {
+                Model = await _dbContext.GetResourceWatchItems().ToListAsync()
+            };
 
             return response.ToOkResult();
         }

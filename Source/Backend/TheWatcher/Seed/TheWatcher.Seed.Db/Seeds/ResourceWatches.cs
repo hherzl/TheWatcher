@@ -12,28 +12,32 @@ namespace TheWatcher.Seed.Db.Seeds
                 {
                     ResourceId = 1,
                     EnvironmentId = 1,
-                    Interval = 10000
+                    Interval = 10000,
+                    WatchCount = 0
                 };
 
                 yield return new ResourceWatch
                 {
                     ResourceId = 2,
                     EnvironmentId = 1,
-                    Interval = 15000
+                    Interval = 15000,
+                    WatchCount = 0
                 };
 
                 yield return new ResourceWatch
                 {
                     ResourceId = 3,
                     EnvironmentId = 1,
-                    Interval = 20000
+                    Interval = 20000,
+                    WatchCount = 0
                 };
 
                 yield return new ResourceWatch
                 {
                     ResourceId = 4,
                     EnvironmentId = 1,
-                    Interval = 30000
+                    Interval = 30000,
+                    WatchCount = 0
                 };
             }
         }
