@@ -14,38 +14,38 @@ namespace TheWatcher.Seed.Db.Seeds
             {
                 yield return new Watcher
                 {
-                    Name = typeof(PingWatcher).Name,
+                    Name = "Ping watcher",
                     Description = "Watcher for Ping requests",
-                    AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName,
                     ClassName = typeof(PingWatcher).FullName,
-                    Guid = new PingWatcher().Guid
+                    ClassGuid = new PingWatcher().Guid,
+                    AssemblyQualifiedName = typeof(PingWatcher).AssemblyQualifiedName
                 };
 
                 yield return new Watcher
                 {
-                    Name = typeof(SqlServerDatabaseWatcher).Name,
+                    Name = "SQL Server watcher",
                     Description = "Watcher for SQL Server databases",
-                    AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName,
                     ClassName = typeof(SqlServerDatabaseWatcher).FullName,
-                    Guid = new SqlServerDatabaseWatcher().Guid
+                    ClassGuid = new SqlServerDatabaseWatcher().Guid,
+                    AssemblyQualifiedName = typeof(SqlServerDatabaseWatcher).AssemblyQualifiedName
                 };
 
                 yield return new Watcher
                 {
-                    Name = typeof(MongoDBWatcher).Name,
+                    Name = "Mongo DB watcher",
                     Description = "Watcher for Mongo DB",
-                    AssemblyQualifiedName = typeof(MongoDBWatcher).AssemblyQualifiedName,
                     ClassName = typeof(MongoDBWatcher).FullName,
-                    Guid = new MongoDBWatcher().Guid
+                    ClassGuid = new MongoDBWatcher().Guid,
+                    AssemblyQualifiedName = typeof(MongoDBWatcher).AssemblyQualifiedName
                 };
 
                 yield return new Watcher
                 {
-                    Name = typeof(RabbitMQWatcher).Name,
+                    Name = "Rabbit MQ watcher",
                     Description = "Watcher for Rabbit MQ",
-                    AssemblyQualifiedName = typeof(RabbitMQWatcher).AssemblyQualifiedName,
                     ClassName = typeof(RabbitMQWatcher).FullName,
-                    Guid = new RabbitMQWatcher().Guid
+                    ClassGuid = new RabbitMQWatcher().Guid,
+                    AssemblyQualifiedName = typeof(RabbitMQWatcher).AssemblyQualifiedName
                 };
             }
         }

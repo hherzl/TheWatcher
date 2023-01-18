@@ -1,6 +1,3 @@
-USE [TheWatcher]
-GO
-
 ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [PK_dbo_Watcher]
 	PRIMARY KEY ([Id])
 GO
@@ -9,16 +6,16 @@ ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_Name]
 	UNIQUE ([Name])
 GO
 
-ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_AssemblyQualifiedName]
-	UNIQUE ([AssemblyQualifiedName])
-GO
-
 ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_ClassName]
 	UNIQUE ([ClassName])
 GO
 
-ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_Guid]
-	UNIQUE ([Guid])
+ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_ClassGuid]
+	UNIQUE ([ClassGuid])
+GO
+
+ALTER TABLE [dbo].[Watcher] ADD CONSTRAINT [UQ_dbo_Watcher_AssemblyQualifiedName]
+	UNIQUE ([AssemblyQualifiedName])
 GO
 
 ALTER TABLE [dbo].[WatcherParameter] ADD CONSTRAINT [PK_dbo_WatcherParameter]

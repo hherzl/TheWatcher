@@ -58,10 +58,11 @@ namespace TheWatcher.API.Panel.Controllers
                 Model = new()
                 {
                     Id = entity.Id,
-                    Guid = entity.Guid,
-                    AssemblyQualifiedName = entity.AssemblyQualifiedName,
                     Name = entity.Name,
                     Description = entity.Description,
+                    ClassName = entity.ClassName,
+                    ClassGuid = entity.ClassGuid,
+                    AssemblyQualifiedName = entity.AssemblyQualifiedName,
                     Parameters = entity.WatcherParameterList.Select(item => new WatcherParameterDetailsModel(item.Id, item.IsDefault, item.Parameter, item.Value, item.Description)).ToList()
                 }
             };

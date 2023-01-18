@@ -40,13 +40,6 @@ namespace TheWatcher.Domain.Core.Configurations
                 ;
 
             builder
-                .Property(p => p.AssemblyQualifiedName)
-                .HasColumnType("nvarchar")
-                .HasMaxLength(511)
-                .IsRequired()
-                ;
-
-            builder
                 .Property(p => p.ClassName)
                 .HasColumnType("nvarchar")
                 .HasMaxLength(511)
@@ -54,8 +47,15 @@ namespace TheWatcher.Domain.Core.Configurations
                 ;
 
             builder
-                .Property(p => p.Guid)
+                .Property(p => p.ClassGuid)
                 .HasColumnType("uniqueidentifier")
+                .IsRequired()
+                ;
+
+            builder
+                .Property(p => p.AssemblyQualifiedName)
+                .HasColumnType("nvarchar")
+                .HasMaxLength(511)
                 .IsRequired()
                 ;
 
@@ -68,21 +68,21 @@ namespace TheWatcher.Domain.Core.Configurations
                 ;
 
             builder
-                .HasIndex(p => p.AssemblyQualifiedName)
-                .IsUnique()
-                .HasDatabaseName("UQ_dbo_Watcher_AssemblyQualifiedName")
-                ;
-
-            builder
                 .HasIndex(p => p.ClassName)
                 .IsUnique()
                 .HasDatabaseName("UQ_dbo_Watcher_ClassName")
                 ;
 
             builder
-                .HasIndex(p => p.Guid)
+                .HasIndex(p => p.ClassGuid)
                 .IsUnique()
-                .HasDatabaseName("UQ_dbo_Watcher_Guid")
+                .HasDatabaseName("UQ_dbo_Watcher_ClassGuid")
+                ;
+
+            builder
+                .HasIndex(p => p.AssemblyQualifiedName)
+                .IsUnique()
+                .HasDatabaseName("UQ_dbo_Watcher_AssemblyQualifiedName")
                 ;
         }
     }

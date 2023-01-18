@@ -1,2 +1,2 @@
-create database [TheWatcher]
-go
+CREATE DATABASE [TheWatcher]
+GO
