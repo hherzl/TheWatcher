@@ -11,12 +11,15 @@ namespace TheWatcher.API.Monitor.Services
     {
         private readonly ILogger<MonitorService> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly IServiceScope _serviceScope;
+
         private readonly List<Timer> _timers;
 
         public MonitorService(ILogger<MonitorService> logger, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
+            _serviceScope = _serviceScopeFactory.CreateScope();
             _timers = new();
         }
 
@@ -27,11 +30,9 @@ namespace TheWatcher.API.Monitor.Services
         {
             _logger.LogDebug("Starting watchers...");
 
-            var scope = _serviceScopeFactory.CreateScope();
+            _dbContext = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
 
-            _dbContext = scope.ServiceProvider.GetService<TheWatcherDbContext>();
-
-            _hubContext = scope.ServiceProvider.GetService<IHubContext<MonitorHub>>();
+            _hubContext = _serviceScope.ServiceProvider.GetService<IHubContext<MonitorHub>>();
 
             var list = _dbContext.GetResourceWatchItems().ToList();
 
@@ -99,25 +100,37 @@ namespace TheWatcher.API.Monitor.Services
 
                 var watcherInstance = (IWatcher)Activator.CreateInstance(watcherType);
 
-                await Task.Factory.StartNew(async () =>
+                var result = await watcherInstance.WatchAsync(cast.Param);
+
+                if (result.IsSuccess)
+                    _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");
+                else
+                    _logger.LogError($"The watch for '{cast.Resource}' was 'Failed' in '{cast.Environment}'");
+
+                await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg
                 {
-                    var result = await watcherInstance.WatchAsync(cast.Param);
-
-                    if (result.IsSuccess)
-                        _logger.LogInformation($"The watch for '{cast.Resource}' was 'Successfully' in '{cast.Environment}'");
-                    else
-                        _logger.LogError($"The watch for '{cast.Resource}' was 'Failed' in '{cast.Environment}'");
-
-                    await _hubContext.Clients.All.SendAsync(HubMethods.ReceiveResourceWatch, new ResourceWatchArg
-                    {
-                        Resource = cast.Resource,
-                        ResourceId = cast.ResourceId,
-                        Environment = cast.Environment,
-                        EnvironmentId = cast.EnvironmentId,
-                        IsSuccess = result.IsSuccess,
-                        LastWatch = DateTime.Now
-                    });
+                    Resource = cast.Resource,
+                    ResourceId = cast.ResourceId,
+                    Environment = cast.Environment,
+                    EnvironmentId = cast.EnvironmentId,
+                    IsSuccess = result.IsSuccess,
+                    LastWatch = DateTime.Now
                 });
+
+                var ctx = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
+
+                var resourceWatch = await ctx.GetResourceWatchAsync(cast.Id);
+
+                resourceWatch.Successful = result.IsSuccess;
+                resourceWatch.LastWatch = DateTime.Now;
+                resourceWatch.WatchCount += 1;
+                resourceWatch.LastUpdateDateTime = DateTime.Now;
+                resourceWatch.LastUpdateUser = typeof(MonitorService).Name;
+
+                var affectedRows = await ctx.SaveChangesAsync();
+
+                if (affectedRows > 0)
+                    _logger.LogInformation($"Resource watch was updated for '{cast.Resource}' resource in '{cast.Environment}' environment");
             }
         }
     }

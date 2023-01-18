@@ -1,4 +1,6 @@
-﻿using TheWatcher.Domain.Core.QueryModels;
+﻿using Microsoft.EntityFrameworkCore;
+using TheWatcher.Domain.Core.Models;
+using TheWatcher.Domain.Core.QueryModels;
 
 namespace TheWatcher.Domain.Core
 {
@@ -30,6 +32,11 @@ namespace TheWatcher.Domain.Core
                 };
 
             return query;
+        }
+
+        public static async Task<ResourceWatch?> GetResourceWatchAsync(this TheWatcherDbContext ctx, short? id)
+        {
+            return await ctx.ResourceWatch.FirstOrDefaultAsync(item => item.Id == id);
         }
     }
 }
