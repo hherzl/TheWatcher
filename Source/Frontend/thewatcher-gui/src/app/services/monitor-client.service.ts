@@ -22,8 +22,11 @@ export class MonitorClientService {
 }
 
 export class ResourceWatchItemModel {
+  public id!: number;
   public resourceId!: number;
   public resource!: string;
+  public resourceCategoryId!: number;
+  public resourceCategory!: string;
   public environmentId!: number;
   public environment!: string;
   public successful!: boolean;
