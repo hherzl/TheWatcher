@@ -4,6 +4,7 @@ using TheWatcher.API.Common.Models;
 using TheWatcher.API.Common.Models.Contracts;
 using TheWatcher.API.Panel.Models;
 using TheWatcher.Domain.Core;
+using TheWatcher.Domain.Core.QueryModels;
 
 namespace TheWatcher.API.Panel.Controllers
 {
@@ -21,21 +22,13 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("watcher")]
-        [ProducesResponseType(200, Type = typeof(IListResponse<WatcherItemModel>))]
+        [ProducesResponseType(200, Type = typeof(IListResponse<WatcherQueryModel>))]
         public async Task<IActionResult> GetWatchersAsync()
         {
-            var response = new ListResponse<WatcherItemModel>();
-
-            var watchers =
-                from watcher in _dbContext.Watcher
-                select new WatcherItemModel
-                {
-                    Id = watcher.Id,
-                    Name = watcher.Name,
-                    Description = watcher.Description
-                };
-
-            response.Model = await watchers.ToListAsync();
+            var response = new ListResponse<WatcherQueryModel>
+            {
+                Model = await _dbContext.GetWatchers().ToListAsync()
+            };
 
             return response.ToOkResult();
         }
@@ -44,11 +37,7 @@ namespace TheWatcher.API.Panel.Controllers
         [ProducesResponseType(200, Type = typeof(SingleResponse<WatcherDetailsModel>))]
         public async Task<IActionResult> GetWatcherAsync(short? id)
         {
-            var entity = await _dbContext
-                .Watcher
-                .Include(e => e.WatcherParameterList)
-                .FirstOrDefaultAsync(item => item.Id == id)
-                ;
+            var entity = await _dbContext.GetWatcherAsync(id);
 
             if (entity == null)
                 return NotFound();
@@ -71,23 +60,13 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("resource")]
-        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceItemModel>))]
+        [ProducesResponseType(200, Type = typeof(IListResponse<ResourceQueryModel>))]
         public async Task<IActionResult> GetResourcesAsync()
         {
-            var response = new ListResponse<ResourceItemModel>();
-
-            var resources =
-                from resource in _dbContext.Resource
-                join category in _dbContext.ResourceCategory on resource.ResourceCategoryId equals category.Id
-                select new ResourceItemModel
-                {
-                    Id = resource.Id,
-                    Name = resource.Name,
-                    ResourceCategoryId = resource.ResourceCategoryId,
-                    ResourceCategory = category.Name
-                };
-
-            response.Model = await resources.ToListAsync();
+            var response = new ListResponse<ResourceQueryModel>
+            {
+                Model = await _dbContext.GetResources().ToListAsync()
+            };
 
             return response.ToOkResult();
         }
@@ -96,15 +75,7 @@ namespace TheWatcher.API.Panel.Controllers
         [ProducesResponseType(200, Type = typeof(SingleResponse<ResourceDetailsModel>))]
         public async Task<IActionResult> GetResourceAsync(short? id)
         {
-            var entity = await _dbContext
-                .Resource
-                .Include(e => e.ResourceCategoryFk.WatcherFk)
-                .Include(e => e.ResourceWatchList)
-                    .ThenInclude(e => e.EnvironmentFk)
-                .Include(e => e.ResourceWatchList)
-                    .ThenInclude(e => e.ResourceWatchParameterList)
-                .FirstOrDefaultAsync(item => item.Id == id)
-                ;
+            var entity = await _dbContext.GetResourceAsync(id);
 
             if (entity == null)
                 return NotFound();
