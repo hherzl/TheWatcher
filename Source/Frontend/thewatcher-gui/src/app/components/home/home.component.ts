@@ -4,6 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import * as signalR from '@aspnet/signalr';
 import { MonitorClientService, ResourceWatchItemModel } from 'src/app/services/monitor-client.service';
 import { ListResponse } from 'src/app/services/common';
+import { MONITOR_API_ENDPOINT } from 'src/settings';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,11 @@ export class HomeComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private monitorClient: MonitorClientService) { }
+  private hubEndpoint!: string;
+
+  constructor(private breakpointObserver: BreakpointObserver, private monitorClient: MonitorClientService) {
+    this.hubEndpoint = `${MONITOR_API_ENDPOINT}/monitorhub`;
+  }
 
   private hubConnection!: signalR.HubConnection;
   public response!: ListResponse<ResourceWatchItemModel>;
@@ -46,7 +51,7 @@ export class HomeComponent implements OnInit {
     this.hubConnection = new signalR
       .HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Debug)
-      .withUrl('https://localhost:13003/monitorhub')
+      .withUrl(this.hubEndpoint)
       .build()
       ;
 

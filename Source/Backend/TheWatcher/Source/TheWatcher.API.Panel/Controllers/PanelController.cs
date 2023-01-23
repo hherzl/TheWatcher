@@ -10,12 +10,12 @@ namespace TheWatcher.API.Panel.Controllers
 {
     [ApiController]
     [Route("api/v1")]
-    public class CatalogController : ControllerBase
+    public class PanelController : ControllerBase
     {
-        private readonly ILogger<CatalogController> _logger;
+        private readonly ILogger<PanelController> _logger;
         private readonly TheWatcherDbContext _dbContext;
 
-        public CatalogController(ILogger<CatalogController> logger, TheWatcherDbContext dbContext)
+        public PanelController(ILogger<PanelController> logger, TheWatcherDbContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;

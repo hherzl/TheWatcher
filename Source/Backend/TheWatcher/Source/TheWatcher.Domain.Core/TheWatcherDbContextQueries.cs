@@ -14,7 +14,8 @@ namespace TheWatcher.Domain.Core
                 {
                     Id = watcher.Id,
                     Name = watcher.Name,
-                    Description = watcher.Description
+                    Description = watcher.Description,
+                    ClassName = watcher.ClassName
                 };
 
             return query;

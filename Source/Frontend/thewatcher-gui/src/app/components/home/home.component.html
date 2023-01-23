@@ -6,7 +6,7 @@
       <tr>
         <th>Resource</th>
         <th>Environment</th>
-        <th>Successful</th>
+        <th>Status</th>
         <th>Watch count</th>
         <th>Last watch</th>
         <th>Interval</th>
@@ -21,7 +21,9 @@
           {{ item.environment }}
         </td>
         <td>
-          {{ item.successful ? 'running' : 'failed' }}
+          <button mat-icon-button color="{{ item.successful ? 'accent' : 'warn' }}">
+            <mat-icon>{{ item.successful ? 'play_arrow' : 'warning' }}</mat-icon>
+          </button>
         </td>
         <td>
           {{ item.watchCount }}

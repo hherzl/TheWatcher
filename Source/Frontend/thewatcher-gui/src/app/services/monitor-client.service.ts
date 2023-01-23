@@ -12,7 +12,7 @@ export class MonitorClientService {
   private endpoint: string;
 
   constructor(private http: HttpClient) {
-    this.endpoint = MONITOR_API_ENDPOINT;
+    this.endpoint = `${MONITOR_API_ENDPOINT}/api/v1`;
   }
 
   public getMonitor(): Observable<ListResponse<ResourceWatchItemModel>> {
