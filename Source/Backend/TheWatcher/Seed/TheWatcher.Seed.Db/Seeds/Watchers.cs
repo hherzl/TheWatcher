@@ -1,6 +1,7 @@
 ﻿using TheWatcher.Domain.Core.Models;
 using TheWatcher.Watchers.MongoDB;
 using TheWatcher.Watchers.PingWatcher;
+using TheWatcher.Watchers.PostgreSQL;
 using TheWatcher.Watchers.RabbitMQ;
 using TheWatcher.Watchers.SqlServer;
 
@@ -46,6 +47,15 @@ namespace TheWatcher.Seed.Db.Seeds
                     ClassName = typeof(RabbitMQWatcher).FullName,
                     ClassGuid = new RabbitMQWatcher().Guid,
                     AssemblyQualifiedName = typeof(RabbitMQWatcher).AssemblyQualifiedName
+                };
+
+                yield return new Watcher
+                {
+                    Name = "PostgreSQL watcher",
+                    Description = "Watcher for PostgreSQL databases",
+                    ClassName = typeof(PostgreSQLDatabaseWatcher).FullName,
+                    ClassGuid = new PostgreSQLDatabaseWatcher().Guid,
+                    AssemblyQualifiedName = typeof(PostgreSQLDatabaseWatcher).AssemblyQualifiedName
                 };
             }
         }
