@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using TheWatcher.API.Monitor.Hubs;
 using TheWatcher.API.Monitor.Hubs.Models;
 using TheWatcher.API.Monitor.Services.Models;
@@ -26,7 +27,7 @@ namespace TheWatcher.API.Monitor.Services
         private TheWatcherDbContext _dbContext;
         private IHubContext<MonitorHub> _hubContext;
 
-        public Task StartAsync(CancellationToken stoppingToken)
+        public async Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogDebug("Starting watchers...");
 
@@ -34,7 +35,7 @@ namespace TheWatcher.API.Monitor.Services
 
             _hubContext = _serviceScope.ServiceProvider.GetService<IHubContext<MonitorHub>>();
 
-            var list = _dbContext.GetResourceWatchItems().ToList();
+            var list = await _dbContext.GetResourceWatchItems().ToListAsync(stoppingToken);
 
             var model = list
                 .Select(item => new ResourceWatchItemModel
@@ -55,7 +56,7 @@ namespace TheWatcher.API.Monitor.Services
             {
                 var parameters = _dbContext
                     .ResourceWatchParameter
-                    .Where(x => x.ResourceWatchId == resourceWatchItem.Id)
+                    .Where(item => item.ResourceWatchId == resourceWatchItem.Id)
                     .ToList()
                     ;
 
@@ -67,10 +68,10 @@ namespace TheWatcher.API.Monitor.Services
                 _timers.Add(new Timer(Monitoring, resourceWatchItem, TimeSpan.Zero, TimeSpan.FromMilliseconds((double)resourceWatchItem.Interval)));
             }
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        public Task StopAsync(CancellationToken stoppingToken)
+        public async Task StopAsync(CancellationToken stoppingToken)
         {
             _logger.LogDebug("Stopping watchers...");
 
@@ -79,7 +80,7 @@ namespace TheWatcher.API.Monitor.Services
                 item.Change(Timeout.Infinite, 0);
             }
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         public void Dispose()

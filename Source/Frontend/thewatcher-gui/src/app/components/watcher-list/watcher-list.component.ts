@@ -25,10 +25,9 @@ export class WatcherListComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.panelClient.getWatchers().subscribe(result => {
       this.dataSource = new WatcherListDataSource(result.model);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
     });
-    
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
   }
 }
