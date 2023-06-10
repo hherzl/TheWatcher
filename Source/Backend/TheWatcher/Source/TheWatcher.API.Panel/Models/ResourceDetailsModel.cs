@@ -1,7 +1,24 @@
-﻿namespace TheWatcher.API.Panel.Models
+﻿using TheWatcher.Domain.Core.Models;
+
+namespace TheWatcher.API.Panel.Models
 {
     public record ResourceDetailsModel
     {
+        public ResourceDetailsModel()
+        {
+        }
+
+        public ResourceDetailsModel(Resource entity)
+        {
+            Id = entity.Id;
+            Name = entity.Name;
+            ResourceCategoryId = entity.ResourceCategoryId;
+            ResourceCategory = entity.ResourceCategoryFk.Name;
+            WatcherId = entity.ResourceCategoryFk.WatcherId;
+            Watcher = entity.ResourceCategoryFk.WatcherFk.Name;
+            Watches = entity.ResourceWatchList.Select(item => new ResourceWatchDetailsModel(item)).ToList();
+        }
+
         public short? Id { get; set; }
         public string Name { get; set; }
         public short? ResourceCategoryId { get; set; }
@@ -9,26 +26,6 @@
         public short? WatcherId { get; set; }
         public string Watcher { get; set; }
 
-        public List<ResourceWatchDetailsModel>? Watches { get; set; }
-    }
-
-    public record ResourceWatchDetailsModel
-    {
-        public short? Id { get; set; }
-        public short? EnvironmentId { get; set; }
-        public string Environment { get; set; }
-        public bool? Successful { get; set; }
-        public int? WatchCount { get; set; }
-        public DateTime? LastWatch { get; set; }
-        public int? Interval { get; set; }
-
-        public List<ResourceWatchParameterDetailsModel> Parameters { get; set; }
-    }
-
-    public record ResourceWatchParameterDetailsModel
-    {
-        public string Parameter { get; set; }
-        public string Value { get; set; }
-        public string Description { get; set; }
+        public List<ResourceWatchDetailsModel> Watches { get; set; }
     }
 }

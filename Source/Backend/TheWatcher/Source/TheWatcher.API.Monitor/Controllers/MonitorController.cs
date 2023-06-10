@@ -22,12 +22,12 @@ namespace TheWatcher.API.Monitor.Controllers
 
         [HttpGet("monitor")]
         [ProducesResponseType(200, Type = typeof(IListResponse<ResourceWatchQueryModel>))]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetMonitorAsync()
         {
-            var response = new ListResponse<ResourceWatchQueryModel>
-            {
-                Model = await _dbContext.GetResourceWatchItems().ToListAsync()
-            };
+            var model = await _dbContext.GetResourceWatchItems().ToListAsync();
+
+            var response = new ListResponse<ResourceWatchQueryModel>(model);
 
             return response.ToOkResult();
         }

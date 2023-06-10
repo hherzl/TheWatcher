@@ -15,7 +15,7 @@ namespace TheWatcher.Domain.Core.Models
 		}
 
 		public short? Id { get; set; }
-		public string? Name { get; set; }
+		public string Name { get; set; }
 		public short? ResourceCategoryId { get; set; }
 
 		public virtual ResourceCategory ResourceCategoryFk { get; set; }

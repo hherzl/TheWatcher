@@ -15,7 +15,7 @@ namespace TheWatcher.Domain.Core.Models
 		}
 
 		public short? Id { get; set; }
-		public string? Name { get; set; }
+		public string Name { get; set; }
 		public short? WatcherId { get; set; }
 
 		public virtual Watcher WatcherFk { get; set; }

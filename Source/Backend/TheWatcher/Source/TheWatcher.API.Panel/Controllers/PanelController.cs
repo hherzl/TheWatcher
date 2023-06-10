@@ -23,18 +23,20 @@ namespace TheWatcher.API.Panel.Controllers
 
         [HttpGet("watcher")]
         [ProducesResponseType(200, Type = typeof(IListResponse<WatcherQueryModel>))]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetWatchersAsync()
         {
-            var response = new ListResponse<WatcherQueryModel>
-            {
-                Model = await _dbContext.GetWatchers().ToListAsync()
-            };
+            var model = await _dbContext.GetWatchers().ToListAsync();
+
+            var response = new ListResponse<WatcherQueryModel>(model);
 
             return response.ToOkResult();
         }
 
         [HttpGet("watcher/{id}")]
         [ProducesResponseType(200, Type = typeof(SingleResponse<WatcherDetailsModel>))]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetWatcherAsync(short? id)
         {
             var entity = await _dbContext.GetWatcherAsync(id);
@@ -42,37 +44,27 @@ namespace TheWatcher.API.Panel.Controllers
             if (entity == null)
                 return NotFound();
 
-            var response = new SingleResponse<WatcherDetailsModel>
-            {
-                Model = new()
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Description = entity.Description,
-                    ClassName = entity.ClassName,
-                    ClassGuid = entity.ClassGuid,
-                    AssemblyQualifiedName = entity.AssemblyQualifiedName,
-                    Parameters = entity.WatcherParameterList.Select(item => new WatcherParameterDetailsModel(item.Id, item.IsDefault, item.Parameter, item.Value, item.Description)).ToList()
-                }
-            };
+            var response = new SingleResponse<WatcherDetailsModel>(new(entity));
 
             return response.ToOkResult();
         }
 
         [HttpGet("resource")]
         [ProducesResponseType(200, Type = typeof(IListResponse<ResourceQueryModel>))]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetResourcesAsync()
         {
-            var response = new ListResponse<ResourceQueryModel>
-            {
-                Model = await _dbContext.GetResources().ToListAsync()
-            };
+            var model = await _dbContext.GetResources().ToListAsync();
+
+            var response = new ListResponse<ResourceQueryModel>(model);
 
             return response.ToOkResult();
         }
 
         [HttpGet("resource/{id}")]
         [ProducesResponseType(200, Type = typeof(SingleResponse<ResourceDetailsModel>))]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetResourceAsync(short? id)
         {
             var entity = await _dbContext.GetResourceAsync(id);
@@ -80,37 +72,7 @@ namespace TheWatcher.API.Panel.Controllers
             if (entity == null)
                 return NotFound();
 
-            var response = new SingleResponse<ResourceDetailsModel>
-            {
-                Model = new()
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    ResourceCategoryId = entity.ResourceCategoryId,
-                    ResourceCategory = entity.ResourceCategoryFk.Name,
-                    WatcherId = entity.ResourceCategoryFk.WatcherId,
-                    Watcher = entity.ResourceCategoryFk.WatcherFk.Name,
-                    Watches = entity.ResourceWatchList.Select(watch => new ResourceWatchDetailsModel
-                    {
-                        Id = watch.Id,
-                        EnvironmentId = watch.EnvironmentId,
-                        Environment = watch.EnvironmentFk.Name,
-                        Successful = watch.Successful,
-                        WatchCount = watch.WatchCount,
-                        LastWatch = watch.LastWatch,
-                        Interval = watch.Interval,
-                        Parameters = watch
-                            .ResourceWatchParameterList
-                            .Select(parameter => new ResourceWatchParameterDetailsModel
-                            {
-                                Parameter = parameter.Parameter,
-                                Value = parameter.Value,
-                                Description = parameter.Description
-                            })
-                            .ToList()
-                    }).ToList()
-                }
-            };
+            var response = new SingleResponse<ResourceDetailsModel>(new(entity));
 
             return response.ToOkResult();
         }

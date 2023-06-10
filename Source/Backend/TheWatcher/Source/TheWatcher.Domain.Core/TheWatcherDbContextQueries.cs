@@ -65,12 +65,10 @@ namespace TheWatcher.Domain.Core
             return query;
         }
 
-        public static async Task<Watcher?> GetWatcherAsync(this TheWatcherDbContext ctx, short? id)
-        {
-            return await ctx.Watcher.Include(e => e.WatcherParameterList).FirstOrDefaultAsync(item => item.Id == id);
-        }
+        public static async Task<Watcher> GetWatcherAsync(this TheWatcherDbContext ctx, short? id)
+            => await ctx.Watcher.Include(e => e.WatcherParameterList).FirstOrDefaultAsync(item => item.Id == id);
 
-        public static async Task<Resource?> GetResourceAsync(this TheWatcherDbContext ctx, short? id)
+        public static async Task<Resource> GetResourceAsync(this TheWatcherDbContext ctx, short? id)
         {
             return await ctx
                 .Resource
@@ -83,9 +81,7 @@ namespace TheWatcher.Domain.Core
                 ;
         }
 
-        public static async Task<ResourceWatch?> GetResourceWatchAsync(this TheWatcherDbContext ctx, short? id)
-        {
-            return await ctx.ResourceWatch.FirstOrDefaultAsync(item => item.Id == id);
-        }
+        public static async Task<ResourceWatch> GetResourceWatchAsync(this TheWatcherDbContext ctx, short? id)
+            => await ctx.ResourceWatch.FirstOrDefaultAsync(item => item.Id == id);
     }
 }

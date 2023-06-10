@@ -21,7 +21,7 @@ namespace TheWatcher.Domain.Core.Models
         public int? WatchCount { get; set; }
         public DateTime? LastWatch { get; set; }
         public int? Interval { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         public virtual Resource ResourceFk { get; set; }
         public virtual Environment EnvironmentFk { get; set; }
