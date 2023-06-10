@@ -17,7 +17,7 @@ export class WatcherListComponent implements AfterViewInit {
   dataSource!: WatcherListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'className'];
 
   constructor(private panelClient: PanelClientService) {
   }

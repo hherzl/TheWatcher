@@ -26,7 +26,7 @@ namespace TheWatcher.API.Panel.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetWatchersAsync()
         {
-            var model = await _dbContext.GetWatchers().ToListAsync();
+            var model = await _dbContext.GetWatchers().OrderBy(item => item.Name).ToListAsync();
 
             var response = new ListResponse<WatcherQueryModel>(model);
 

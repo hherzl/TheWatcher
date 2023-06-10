@@ -13,7 +13,6 @@ namespace TheWatcher.API.Monitor.Services
         private readonly ILogger<MonitorService> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IServiceScope _serviceScope;
-
         private readonly List<Timer> _timers;
 
         public MonitorService(ILogger<MonitorService> logger, IServiceScopeFactory serviceScopeFactory)
