@@ -20,8 +20,4 @@
     <ProjectReference Include="..\TheWatcher.Library.Core\TheWatcher.Library.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

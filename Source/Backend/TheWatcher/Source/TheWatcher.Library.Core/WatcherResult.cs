@@ -11,7 +11,7 @@ namespace TheWatcher.Library.Core
 
         public bool IsSuccess { get; set; }
         public DateTime LastWatch { get; set; }
-        public string? Message { get; set; }
-        public string? ErrorMessage { get; set; }
+        public string Message { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

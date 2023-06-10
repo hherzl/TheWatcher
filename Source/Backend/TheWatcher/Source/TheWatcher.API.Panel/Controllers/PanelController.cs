@@ -34,7 +34,7 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("watcher/{id}")]
-        [ProducesResponseType(200, Type = typeof(SingleResponse<WatcherDetailsModel>))]
+        [ProducesResponseType(200, Type = typeof(ISingleResponse<WatcherDetailsModel>))]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetWatcherAsync(short? id)
@@ -62,7 +62,7 @@ namespace TheWatcher.API.Panel.Controllers
         }
 
         [HttpGet("resource/{id}")]
-        [ProducesResponseType(200, Type = typeof(SingleResponse<ResourceDetailsModel>))]
+        [ProducesResponseType(200, Type = typeof(ISingleResponse<ResourceDetailsModel>))]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetResourceAsync(short? id)

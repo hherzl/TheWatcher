@@ -5,7 +5,7 @@ using Environment = TheWatcher.Domain.Core.Models.Environment;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class EnvironmentConfiguration : EntityConfiguration<Environment>
+    internal class EnvironmentConfiguration : EntityConfiguration<Environment>
 	{
 		public override void Configure(EntityTypeBuilder<Environment> builder)
 		{

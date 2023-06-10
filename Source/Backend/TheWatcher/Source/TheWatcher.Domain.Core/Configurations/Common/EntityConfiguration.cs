@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TheWatcher.Domain.Common;
+using TheWatcher.Domain.Core.Common;
 
 namespace TheWatcher.Domain.Core.Configurations.Common
 {

@@ -1,8 +1,8 @@
-using TheWatcher.Domain.Common;
+using TheWatcher.Domain.Core.Common;
 
 namespace TheWatcher.Domain.Core.Models
 {
-	public partial class ResourceWatchParameter : Entity
+    public partial class ResourceWatchParameter : Entity
 	{
 		public ResourceWatchParameter()
 		{

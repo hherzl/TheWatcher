@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using TheWatcher.Domain.Common;
+using TheWatcher.Domain.Core.Common;
 
 namespace TheWatcher.Domain.Core.Models
 {

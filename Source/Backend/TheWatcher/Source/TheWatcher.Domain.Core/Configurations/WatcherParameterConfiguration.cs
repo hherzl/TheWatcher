@@ -5,7 +5,7 @@ using TheWatcher.Domain.Core.Models;
 
 namespace TheWatcher.Domain.Core.Configurations
 {
-	internal class WatcherParameterConfiguration : EntityConfiguration<WatcherParameter>
+    internal class WatcherParameterConfiguration : EntityConfiguration<WatcherParameter>
 	{
 		public override void Configure(EntityTypeBuilder<WatcherParameter> builder)
 		{
