@@ -4,9 +4,9 @@ using TheWatcher.Library.Core.Contracts;
 
 namespace TheWatcher.Watchers.PingWatcher
 {
-    public class PingWatcher : IWatcher
+    public sealed class PingWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("75B0AD20-A454-41E9-9FDA-AD065A7A95DD");
+        static readonly Guid ClassGuid = new("75B0AD20-A454-41E9-9FDA-AD065A7A95DD");
 
         public Guid Guid
             => ClassGuid;
@@ -22,11 +22,12 @@ namespace TheWatcher.Watchers.PingWatcher
             {
                 var reply = await new Ping().SendPingAsync(parameter.Values[WatcherParam.IPAddress]);
 
-                result.IsSuccess = reply.Status == IPStatus.Success ? true : false;
+                result.IsSuccess = reply.Status == IPStatus.Success;
             }
-            catch
+            catch(Exception ex)
             {
-                result.IsSuccess = false;
+                result.Message = ex.Message;
+                result.ErrorMessage = ex.ToString();
             }
 
             return result;

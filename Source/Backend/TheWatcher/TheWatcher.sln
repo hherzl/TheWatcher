@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watchers.RabbitM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatcher.Watchers.PostgreSQL", "Watchers\TheWatcher.Watchers.PostgreSQL\TheWatcher.Watchers.PostgreSQL.csproj", "{7F949F6D-90E5-4203-B8D9-0904D8F9FB78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheWatcher.Watchers.RESTfulGet", "Watchers\TheWatcher.Watchers.RESTfulGet\TheWatcher.Watchers.RESTfulGet.csproj", "{37E0A327-A31E-42BA-AE16-9F3B9CF2A896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{7F949F6D-90E5-4203-B8D9-0904D8F9FB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F949F6D-90E5-4203-B8D9-0904D8F9FB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F949F6D-90E5-4203-B8D9-0904D8F9FB78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E0A327-A31E-42BA-AE16-9F3B9CF2A896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E0A327-A31E-42BA-AE16-9F3B9CF2A896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E0A327-A31E-42BA-AE16-9F3B9CF2A896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E0A327-A31E-42BA-AE16-9F3B9CF2A896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{6F6B346D-B4A5-4550-8D6E-0583D33EA63A} = {0B65BF35-BA72-414E-B710-FC83187E0605}
 		{2EBEE05B-BD93-4A58-9286-69A577017157} = {0B65BF35-BA72-414E-B710-FC83187E0605}
 		{7F949F6D-90E5-4203-B8D9-0904D8F9FB78} = {0B65BF35-BA72-414E-B710-FC83187E0605}
+		{37E0A327-A31E-42BA-AE16-9F3B9CF2A896} = {0B65BF35-BA72-414E-B710-FC83187E0605}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09D2FE22-C83D-44AE-85D6-DD48782926CA}

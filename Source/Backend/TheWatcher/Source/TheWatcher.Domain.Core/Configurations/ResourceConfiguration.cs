@@ -36,7 +36,6 @@ namespace TheWatcher.Domain.Core.Configurations
 			builder
 				.Property(p => p.ResourceCategoryId)
 				.HasColumnType("smallint")
-				.IsRequired()
 				;
 
             // Add configuration for foreign keys

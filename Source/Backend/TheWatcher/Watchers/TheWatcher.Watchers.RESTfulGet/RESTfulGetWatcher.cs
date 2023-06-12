@@ -1,31 +1,28 @@
-﻿using System.Data.SqlClient;
-using TheWatcher.Library.Core;
+﻿using TheWatcher.Library.Core;
 using TheWatcher.Library.Core.Contracts;
 
-namespace TheWatcher.Watchers.SqlServer
+namespace TheWatcher.Watchers.RESTfulGet
 {
-    public sealed class SqlServerDatabaseWatcher : IWatcher
+    public sealed class RESTfulGetWatcher : IWatcher
     {
-        static readonly Guid ClassGuid = new("A1059C4E-1615-49EB-993D-274458DD212B");
+        static readonly Guid ClassGuid = new("5A4FB948-176D-4645-A4EA-47FF6844E56A");
 
         public Guid Guid
             => ClassGuid;
 
         public string ActionName
-            => "OpenDatabaseConnection";
+            => "RESTfulGet";
 
         public async Task<WatcherResult> WatchAsync(WatcherParam parameter)
         {
-            if (parameter == null)
-                throw new ArgumentNullException(nameof(parameter));
-
             var result = new WatcherResult();
-
-            using var connection = new SqlConnection(parameter.Values[WatcherParam.ConnectionString]);
 
             try
             {
-                await connection.OpenAsync();
+                using var client = new HttpClient();
+
+                var response = await client.GetAsync(parameter.Values[WatcherParam.Endpoint]);
+                response.EnsureSuccessStatusCode();
 
                 result.IsSuccess = true;
             }

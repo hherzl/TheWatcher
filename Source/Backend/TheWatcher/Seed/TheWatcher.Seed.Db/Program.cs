@@ -13,34 +13,38 @@ var audit = new
 
 Console.WriteLine("Creating watchers...");
 
-foreach (var item in Watchers.Items)
+foreach (var tuple in Watchers.Items)
 {
-    item.Active = true;
-    item.CreationUser = audit.CreationUser;
-    item.CreationDateTime = DateTime.Now;
+    var watcher = tuple.Item1;
 
-    ctx.Watcher.Add(item);
+    watcher.Active = true;
+    watcher.CreationUser = audit.CreationUser;
+    watcher.CreationDateTime = DateTime.Now;
+
+    Console.WriteLine($" Adding '{watcher.Name}' watcher...");
+
+    ctx.Watcher.Add(watcher);
 
     ctx.SaveChanges();
+
+    Console.WriteLine("  Creating parameters for watcher...");
+
+    foreach (var parameter in tuple.Item2)
+    {
+        parameter.WatcherId = watcher.Id;
+        parameter.Active = true;
+        parameter.CreationUser = audit.CreationUser;
+        parameter.CreationDateTime = DateTime.Now;
+
+        ctx.WatcherParameter.Add(parameter);
+
+        ctx.SaveChanges();
+    }
+
+    Console.WriteLine("  The watcher parameters were created successfully");
 }
 
 Console.WriteLine(" The watchers were created successfully");
-Console.WriteLine();
-
-Console.WriteLine("  Creating parameters for watchers...");
-
-foreach (var item in WatcherParameters.Items)
-{
-    item.Active = true;
-    item.CreationUser = audit.CreationUser;
-    item.CreationDateTime = DateTime.Now;
-
-    ctx.WatcherParameter.Add(item);
-
-    ctx.SaveChanges();
-}
-
-Console.WriteLine("  The watcher parameters were created successfully");
 Console.WriteLine();
 
 Console.WriteLine("Creating resource categories...");
@@ -52,6 +56,8 @@ foreach (var item in ResourceCategories.Items)
     item.CreationDateTime = DateTime.Now;
 
     ctx.ResourceCategory.Add(item);
+
+    Console.WriteLine($" Adding '{item.Name}' resource category...");
 
     ctx.SaveChanges();
 }
@@ -69,6 +75,8 @@ foreach (var item in Resources.Items)
 
     ctx.Resource.Add(item);
 
+    Console.WriteLine($" Adding '{item.Name}' resource...");
+
     ctx.SaveChanges();
 }
 
@@ -85,6 +93,8 @@ foreach (var item in Environments.Items)
 
     ctx.Environment.Add(item);
 
+    Console.WriteLine($" Adding '{item.Name}' environment...");
+
     ctx.SaveChanges();
 }
 
@@ -93,31 +103,36 @@ Console.WriteLine();
 
 Console.WriteLine("Creating resource watches...");
 
-foreach (var item in ResourceWatches.Items)
+foreach (var tuple in ResourceWatches.Items)
 {
-    item.Active = true;
-    item.CreationUser = audit.CreationUser;
-    item.CreationDateTime = DateTime.Now;
+    var resourceWatch = tuple.Item1;
 
-    ctx.ResourceWatch.Add(item);
+    resourceWatch.Active = true;
+    resourceWatch.CreationUser = audit.CreationUser;
+    resourceWatch.CreationDateTime = DateTime.Now;
+
+    ctx.ResourceWatch.Add(resourceWatch);
+
+    Console.WriteLine($" Adding '{resourceWatch.ResourceId}' resource watch...");
 
     ctx.SaveChanges();
+
+    Console.WriteLine("Creating resource watches parameters...");
+
+    foreach (var resourceWatchParameter in tuple.Item2)
+    {
+        resourceWatchParameter.ResourceWatchId = resourceWatch.Id;
+        resourceWatchParameter.Active = true;
+        resourceWatchParameter.CreationUser = audit.CreationUser;
+        resourceWatchParameter.CreationDateTime = DateTime.Now;
+
+        ctx.ResourceWatchParameter.Add(resourceWatchParameter);
+
+        ctx.SaveChanges();
+    }
+
+    Console.WriteLine(" The resource watches parameters were created successfully");
 }
 
 Console.WriteLine("The resource watches were created successfully");
 Console.WriteLine();
-
-Console.WriteLine("Creating resource watches parameters...");
-
-foreach (var item in ResourceWatchParameters.Items)
-{
-    item.Active = true;
-    item.CreationUser = audit.CreationUser;
-    item.CreationDateTime = DateTime.Now;
-
-    ctx.ResourceWatchParameter.Add(item);
-
-    ctx.SaveChanges();
-}
-
-Console.WriteLine(" The resource watches parameters were created successfully");

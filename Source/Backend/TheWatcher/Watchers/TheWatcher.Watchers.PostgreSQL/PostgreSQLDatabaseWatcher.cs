@@ -4,9 +4,9 @@ using TheWatcher.Library.Core.Contracts;
 
 namespace TheWatcher.Watchers.PostgreSQL
 {
-    public class PostgreSQLDatabaseWatcher : IWatcher
+    public sealed class PostgreSQLDatabaseWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("A7C757FC-9DA2-4563-880B-15D93693DDC6");
+        static readonly Guid ClassGuid = new("A7C757FC-9DA2-4563-880B-15D93693DDC6");
 
         public Guid Guid
             => ClassGuid;
@@ -21,7 +21,7 @@ namespace TheWatcher.Watchers.PostgreSQL
 
             var result = new WatcherResult();
 
-            using var connection = new NpgsqlConnection(parameter.Values["ConnectionString"]);
+            using var connection = new NpgsqlConnection(parameter.Values[WatcherParam.ConnectionString]);
 
             try
             {

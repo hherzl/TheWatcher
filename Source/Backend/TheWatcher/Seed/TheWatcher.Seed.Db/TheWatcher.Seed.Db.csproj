@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.PingWatcher\TheWatcher.Watchers.PingWatcher.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.PostgreSQL\TheWatcher.Watchers.PostgreSQL.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.RabbitMQ\TheWatcher.Watchers.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.RESTfulGet\TheWatcher.Watchers.RESTfulGet.csproj" />
     <ProjectReference Include="..\..\Watchers\TheWatcher.Watchers.SqlServer\TheWatcher.Watchers.SqlServer.csproj" />
   </ItemGroup>
 

@@ -23,18 +23,16 @@ namespace TheWatcher.API.Monitor.Services
             _timers = new();
         }
 
-        private TheWatcherDbContext _dbContext;
         private IHubContext<MonitorHub> _hubContext;
 
         public async Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogDebug("Starting watchers...");
 
-            _dbContext = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
-
             _hubContext = _serviceScope.ServiceProvider.GetService<IHubContext<MonitorHub>>();
 
-            var list = await _dbContext.GetResourceWatchItems().ToListAsync(stoppingToken);
+            var dbContext = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
+            var list = await dbContext.GetResourceWatchItems().ToListAsync(stoppingToken);
 
             var model = list
                 .Select(item => new ResourceWatchItemModel
@@ -53,10 +51,10 @@ namespace TheWatcher.API.Monitor.Services
 
             foreach (var resourceWatchItem in model)
             {
-                var parameters = _dbContext
+                var parameters = await dbContext
                     .ResourceWatchParameter
                     .Where(item => item.ResourceWatchId == resourceWatchItem.Id)
-                    .ToList()
+                    .ToListAsync()
                     ;
 
                 foreach (var param in parameters)
@@ -117,9 +115,9 @@ namespace TheWatcher.API.Monitor.Services
                     LastWatch = result.LastWatch
                 });
 
-                var ctx = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
+                var dbContext = _serviceScope.ServiceProvider.GetService<TheWatcherDbContext>();
 
-                var resourceWatch = await ctx.GetResourceWatchAsync(cast.Id);
+                var resourceWatch = await dbContext.GetResourceWatchAsync(cast.Id);
 
                 resourceWatch.Successful = result.IsSuccess;
                 resourceWatch.LastWatch = result.LastWatch;
@@ -127,7 +125,7 @@ namespace TheWatcher.API.Monitor.Services
                 resourceWatch.LastUpdateDateTime = DateTime.Now;
                 resourceWatch.LastUpdateUser = typeof(MonitorService).Name;
 
-                var affectedRows = await ctx.SaveChangesAsync();
+                var affectedRows = await dbContext.SaveChangesAsync();
 
                 if (affectedRows > 0)
                     _logger.LogInformation($"Resource watch was updated for '{cast.Resource}' resource in '{cast.Environment}' environment");

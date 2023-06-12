@@ -85,7 +85,7 @@ CREATE TABLE [dbo].[Resource]
 (
 	[Id] SMALLINT NOT NULL IDENTITY(1, 1),
 	[Name] NVARCHAR(100) NULL,
-	[ResourceCategoryId] SMALLINT NOT NULL,
+	[ResourceCategoryId] SMALLINT NULL,
 	[Active] BIT NOT NULL,
 	[CreationUser] NVARCHAR(50) NOT NULL,
 	[CreationDateTime] DATETIME NOT NULL,

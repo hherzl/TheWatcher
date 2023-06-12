@@ -6,7 +6,7 @@ namespace TheWatcher.Watchers.MongoDB
 {
     public sealed class MongoDBWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("5F766F68-1554-4F9C-9098-61CA3BA5A0D2");
+        static readonly Guid ClassGuid = new("5F766F68-1554-4F9C-9098-61CA3BA5A0D2");
 
         public Guid Guid
             => ClassGuid;

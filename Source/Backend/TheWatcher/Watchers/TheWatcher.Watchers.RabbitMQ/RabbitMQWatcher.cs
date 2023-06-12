@@ -6,7 +6,7 @@ namespace TheWatcher.Watchers.RabbitMQ
 {
     public sealed class RabbitMQWatcher : IWatcher
     {
-        private static readonly Guid ClassGuid = new("EC0CAAF2-436C-4FD5-AEE3-7BD8E27F714B");
+        static readonly Guid ClassGuid = new("EC0CAAF2-436C-4FD5-AEE3-7BD8E27F714B");
 
         public Guid Guid
             => ClassGuid;
@@ -39,7 +39,7 @@ namespace TheWatcher.Watchers.RabbitMQ
                 result.ErrorMessage = ex.ToString();
             }
 
-            return result;
+            return await Task.FromResult(result);
         }
     }
 }
