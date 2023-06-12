@@ -19,6 +19,11 @@ export class PanelClientService {
     const url = `${this.endpoint}/watcher`;
     return this.http.get<ListResponse<WatcherItemModel>>(url);
   }
+
+  public getResources(): Observable<ListResponse<ResourceItemModel>> {
+    const url = `${this.endpoint}/resource`;
+    return this.http.get<ListResponse<ResourceItemModel>>(url);
+  }
 }
 
 export class WatcherItemModel {
@@ -26,4 +31,11 @@ export class WatcherItemModel {
   public name!: string;
   public description!: string;
   public className!: string;
+}
+
+export class ResourceItemModel {
+  public id!: number;
+  public name!: string;
+  public resourceCategoryId!: number;
+  public resourceCategory!: string;
 }

@@ -19,12 +19,14 @@ import { WatcherListComponent } from './components/watcher-list/watcher-list.com
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ResourceListComponent } from './components/resource-list/resource-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    WatcherListComponent
+    WatcherListComponent,
+    ResourceListComponent
   ],
   imports: [
     BrowserModule,

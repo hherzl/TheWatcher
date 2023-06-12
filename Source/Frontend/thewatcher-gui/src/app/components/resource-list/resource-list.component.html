@@ -1,4 +1,4 @@
-<h1>Watchers</h1>
+<h1>Resources</h1>
 
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
@@ -12,6 +12,12 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- ResourceCategory Column -->
+    <ng-container matColumnDef="resourceCategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Resource Category</th>
+      <td mat-cell *matCellDef="let row">{{row.resourceCategory}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

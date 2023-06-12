@@ -15,9 +15,8 @@ export class WatcherListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<WatcherItemModel>;
   dataSource!: WatcherListDataSource;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'className'];
+  
+  displayedColumns = ['id', 'name'];
 
   constructor(private panelClient: PanelClientService) {
   }
